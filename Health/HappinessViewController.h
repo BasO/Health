@@ -11,4 +11,12 @@
 
 @interface HappinessViewController : UIViewController <MSPageViewControllerChild>
 
+@property (weak, nonatomic) IBOutlet UIButton *bestButton;
+@property (weak, nonatomic) IBOutlet UIButton *goodButton;
+@property (weak, nonatomic) IBOutlet UIButton *neutralButton;
+@property (weak, nonatomic) IBOutlet UIButton *badButton;
+@property (weak, nonatomic) IBOutlet UIButton *worstButton;
+
+@property (weak, nonatomic) IBOutlet UILabel *timeLabel;
+
 @end
