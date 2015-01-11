@@ -10,4 +10,9 @@
 
 @interface LogViewController : UITableViewController
 
+@property (weak, nonatomic) IBOutlet UITableView *psychoTable;
+@property (nonatomic, strong) NSMutableArray *psychoVars;
+@property (weak, nonatomic) IBOutlet UITableView *healthTable;
+@property (nonatomic, strong) NSMutableArray *healthVars;
+
 @end

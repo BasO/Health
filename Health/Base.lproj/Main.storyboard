@@ -5,10 +5,11 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Variable-->
         <scene sceneID="JWY-8p-scC">
             <objects>
-                <viewController id="OMr-FP-XC5" sceneMemberID="viewController">
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5iw-I0-4eK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="OMr-FP-XC5" customClass="VarViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ohI-Py-yru"/>
                         <viewControllerLayoutGuide type="bottom" id="hKs-2P-3Pd"/>
@@ -18,15 +19,42 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="Wzr-QT-hAS"/>
+                    <navigationItem key="navigationItem" title="Variable" id="Wzr-QT-hAS"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="5iw-I0-4eK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1018" y="1515"/>
+            <point key="canvasLocation" x="-1018" y="1517"/>
+        </scene>
+        <!--Log-->
+        <scene sceneID="nMM-XS-R11">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wKG-Qh-PPh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tableViewController id="ayI-wN-r0b" customClass="LogViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="s8e-9q-MbF">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Cell" id="HWQ-C5-Rx6">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HWQ-C5-Rx6" id="tFT-LI-IyL">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="ayI-wN-r0b" id="lao-gA-AFG"/>
+                            <outlet property="delegate" destination="ayI-wN-r0b" id="EBG-9d-ecf"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Log" id="wbv-Px-nhr"/>
+                </tableViewController>
+            </objects>
+            <point key="canvasLocation" x="-1026" y="816"/>
         </scene>
         <!--Log-->
         <scene sceneID="6xh-4f-oD0">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9OZ-b5-iMq" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController storyboardIdentifier="logViewController" id="ajC-rd-yZm" customClass="LogNavViewController" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Log" image="second" id="B6i-wh-utr"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Fam-pT-33h">
@@ -34,10 +62,9 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="Ksv-Jm-wCD" kind="relationship" relationship="rootViewController" id="BZX-AT-jzk"/>
+                        <segue destination="ayI-wN-r0b" kind="relationship" relationship="rootViewController" id="iXW-30-zJd"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="9OZ-b5-iMq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1018" y="127"/>
         </scene>
@@ -50,39 +77,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XcN-Yc-HyM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-638" y="127"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="726-4B-JY3">
-            <objects>
-                <viewController id="Ksv-Jm-wCD" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Wie-wt-eJs"/>
-                        <viewControllerLayoutGuide type="bottom" id="U6H-sM-cvF"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="NYG-pi-0mX">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="varlist.png" translatesAutoresizingMaskIntoConstraints="NO" id="fhu-CB-3ek">
-                                <rect key="frame" x="36" y="74" width="248" height="394"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="394" id="3lG-AH-ako"/>
-                                </constraints>
-                            </imageView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="centerX" secondItem="fhu-CB-3ek" secondAttribute="centerX" id="63l-2M-8DG"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="fhu-CB-3ek" secondAttribute="trailing" constant="20" id="aWO-m2-ml5"/>
-                            <constraint firstItem="fhu-CB-3ek" firstAttribute="leading" secondItem="NYG-pi-0mX" secondAttribute="leadingMargin" constant="20" id="fnw-Em-djU"/>
-                            <constraint firstItem="fhu-CB-3ek" firstAttribute="top" secondItem="Wie-wt-eJs" secondAttribute="bottom" constant="10" id="tN0-kf-aW3"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="Msb-1N-qh0"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Yo7-d5-scy" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1018" y="785"/>
         </scene>
         <!--Network View Controller-->
         <scene sceneID="ggL-Rg-RmJ">
@@ -106,6 +100,12 @@
                                 <rect key="frame" x="36" y="134" width="248" height="300"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="300" id="EVG-bS-R2k"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="varlist.png" translatesAutoresizingMaskIntoConstraints="NO" id="fhu-CB-3ek">
+                                <rect key="frame" x="16" y="128" width="248" height="394"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="394" id="3lG-AH-ako"/>
                                 </constraints>
                             </imageView>
                         </subviews>
@@ -283,6 +283,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="timeLabel" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q6U-1p-ci8">
+                                <rect key="frame" x="34" y="154" width="75" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="m1r-Td-a0o"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wQZ-5k-Heo">
                                 <rect key="frame" x="130" y="80" width="60" height="84"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="60"/>
@@ -290,7 +299,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="bestButtonPress:" destination="kRg-hd-pW9" eventType="touchUpInside" id="NP6-vb-SGL"/>
+                                    <action selector="feelingsButtonPressed:" destination="kRg-hd-pW9" eventType="touchUpInside" id="3nM-46-XyC"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ahp-j5-Kwr">
@@ -300,7 +309,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="goodButtonPress:" destination="kRg-hd-pW9" eventType="touchUpInside" id="7mG-14-Szl"/>
+                                    <action selector="feelingsButtonPressed:" destination="kRg-hd-pW9" eventType="touchUpInside" id="Rb7-kz-Vai"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ruz-HM-dtH">
@@ -310,7 +319,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="neutralButtonPress:" destination="kRg-hd-pW9" eventType="touchUpInside" id="jBJ-Yf-Y1Q"/>
+                                    <action selector="feelingsButtonPressed:" destination="kRg-hd-pW9" eventType="touchUpInside" id="nHW-2j-Z1k"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r3T-qL-Vlq">
@@ -320,7 +329,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="badButtonPress:" destination="kRg-hd-pW9" eventType="touchUpInside" id="XSd-FS-Esc"/>
+                                    <action selector="feelingsButtonPressed:" destination="kRg-hd-pW9" eventType="touchUpInside" id="vD1-Eq-cZx"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Tq-7Z-CJp">
@@ -330,7 +339,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="worstButtonPress:" destination="kRg-hd-pW9" eventType="touchUpInside" id="TYW-mX-zFJ"/>
+                                    <action selector="feelingsButtonPressed:" destination="kRg-hd-pW9" eventType="touchUpInside" id="3yw-JA-6eE"/>
                                 </connections>
                             </button>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PjO-j6-STq">
@@ -342,15 +351,6 @@
                                     <navigationItem title="How do you feel?" id="aoA-Hu-G1s"/>
                                 </items>
                             </navigationBar>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="timeLabel" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q6U-1p-ci8">
-                                <rect key="frame" x="34" y="154" width="75" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="m1r-Td-a0o"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -376,7 +376,6 @@
                     </view>
                     <connections>
                         <outlet property="badButton" destination="r3T-qL-Vlq" id="hjz-A0-bpv"/>
-                        <outlet property="bestButton" destination="wQZ-5k-Heo" id="byz-K6-sWg"/>
                         <outlet property="goodButton" destination="ahp-j5-Kwr" id="mNK-9e-sV9"/>
                         <outlet property="neutralButton" destination="ruz-HM-dtH" id="0hO-YA-j7E"/>
                         <outlet property="timeLabel" destination="Q6U-1p-ci8" id="EQ7-kJ-nDf"/>

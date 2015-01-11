@@ -10,8 +10,6 @@
 
 @interface HappinessViewController ()
 
-
-
 @end
 
 @implementation HappinessViewController
@@ -47,23 +45,9 @@ NSDateFormatter* timeFormat;
     // Pass the selected object to the new view controller.
 }
 */
-
-- (IBAction)bestButtonPress:(id)sender {
-    [self showTimeForButton:self.bestButton];
+- (IBAction)feelingsButtonPressed:(id)sender {
+    [self showTimeForButton:sender];
 }
-- (IBAction)goodButtonPress:(id)sender {
-    [self showTimeForButton:self.goodButton];
-}
-- (IBAction)neutralButtonPress:(id)sender {
-    [self showTimeForButton:self.neutralButton];
-}
-- (IBAction)badButtonPress:(id)sender {
-    [self showTimeForButton:self.badButton];
-}
-- (IBAction)worstButtonPress:(id)sender {
-    [self showTimeForButton:self.worstButton];
-}
-
 
 
 - (void)showTimeForButton:(UIButton*)button
@@ -75,6 +59,7 @@ NSDateFormatter* timeFormat;
     
     // set correct position of timeLabel
     [self.timeLabel setCenter:CGPointMake(button.frame.origin.x - 30, button.center.y)];
+    NSLog(@"button y is %f", button.frame.origin.x - 30);
     
     self.timeLabel.hidden = NO;
     self.timeLabel.alpha = 1;
@@ -87,7 +72,7 @@ NSDateFormatter* timeFormat;
                          self.timeLabel.alpha = 0.4;
                          NSLog(@"2 y is %f", self.timeLabel.frame.origin.y);
                          self.timeLabel.center = CGPointMake(self.view.frame.origin.x + 50, button.center.y);
-                         NSLog(@"3 y is %f", self.timeLabel.frame.origin.y);
+                         
                      }
                      completion:^(BOOL finished) {
                          if (self.timeLabel.alpha <= 0.1)
