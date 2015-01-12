@@ -47,6 +47,9 @@ NSDateFormatter* timeFormat;
 */
 - (IBAction)feelingsButtonPressed:(id)sender {
     [self showTimeForButton:sender];
+    
+    NSDictionary *score = [NSDictionary dictionaryWithObjectAndKeys: theName, @"name", [NSNumber numberWithFloat:finalScore], @"finalScore", nil];
+    [happinessScores addObject: score];
 }
 
 

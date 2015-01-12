@@ -7,11 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "InAppVar.h"
 
-@interface VarViewController : UIViewController
+@interface VarViewController : UITableViewController
 
-@property (strong, nonatomic) id detailItem;
+@property (strong, nonatomic) InAppVar* variable;
 @property (weak, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
 @property (weak, nonatomic) IBOutlet UINavigationItem *varTitle;
+@property (weak, nonatomic) IBOutlet UILabel *lastRatingLabel;
 
 @end

@@ -26,7 +26,6 @@
 		49CB63201A60384F00459735 /* InViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CB631F1A60384F00459735 /* InViewController.m */; };
 		49CB63231A603BB300459735 /* LogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CB63221A603BB300459735 /* LogViewController.m */; };
 		49CB63261A603BC000459735 /* AnalysisViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CB63251A603BC000459735 /* AnalysisViewController.m */; };
-		49CB63291A603C7400459735 /* LogNavViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CB63281A603C7400459735 /* LogNavViewController.m */; };
 		49CB63321A603EA100459735 /* HappinessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CB63311A603EA100459735 /* HappinessViewController.m */; };
 		49CB63351A603F0400459735 /* PomodoroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CB63341A603F0400459735 /* PomodoroViewController.m */; };
 		49CB63381A603F7000459735 /* NetworkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CB63371A603F7000459735 /* NetworkViewController.m */; };
@@ -53,7 +52,6 @@
 		4922CBED1A6088EE0044AD98 /* varlist.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = varlist.png; sourceTree = "<group>"; };
 		4922CC2A1A62E17F0044AD98 /* VarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VarViewController.h; sourceTree = "<group>"; };
 		4922CC2B1A62E17F0044AD98 /* VarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VarViewController.m; sourceTree = "<group>"; };
-		4922CC301A631A360044AD98 /* HealthVars.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HealthVars.h; sourceTree = "<group>"; };
 		49602A921A63EDF9008060C1 /* InAppVar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InAppVar.h; path = ../InAppVar.h; sourceTree = "<group>"; };
 		49602A931A63EDF9008060C1 /* InAppVar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InAppVar.m; path = ../InAppVar.m; sourceTree = "<group>"; };
 		49B1427A1A5EA81A00CED2A0 /* Health.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Health.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -78,8 +76,6 @@
 		49CB63221A603BB300459735 /* LogViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogViewController.m; sourceTree = "<group>"; };
 		49CB63241A603BC000459735 /* AnalysisViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnalysisViewController.h; sourceTree = "<group>"; };
 		49CB63251A603BC000459735 /* AnalysisViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnalysisViewController.m; sourceTree = "<group>"; };
-		49CB63271A603C7400459735 /* LogNavViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogNavViewController.h; sourceTree = "<group>"; };
-		49CB63281A603C7400459735 /* LogNavViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogNavViewController.m; sourceTree = "<group>"; };
 		49CB63301A603EA100459735 /* HappinessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HappinessViewController.h; sourceTree = "<group>"; };
 		49CB63311A603EA100459735 /* HappinessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HappinessViewController.m; sourceTree = "<group>"; };
 		49CB63331A603F0400459735 /* PomodoroViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PomodoroViewController.h; sourceTree = "<group>"; };
@@ -126,15 +122,21 @@
 		4922CC2D1A62E1860044AD98 /* Log */ = {
 			isa = PBXGroup;
 			children = (
-				49CB63271A603C7400459735 /* LogNavViewController.h */,
-				49CB63281A603C7400459735 /* LogNavViewController.m */,
 				49CB63211A603BB300459735 /* LogViewController.h */,
 				49CB63221A603BB300459735 /* LogViewController.m */,
 				4922CC2A1A62E17F0044AD98 /* VarViewController.h */,
 				4922CC2B1A62E17F0044AD98 /* VarViewController.m */,
-				4922CC301A631A360044AD98 /* HealthVars.h */,
 			);
 			name = Log;
+			sourceTree = "<group>";
+		};
+		49602A951A640851008060C1 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				49602A921A63EDF9008060C1 /* InAppVar.h */,
+				49602A931A63EDF9008060C1 /* InAppVar.m */,
+			);
+			name = Classes;
 			sourceTree = "<group>";
 		};
 		49B142711A5EA81A00CED2A0 = {
@@ -166,8 +168,6 @@
 				49CB633D1A60403A00459735 /* Analysis */,
 				49CB633E1A6052C800459735 /* TabBarViewController.h */,
 				49CB633F1A6052C800459735 /* TabBarViewController.m */,
-				49602A921A63EDF9008060C1 /* InAppVar.h */,
-				49602A931A63EDF9008060C1 /* InAppVar.m */,
 				49B1428D1A5EA81B00CED2A0 /* Images.xcassets */,
 				49B1428F1A5EA81B00CED2A0 /* LaunchScreen.xib */,
 				49B1427D1A5EA81A00CED2A0 /* Supporting Files */,
@@ -237,6 +237,7 @@
 				49CB63371A603F7000459735 /* NetworkViewController.m */,
 				49CB63391A603FDD00459735 /* SortedViewController.h */,
 				49CB633A1A603FDD00459735 /* SortedViewController.m */,
+				49602A951A640851008060C1 /* Classes */,
 			);
 			name = Analysis;
 			sourceTree = "<group>";
@@ -351,7 +352,6 @@
 				49CB63321A603EA100459735 /* HappinessViewController.m in Sources */,
 				49CB63401A6052C800459735 /* TabBarViewController.m in Sources */,
 				49CB63231A603BB300459735 /* LogViewController.m in Sources */,
-				49CB63291A603C7400459735 /* LogNavViewController.m in Sources */,
 				49CB63351A603F0400459735 /* PomodoroViewController.m in Sources */,
 				49602A941A63EDF9008060C1 /* InAppVar.m in Sources */,
 				49CB633B1A603FDD00459735 /* SortedViewController.m in Sources */,

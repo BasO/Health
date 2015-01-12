@@ -61,8 +61,8 @@
         VarViewController *varViewController = (VarViewController *)segue.destinationViewController;
         
         NSIndexPath *indexPath = [self.psychoTable indexPathForSelectedRow];
-        NSDate *object = [vars[indexPath.row] varName];
-        [varViewController setDetailItem:object];
+        InAppVar *variable = vars[indexPath.row];
+        [varViewController setVariable:variable];
     }
 }
 
