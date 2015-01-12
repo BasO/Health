@@ -14,6 +14,7 @@
 		4922CBF21A6088EE0044AD98 /* pomodoro.png in Resources */ = {isa = PBXBuildFile; fileRef = 4922CBEC1A6088EE0044AD98 /* pomodoro.png */; };
 		4922CBF31A6088EE0044AD98 /* varlist.png in Resources */ = {isa = PBXBuildFile; fileRef = 4922CBED1A6088EE0044AD98 /* varlist.png */; };
 		4922CC2C1A62E17F0044AD98 /* VarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4922CC2B1A62E17F0044AD98 /* VarViewController.m */; };
+		49602A941A63EDF9008060C1 /* InAppVar.m in Sources */ = {isa = PBXBuildFile; fileRef = 49602A931A63EDF9008060C1 /* InAppVar.m */; };
 		49B142801A5EA81A00CED2A0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 49B1427F1A5EA81A00CED2A0 /* main.m */; };
 		49B142831A5EA81A00CED2A0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 49B142821A5EA81A00CED2A0 /* AppDelegate.m */; };
 		49B1428C1A5EA81A00CED2A0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49B1428A1A5EA81A00CED2A0 /* Main.storyboard */; };
@@ -53,7 +54,8 @@
 		4922CC2A1A62E17F0044AD98 /* VarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VarViewController.h; sourceTree = "<group>"; };
 		4922CC2B1A62E17F0044AD98 /* VarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VarViewController.m; sourceTree = "<group>"; };
 		4922CC301A631A360044AD98 /* HealthVars.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HealthVars.h; sourceTree = "<group>"; };
-		4922CC311A631A7E0044AD98 /* InAppVar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InAppVar.h; sourceTree = "<group>"; };
+		49602A921A63EDF9008060C1 /* InAppVar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InAppVar.h; path = ../InAppVar.h; sourceTree = "<group>"; };
+		49602A931A63EDF9008060C1 /* InAppVar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InAppVar.m; path = ../InAppVar.m; sourceTree = "<group>"; };
 		49B1427A1A5EA81A00CED2A0 /* Health.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Health.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		49B1427E1A5EA81A00CED2A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		49B1427F1A5EA81A00CED2A0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -130,7 +132,6 @@
 				49CB63221A603BB300459735 /* LogViewController.m */,
 				4922CC2A1A62E17F0044AD98 /* VarViewController.h */,
 				4922CC2B1A62E17F0044AD98 /* VarViewController.m */,
-				4922CC311A631A7E0044AD98 /* InAppVar.h */,
 				4922CC301A631A360044AD98 /* HealthVars.h */,
 			);
 			name = Log;
@@ -165,6 +166,8 @@
 				49CB633D1A60403A00459735 /* Analysis */,
 				49CB633E1A6052C800459735 /* TabBarViewController.h */,
 				49CB633F1A6052C800459735 /* TabBarViewController.m */,
+				49602A921A63EDF9008060C1 /* InAppVar.h */,
+				49602A931A63EDF9008060C1 /* InAppVar.m */,
 				49B1428D1A5EA81B00CED2A0 /* Images.xcassets */,
 				49B1428F1A5EA81B00CED2A0 /* LaunchScreen.xib */,
 				49B1427D1A5EA81A00CED2A0 /* Supporting Files */,
@@ -350,6 +353,7 @@
 				49CB63231A603BB300459735 /* LogViewController.m in Sources */,
 				49CB63291A603C7400459735 /* LogNavViewController.m in Sources */,
 				49CB63351A603F0400459735 /* PomodoroViewController.m in Sources */,
+				49602A941A63EDF9008060C1 /* InAppVar.m in Sources */,
 				49CB633B1A603FDD00459735 /* SortedViewController.m in Sources */,
 				49CB63201A60384F00459735 /* InViewController.m in Sources */,
 				49CB631C1A602A5E00459735 /* MSPageViewController.m in Sources */,

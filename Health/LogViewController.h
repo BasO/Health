@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LogViewController : UITableViewController
+@interface LogViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *psychoTable;
 @property (nonatomic, strong) NSMutableArray *psychoVars;

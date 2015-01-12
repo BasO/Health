@@ -16,7 +16,7 @@
 
 @implementation LogViewController
 {
-    NSMutableArray* vars;
+    NSArray* vars;
 }
 
 - (void)awakeFromNib {
@@ -27,17 +27,15 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
-    vars = [NSMutableArray arrayWithCapacity:2];
+    InAppVar* happ = [[InAppVar alloc] init];
+    happ.varName = @"Happiness";
+    happ.lastRating = 4;
     
-    InAppVar *var = [[InAppVar alloc] init];
-    var.name = @"Happiness";
-    var.lastRating = 4;
-    [vars addObject:var];
+    InAppVar* pomo = [[InAppVar alloc] init];
+    pomo.varName = @"Pomodoros";
+    pomo.lastRating = 8;
     
-    var = [[InAppVar alloc] init];
-    var.name = @"Pomodoros";
-    var.lastRating = 12;
-    [vars addObject:var];
+    vars = [[NSArray alloc] initWithObjects: happ, pomo, nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -46,36 +44,65 @@
 }
 
 #pragma mark - Segues
-
 /*
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
-        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        NSDate *object = self.objects[indexPath.row];
+        NSIndexPath *indexPath = [self.psychoTable indexPathForSelectedRow];
+        NSDate *object = vars[indexPath.row];
         [[segue destinationViewController] setDetailItem:object];
     }
+}
+ */
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if([segue.identifier isEqualToString:@"showDetail"])
+    {
+        
+        VarViewController *varViewController = (VarViewController *)segue.destinationViewController;
+        
+        NSIndexPath *indexPath = [self.psychoTable indexPathForSelectedRow];
+        NSDate *object = [vars[indexPath.row] varName];
+        [varViewController setDetailItem:object];
+    }
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // Conditionally perform segues, here is an example:
+    
+    [self performSegueWithIdentifier:@"showDetail" sender:self];
+    
 }
 
 
 #pragma mark - Table View
 
+/*
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
+*/
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return _vars.count;
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [vars count];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *simpleTableIdentifier = @"SimpleTableCell";
     
-    NSDate *object = _vars[indexPath.row];
-    cell.textLabel.text = [object description];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
+    
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
+    }
+    cell.textLabel.text = [[vars objectAtIndex:indexPath.row] varName];
     return cell;
-}
+} 
 
-
+/*
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     // Return NO if you do not want the specified item to be editable.
