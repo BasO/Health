@@ -71,6 +71,7 @@
     // Conditionally perform segues, here is an example:
     
     [self performSegueWithIdentifier:@"showDetail" sender:self];
+    [self.psychoTable deselectRowAtIndexPath:indexPath animated:YES];
     
 }
 
