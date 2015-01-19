@@ -8,12 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "InAppVar.h"
+#import "BEMSimpleLineGraphView.h"
 
-@interface VarViewController : UITableViewController
+@interface VarViewController : UITableViewController <BEMSimpleLineGraphDelegate, BEMSimpleLineGraphDataSource>
 
-@property (strong, nonatomic) InAppVar* variable;
+@property (strong, nonatomic) NSString* variable;
 @property (weak, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
 @property (weak, nonatomic) IBOutlet UINavigationItem *varTitle;
 @property (weak, nonatomic) IBOutlet UILabel *lastRatingLabel;
+@property (weak, nonatomic) IBOutlet BEMSimpleLineGraphView *graph;
 
 @end

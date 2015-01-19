@@ -19,6 +19,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    [self copyPlist];
+    [self createUserSettings];
     
     return YES;
 }
@@ -43,6 +45,37 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+- (void) copyPlist {
+    NSError *error;
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory =  [paths objectAtIndex:0];
+    NSString *path = [documentsDirectory stringByAppendingPathComponent:@"HappinessScores.plist"];
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    
+    //check if the file exists already in users documents folder
+    //if file does not exist copy it from the application bundle Plist file
+    if ( ![fileManager fileExistsAtPath:path] ) {
+        NSLog(@"copying database to users documents");
+        NSString *pathToSettingsInBundle = [[NSBundle mainBundle] pathForResource:@"HappinessScores" ofType:@"plist"];
+        [fileManager copyItemAtPath:pathToSettingsInBundle toPath:path error:&error];
+    }
+    //if file is already there do nothing
+    else {
+        NSLog(@"users database already configured");
+    }
+}
+
+- (void) createUserSettings {
+    NSUserDefaults *settings = [NSUserDefaults standardUserDefaults];
+    if (![settings objectForKey:@"launched"])
+    {
+        [settings setInteger:0 forKey:@"happinessDataPoints"];
+        [settings setBool:true forKey:@"launched"];
+    }
+    
+    [settings synchronize];
 }
 
 @end

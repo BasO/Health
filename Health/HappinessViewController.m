@@ -47,6 +47,24 @@ NSDateFormatter* timeFormat;
 */
 - (IBAction)feelingsButtonPressed:(id)sender {
     [self showTimeForButton:sender];
+    
+    UIButton *resultButton = (UIButton *)sender;
+    NSString* input = resultButton.currentTitle;
+    
+    int buttonValue;
+    if ([input compare:@"😄"] == NSOrderedSame)
+        buttonValue = 5;
+    else if ([input compare:@"😊"] == NSOrderedSame)
+        buttonValue = 4;
+    else if ([input compare:@"😐"] == NSOrderedSame)
+        buttonValue = 3;
+    else if ([input compare:@"😞"] == NSOrderedSame)
+        buttonValue = 2;
+    else if ([input compare:@"😪"] == NSOrderedSame)
+        buttonValue = 1;
+    
+    [self writeScoreToPList:buttonValue];
+    
 }
 
 
@@ -59,7 +77,7 @@ NSDateFormatter* timeFormat;
     
     // set correct position of timeLabel
     [self.timeLabel setCenter:CGPointMake(button.frame.origin.x - 30, button.center.y)];
-    NSLog(@"button y is %f", button.frame.origin.x - 30);
+    NSLog(@"button y is %f", button.center.y);
     
     self.timeLabel.hidden = NO;
     self.timeLabel.alpha = 1;
@@ -69,7 +87,7 @@ NSDateFormatter* timeFormat;
                           delay:0
                         options: UIViewAnimationOptionAllowUserInteraction | UIViewAnimationOptionAllowAnimatedContent
                      animations:^{
-                         self.timeLabel.alpha = 0.4;
+                         self.timeLabel.alpha = 0;
                          NSLog(@"2 y is %f", self.timeLabel.frame.origin.y);
                          self.timeLabel.center = CGPointMake(self.view.frame.origin.x + 50, button.center.y);
                          
@@ -78,8 +96,55 @@ NSDateFormatter* timeFormat;
                          if (self.timeLabel.alpha <= 0.1)
                              self.timeLabel.hidden = YES;
                      }];
+
+}
+
+-(NSString *)getFilePath
+{
+    NSArray *pathArray = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    return [[pathArray objectAtIndex:0] stringByAppendingPathComponent:@"HappinessScores.plist"];
+}
+
+-(void) writeScoreToPList:(int)value
+{
+    int happinessDataPoints = (int)[[NSUserDefaults standardUserDefaults] integerForKey:@"happinessDataPoints"];
+    
+    NSString* saveKey = [NSString stringWithFormat:@"%.8d", happinessDataPoints];
+    
+    [[NSUserDefaults standardUserDefaults] setInteger:(happinessDataPoints + 1) forKey:@"happinessDataPoints"];
+    
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory =  [paths objectAtIndex:0];
+    NSString *path = [documentsDirectory stringByAppendingPathComponent:@"HappinessScores.plist"];
+    NSMutableDictionary *newDict = [[[NSMutableDictionary alloc] initWithContentsOfFile:path]mutableCopy];
+    
+    NSMutableDictionary* happinessDict = [[NSMutableDictionary alloc] initWithDictionary:[newDict objectForKey:@"Happiness"]];
+    
+    NSMutableDictionary* subDict = [[NSMutableDictionary alloc] init];
+    
+    [subDict setValue:[NSNumber numberWithInt:value] forKey:@"value"];
+    [subDict setValue:[NSDate date] forKey:@"time"];
+    
+    //
+    
+    [happinessDict setValue:subDict forKey:[NSString stringWithString:saveKey]];
+    
+    NSLog(@"%@", happinessDict);
+    
+    [newDict setValue:happinessDict forKey:@"Happiness"];
+    
+    
+    NSLog(@"WROTE TO PLIST? %i", [newDict writeToFile:path atomically:YES]);
+    
+    NSLog(@"PLIST DICT IS %@", newDict);
+
+    
+    [[NSUserDefaults standardUserDefaults] synchronize];
+
     
 }
+
+
 
 
 @end

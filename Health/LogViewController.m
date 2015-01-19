@@ -17,7 +17,10 @@
 @implementation LogViewController
 {
     NSArray* vars;
+    HKHealthStore *healthStore;
 }
+
+
 
 - (void)awakeFromNib {
     [super awakeFromNib];
@@ -27,15 +30,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
-    InAppVar* happ = [[InAppVar alloc] init];
-    happ.varName = @"Happiness";
-    happ.lastRating = 4;
-    
-    InAppVar* pomo = [[InAppVar alloc] init];
-    pomo.varName = @"Pomodoros";
-    pomo.lastRating = 8;
-    
-    vars = [[NSArray alloc] initWithObjects: happ, pomo, nil];
+    vars = [[NSArray alloc] initWithArray:[[self allData] allKeys]];    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -61,7 +56,7 @@
         VarViewController *varViewController = (VarViewController *)segue.destinationViewController;
         
         NSIndexPath *indexPath = [self.psychoTable indexPathForSelectedRow];
-        InAppVar *variable = vars[indexPath.row];
+        NSString* variable = vars[indexPath.row];
         [varViewController setVariable:variable];
     }
 }
@@ -99,9 +94,17 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
     }
-    cell.textLabel.text = [[vars objectAtIndex:indexPath.row] varName];
+    cell.textLabel.text = [vars objectAtIndex:indexPath.row];
     return cell;
-} 
+}
+
+- (NSDictionary*)allData {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory =  [paths objectAtIndex:0];
+    NSString *path = [documentsDirectory stringByAppendingPathComponent:@"HappinessScores.plist"];
+    
+    return [[[NSDictionary alloc] initWithContentsOfFile:path]mutableCopy];
+}
 
 /*
 

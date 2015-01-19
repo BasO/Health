@@ -10,6 +10,11 @@
 #import "MSPageViewController.h"
 
 @interface PomodoroViewController : UIViewController <MSPageViewControllerChild>
+@property (weak, nonatomic) IBOutlet UIButton *startButton;
+@property (weak, nonatomic) IBOutlet UIProgressView *timeProgress;
+
+@property (nonatomic, assign) NSTimer *timer;
+@property BOOL timerOn;
 
 
 @end

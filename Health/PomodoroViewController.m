@@ -18,11 +18,31 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    self.timeProgress.progress = 0.3;
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+- (IBAction)timerButton:(id)sender {
+
+    if ([self.startButton.titleLabel.text compare:@"Start"] == NSOrderedSame)
+    {
+        self.startButton.titleLabel.text = @"Stop";
+        NSLog(@"starting pomo");
+        
+        [UIView animateWithDuration:(10)
+                              delay:0
+                            options: UIViewAnimationOptionAllowUserInteraction | UIViewAnimationOptionAllowAnimatedContent
+                         animations:^{
+                             [self.timeProgress setProgress:1.0 animated:YES];
+                             
+                         }
+                         completion:^(BOOL finished) {
+                         }];
+    }
 }
 
 /*

@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		490407251A67D6E900F623D8 /* PsychologicalScores.plist in Resources */ = {isa = PBXBuildFile; fileRef = 490407241A67D6E900F623D8 /* PsychologicalScores.plist */; };
+		4904072D1A6871F700F623D8 /* BEMCircle.m in Sources */ = {isa = PBXBuildFile; fileRef = 490407281A6871F700F623D8 /* BEMCircle.m */; };
+		4904072E1A6871F700F623D8 /* BEMLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 4904072A1A6871F700F623D8 /* BEMLine.m */; };
+		4904072F1A6871F700F623D8 /* BEMSimpleLineGraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4904072C1A6871F700F623D8 /* BEMSimpleLineGraphView.m */; };
 		4922CBEE1A6088EE0044AD98 /* happiness.png in Resources */ = {isa = PBXBuildFile; fileRef = 4922CBE81A6088EE0044AD98 /* happiness.png */; };
 		4922CBEF1A6088EE0044AD98 /* var.png in Resources */ = {isa = PBXBuildFile; fileRef = 4922CBE91A6088EE0044AD98 /* var.png */; };
 		4922CBF01A6088EE0044AD98 /* network.png in Resources */ = {isa = PBXBuildFile; fileRef = 4922CBEA1A6088EE0044AD98 /* network.png */; };
@@ -14,6 +18,9 @@
 		4922CBF21A6088EE0044AD98 /* pomodoro.png in Resources */ = {isa = PBXBuildFile; fileRef = 4922CBEC1A6088EE0044AD98 /* pomodoro.png */; };
 		4922CBF31A6088EE0044AD98 /* varlist.png in Resources */ = {isa = PBXBuildFile; fileRef = 4922CBED1A6088EE0044AD98 /* varlist.png */; };
 		4922CC2C1A62E17F0044AD98 /* VarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4922CC2B1A62E17F0044AD98 /* VarViewController.m */; };
+		494E724F1A6D4AD400D3ED5F /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 494E724E1A6D4AD400D3ED5F /* HealthKit.framework */; };
+		494E72531A6D67C400D3ED5F /* DailyScores.plist in Resources */ = {isa = PBXBuildFile; fileRef = 494E72521A6D67C400D3ED5F /* DailyScores.plist */; };
+		494E72581A6D6DC800D3ED5F /* PListFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 494E72571A6D6DC800D3ED5F /* PListFunctions.m */; };
 		49602A941A63EDF9008060C1 /* InAppVar.m in Sources */ = {isa = PBXBuildFile; fileRef = 49602A931A63EDF9008060C1 /* InAppVar.m */; };
 		49B142801A5EA81A00CED2A0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 49B1427F1A5EA81A00CED2A0 /* main.m */; };
 		49B142831A5EA81A00CED2A0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 49B142821A5EA81A00CED2A0 /* AppDelegate.m */; };
@@ -31,6 +38,7 @@
 		49CB63381A603F7000459735 /* NetworkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CB63371A603F7000459735 /* NetworkViewController.m */; };
 		49CB633B1A603FDD00459735 /* SortedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CB633A1A603FDD00459735 /* SortedViewController.m */; };
 		49CB63401A6052C800459735 /* TabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CB633F1A6052C800459735 /* TabBarViewController.m */; };
+		49CD32811A6D20DD00BFFEBE /* ImportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CD32801A6D20DD00BFFEBE /* ImportViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +52,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		490407241A67D6E900F623D8 /* PsychologicalScores.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PsychologicalScores.plist; sourceTree = "<group>"; };
+		490407271A6871F700F623D8 /* BEMCircle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BEMCircle.h; sourceTree = "<group>"; };
+		490407281A6871F700F623D8 /* BEMCircle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BEMCircle.m; sourceTree = "<group>"; };
+		490407291A6871F700F623D8 /* BEMLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BEMLine.h; sourceTree = "<group>"; };
+		4904072A1A6871F700F623D8 /* BEMLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BEMLine.m; sourceTree = "<group>"; };
+		4904072B1A6871F700F623D8 /* BEMSimpleLineGraphView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BEMSimpleLineGraphView.h; sourceTree = "<group>"; };
+		4904072C1A6871F700F623D8 /* BEMSimpleLineGraphView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BEMSimpleLineGraphView.m; sourceTree = "<group>"; };
 		4922CBE81A6088EE0044AD98 /* happiness.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = happiness.png; sourceTree = "<group>"; };
 		4922CBE91A6088EE0044AD98 /* var.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = var.png; sourceTree = "<group>"; };
 		4922CBEA1A6088EE0044AD98 /* network.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = network.png; sourceTree = "<group>"; };
@@ -52,6 +67,11 @@
 		4922CBED1A6088EE0044AD98 /* varlist.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = varlist.png; sourceTree = "<group>"; };
 		4922CC2A1A62E17F0044AD98 /* VarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VarViewController.h; sourceTree = "<group>"; };
 		4922CC2B1A62E17F0044AD98 /* VarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VarViewController.m; sourceTree = "<group>"; };
+		494E724D1A6D4AD300D3ED5F /* Health.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Health.entitlements; sourceTree = "<group>"; };
+		494E724E1A6D4AD400D3ED5F /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
+		494E72521A6D67C400D3ED5F /* DailyScores.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DailyScores.plist; sourceTree = "<group>"; };
+		494E72561A6D6DC800D3ED5F /* PListFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PListFunctions.h; sourceTree = "<group>"; };
+		494E72571A6D6DC800D3ED5F /* PListFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PListFunctions.m; sourceTree = "<group>"; };
 		49602A921A63EDF9008060C1 /* InAppVar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InAppVar.h; path = ../InAppVar.h; sourceTree = "<group>"; };
 		49602A931A63EDF9008060C1 /* InAppVar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InAppVar.m; path = ../InAppVar.m; sourceTree = "<group>"; };
 		49B1427A1A5EA81A00CED2A0 /* Health.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Health.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -86,6 +106,8 @@
 		49CB633A1A603FDD00459735 /* SortedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SortedViewController.m; sourceTree = "<group>"; };
 		49CB633E1A6052C800459735 /* TabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarViewController.h; sourceTree = "<group>"; };
 		49CB633F1A6052C800459735 /* TabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarViewController.m; sourceTree = "<group>"; };
+		49CD327F1A6D20DD00BFFEBE /* ImportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImportViewController.h; sourceTree = "<group>"; };
+		49CD32801A6D20DD00BFFEBE /* ImportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImportViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +115,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				494E724F1A6D4AD400D3ED5F /* HealthKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -106,6 +129,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		490407261A6871F700F623D8 /* BEMSimpleLineGraph */ = {
+			isa = PBXGroup;
+			children = (
+				490407271A6871F700F623D8 /* BEMCircle.h */,
+				490407281A6871F700F623D8 /* BEMCircle.m */,
+				490407291A6871F700F623D8 /* BEMLine.h */,
+				4904072A1A6871F700F623D8 /* BEMLine.m */,
+				4904072B1A6871F700F623D8 /* BEMSimpleLineGraphView.h */,
+				4904072C1A6871F700F623D8 /* BEMSimpleLineGraphView.m */,
+			);
+			name = BEMSimpleLineGraph;
+			path = ../BEMSimpleLineGraph;
+			sourceTree = "<group>";
+		};
 		4922CBF41A6089050044AD98 /* example pictures */ = {
 			isa = PBXGroup;
 			children = (
@@ -126,6 +163,8 @@
 				49CB63221A603BB300459735 /* LogViewController.m */,
 				4922CC2A1A62E17F0044AD98 /* VarViewController.h */,
 				4922CC2B1A62E17F0044AD98 /* VarViewController.m */,
+				49CD327F1A6D20DD00BFFEBE /* ImportViewController.h */,
+				49CD32801A6D20DD00BFFEBE /* ImportViewController.m */,
 			);
 			name = Log;
 			sourceTree = "<group>";
@@ -142,6 +181,7 @@
 		49B142711A5EA81A00CED2A0 = {
 			isa = PBXGroup;
 			children = (
+				494E724E1A6D4AD400D3ED5F /* HealthKit.framework */,
 				49B1427C1A5EA81A00CED2A0 /* Health */,
 				49B142991A5EA81B00CED2A0 /* HealthTests */,
 				49B1427B1A5EA81A00CED2A0 /* Products */,
@@ -160,6 +200,7 @@
 		49B1427C1A5EA81A00CED2A0 /* Health */ = {
 			isa = PBXGroup;
 			children = (
+				494E724D1A6D4AD300D3ED5F /* Health.entitlements */,
 				49B142811A5EA81A00CED2A0 /* AppDelegate.h */,
 				49B142821A5EA81A00CED2A0 /* AppDelegate.m */,
 				49B1428A1A5EA81A00CED2A0 /* Main.storyboard */,
@@ -168,8 +209,12 @@
 				49CB633D1A60403A00459735 /* Analysis */,
 				49CB633E1A6052C800459735 /* TabBarViewController.h */,
 				49CB633F1A6052C800459735 /* TabBarViewController.m */,
+				494E72561A6D6DC800D3ED5F /* PListFunctions.h */,
+				494E72571A6D6DC800D3ED5F /* PListFunctions.m */,
 				49B1428D1A5EA81B00CED2A0 /* Images.xcassets */,
+				490407241A67D6E900F623D8 /* PsychologicalScores.plist */,
 				49B1428F1A5EA81B00CED2A0 /* LaunchScreen.xib */,
+				494E72521A6D67C400D3ED5F /* DailyScores.plist */,
 				49B1427D1A5EA81A00CED2A0 /* Supporting Files */,
 			);
 			path = Health;
@@ -178,6 +223,7 @@
 		49B1427D1A5EA81A00CED2A0 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				490407261A6871F700F623D8 /* BEMSimpleLineGraph */,
 				4922CBF41A6089050044AD98 /* example pictures */,
 				49CB63161A602A5E00459735 /* MSPageViewController */,
 				49B1427E1A5EA81A00CED2A0 /* Info.plist */,
@@ -291,6 +337,12 @@
 				TargetAttributes = {
 					49B142791A5EA81A00CED2A0 = {
 						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = DV6MACWMG2;
+						SystemCapabilities = {
+							com.apple.HealthKit = {
+								enabled = 1;
+							};
+						};
 					};
 					49B142951A5EA81B00CED2A0 = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -325,8 +377,10 @@
 				4922CBF11A6088EE0044AD98 /* sorted.png in Resources */,
 				49B1428C1A5EA81A00CED2A0 /* Main.storyboard in Resources */,
 				4922CBEF1A6088EE0044AD98 /* var.png in Resources */,
+				490407251A67D6E900F623D8 /* PsychologicalScores.plist in Resources */,
 				4922CBF01A6088EE0044AD98 /* network.png in Resources */,
 				49B142911A5EA81B00CED2A0 /* LaunchScreen.xib in Resources */,
+				494E72531A6D67C400D3ED5F /* DailyScores.plist in Resources */,
 				4922CBF31A6088EE0044AD98 /* varlist.png in Resources */,
 				49B1428E1A5EA81B00CED2A0 /* Images.xcassets in Resources */,
 				4922CBF21A6088EE0044AD98 /* pomodoro.png in Resources */,
@@ -348,18 +402,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4904072E1A6871F700F623D8 /* BEMLine.m in Sources */,
 				49B142831A5EA81A00CED2A0 /* AppDelegate.m in Sources */,
 				49CB63321A603EA100459735 /* HappinessViewController.m in Sources */,
 				49CB63401A6052C800459735 /* TabBarViewController.m in Sources */,
 				49CB63231A603BB300459735 /* LogViewController.m in Sources */,
 				49CB63351A603F0400459735 /* PomodoroViewController.m in Sources */,
+				494E72581A6D6DC800D3ED5F /* PListFunctions.m in Sources */,
+				4904072D1A6871F700F623D8 /* BEMCircle.m in Sources */,
 				49602A941A63EDF9008060C1 /* InAppVar.m in Sources */,
+				4904072F1A6871F700F623D8 /* BEMSimpleLineGraphView.m in Sources */,
 				49CB633B1A603FDD00459735 /* SortedViewController.m in Sources */,
 				49CB63201A60384F00459735 /* InViewController.m in Sources */,
 				49CB631C1A602A5E00459735 /* MSPageViewController.m in Sources */,
 				49CB63381A603F7000459735 /* NetworkViewController.m in Sources */,
 				49CB63261A603BC000459735 /* AnalysisViewController.m in Sources */,
 				49CB631D1A602A5E00459735 /* MSPageViewControllerPage.m in Sources */,
+				49CD32811A6D20DD00BFFEBE /* ImportViewController.m in Sources */,
 				4922CC2C1A62E17F0044AD98 /* VarViewController.m in Sources */,
 				49B142801A5EA81A00CED2A0 /* main.m in Sources */,
 			);
@@ -483,6 +542,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Health/Health.entitlements;
 				INFOPLIST_FILE = Health/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -493,6 +553,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Health/Health.entitlements;
 				INFOPLIST_FILE = Health/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";

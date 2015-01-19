@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <HealthKit/HealthKit.h>
+#import "PListFunctions.h"
 
 @interface LogViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
