@@ -30,6 +30,10 @@
 
 - (void)configureView {
     // Update the user interface for the detail item.
+    
+    plist = [[PListFunctions alloc] init];
+    [self.graph reloadGraph];
+    
     if (self.variable) {
         self.varTitle.title = [NSString stringWithString:self.variable];
         
@@ -47,6 +51,10 @@
     
     plist = [[PListFunctions alloc] init];
     
+    [self configureView];
+}
+
+-(void)viewWillAppear:(BOOL)animated {
     [self configureView];
 }
 

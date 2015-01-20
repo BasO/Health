@@ -22,4 +22,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *lastRatingLabel;
 @property (weak, nonatomic) IBOutlet BEMSimpleLineGraphView *graph;
 
+
+
 @end

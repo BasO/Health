@@ -20,21 +20,27 @@
     NSArray* vars;
     HKHealthStore *healthStore;
     PListFunctions* plist;
+    
+    NSMutableArray* psychologicalVariables;
+    NSMutableArray* healthVariables;
 }
 
-
-
-- (void)awakeFromNib {
-    [super awakeFromNib];
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
-    plist = [[PListFunctions alloc] init];
+    [self setupTableArrays];
     
-    vars = [[NSArray alloc] initWithArray:[[plist dailyDict] allKeys]];
+}
+
+-(void)viewWillAppear:(BOOL)animated {
+    
+    [super viewDidAppear:animated];
+    
+    [self setupTableArrays];
+    [self.tableView reloadData];
+    
     NSLog(@"all vars are: %@", vars);
     
     NSLog(@"dict is %@", [plist dailyDict]);
@@ -43,6 +49,28 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)setupTableArrays {
+    
+    plist = [[PListFunctions alloc] init];
+    vars = [[NSArray alloc] initWithArray:[[plist dailyDict] allKeys]];
+    
+    NSLog(@"DAILYDICT ALLKEYS is %@", [[plist dailyDict] allKeys]);
+    psychologicalVariables = [[NSMutableArray alloc] init];
+    healthVariables = [[NSMutableArray alloc] init];
+    
+    for (NSString *variable in vars) {
+        if ([variable compare:@"Happiness"] == NSOrderedSame ||
+            [variable compare:@"Pomodoros"] == NSOrderedSame) {
+            
+            [psychologicalVariables addObject:variable];
+        }
+        else
+            [healthVariables addObject:variable];
+    }
+    
+    NSLog(@"HEALTHVARIABLES IS %@", healthVariables);
 }
 
 #pragma mark - Segues
@@ -62,9 +90,23 @@
         
         VarViewController *varViewController = (VarViewController *)segue.destinationViewController;
         
-        NSIndexPath *indexPath = [self.psychoTable indexPathForSelectedRow];
-        NSString* variable = vars[indexPath.row];
-        [varViewController setVariable:variable];
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        
+        NSMutableString* variable = [[NSMutableString alloc] init];
+        
+        if ([healthVariables count] > 0 && !([psychologicalVariables count] > 0)) {
+            variable = healthVariables[indexPath.row];
+        }
+        else {
+            if (indexPath.section == 0) {
+                variable = psychologicalVariables[indexPath.row];
+            }
+            else if (indexPath.section == 1) {
+                variable = healthVariables[indexPath.row];
+            }
+        }
+        
+        [varViewController setVariable:[NSString stringWithString:variable]];
     }
 }
 
@@ -80,16 +122,38 @@
 
 #pragma mark - Table View
 
-/*
+
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    return (2 - !([psychologicalVariables count] > 0) - !([healthVariables count] > 0));
 }
-*/
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    
+    if ([healthVariables count] > 0 && !([psychologicalVariables count] > 0)) {
+        return @"HEALTH";
+    }
+    else if ([psychologicalVariables count] > 0) {
+        if(section == 0)
+            return @"PSYCHOLOGICAL";
+        if(section == 1)
+            return @"HEALTH";
+    }
+    return 0;
+}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [vars count];
+    if ([healthVariables count] > 0 && !([psychologicalVariables count] > 0)) {
+        return [healthVariables count];
+    }
+    else {
+        if (section == 0)
+            return [psychologicalVariables count];
+        if (section == 1)
+            return [healthVariables count];
+    }
+    return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -101,7 +165,18 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
     }
-    cell.textLabel.text = [vars objectAtIndex:indexPath.row];
+    
+    if ([healthVariables count] > 0 && !([psychologicalVariables count] > 0)) {
+        cell.textLabel.text = [healthVariables objectAtIndex:indexPath.row];
+    }
+    else {
+        if (indexPath.section == 0)
+            cell.textLabel.text = [psychologicalVariables objectAtIndex:indexPath.row];
+        
+        if (indexPath.section == 1)
+            cell.textLabel.text = [healthVariables objectAtIndex:indexPath.row];
+    }
+
     return cell;
 }
 
