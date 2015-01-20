@@ -21,7 +21,7 @@
     HKHealthStore *healthStore;
     PListFunctions* plist;
     
-    NSMutableArray* psychologicalVariables;
+    NSMutableArray* inputVariables;
     NSMutableArray* healthVariables;
 }
 
@@ -57,14 +57,17 @@
     vars = [[NSArray alloc] initWithArray:[[plist dailyDict] allKeys]];
     
     NSLog(@"DAILYDICT ALLKEYS is %@", [[plist dailyDict] allKeys]);
-    psychologicalVariables = [[NSMutableArray alloc] init];
+    inputVariables = [[NSMutableArray alloc] init];
     healthVariables = [[NSMutableArray alloc] init];
     
     for (NSString *variable in vars) {
         if ([variable compare:@"Happiness"] == NSOrderedSame ||
-            [variable compare:@"Pomodoros"] == NSOrderedSame) {
+            [variable compare:@"Pomodoros"] == NSOrderedSame
+            ||
+            [variable compare:@"Water"] == NSOrderedSame)
+        {
             
-            [psychologicalVariables addObject:variable];
+            [inputVariables addObject:variable];
         }
         else
             [healthVariables addObject:variable];
@@ -94,12 +97,12 @@
         
         NSMutableString* variable = [[NSMutableString alloc] init];
         
-        if ([healthVariables count] > 0 && !([psychologicalVariables count] > 0)) {
+        if ([healthVariables count] > 0 && !([inputVariables count] > 0)) {
             variable = healthVariables[indexPath.row];
         }
         else {
             if (indexPath.section == 0) {
-                variable = psychologicalVariables[indexPath.row];
+                variable = inputVariables[indexPath.row];
             }
             else if (indexPath.section == 1) {
                 variable = healthVariables[indexPath.row];
@@ -125,33 +128,39 @@
 
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return (2 - !([psychologicalVariables count] > 0) - !([healthVariables count] > 0));
+    return (2 - !([inputVariables count] > 0) - !([healthVariables count] > 0));
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     
-    if ([healthVariables count] > 0 && !([psychologicalVariables count] > 0)) {
+    if ([healthVariables count] > 0 && !([inputVariables count] > 0)) {
         return @"HEALTH";
     }
-    else if ([psychologicalVariables count] > 0) {
+    else
+    if ([inputVariables count] > 0) {
         if(section == 0)
-            return @"PSYCHOLOGICAL";
+            return @"THIS APP";
         if(section == 1)
-            return @"HEALTH";
+            return @"OTHER APPS";
+    
     }
     return 0;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if ([healthVariables count] > 0 && !([psychologicalVariables count] > 0)) {
+    if ([healthVariables count] > 0 && !([inputVariables count] > 0)) {
         return [healthVariables count];
     }
     else {
-        if (section == 0)
-            return [psychologicalVariables count];
-        if (section == 1)
+        if (section == 0) {
+            NSLog(@"inputVariables count is %lu", (unsigned long)[inputVariables count]);
+            return [inputVariables count];
+        }
+        if (section == 1) {
+            NSLog(@"healthVariables count is %lu", [healthVariables count]);
             return [healthVariables count];
+        }
     }
     return 0;
 }
@@ -166,12 +175,12 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
     }
     
-    if ([healthVariables count] > 0 && !([psychologicalVariables count] > 0)) {
+    if ([healthVariables count] > 0 && !([inputVariables count] > 0)) {
         cell.textLabel.text = [healthVariables objectAtIndex:indexPath.row];
     }
     else {
         if (indexPath.section == 0)
-            cell.textLabel.text = [psychologicalVariables objectAtIndex:indexPath.row];
+            cell.textLabel.text = [inputVariables objectAtIndex:indexPath.row];
         
         if (indexPath.section == 1)
             cell.textLabel.text = [healthVariables objectAtIndex:indexPath.row];

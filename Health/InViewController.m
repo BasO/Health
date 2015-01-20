@@ -46,7 +46,7 @@
 }
 
 - (NSArray *)pageIdentifiers {
-    return @[@"happinessViewController", @"pomodoroViewController"];
+    return @[@"happinessViewController", @"pomodoroViewController", @"waterViewController"];
 }
 
 

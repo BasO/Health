@@ -29,6 +29,7 @@
 		49B142911A5EA81B00CED2A0 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49B1428F1A5EA81B00CED2A0 /* LaunchScreen.xib */; };
 		49B1429D1A5EA81B00CED2A0 /* HealthTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 49B1429C1A5EA81B00CED2A0 /* HealthTests.m */; };
 		49C84BA71A6E7A690022BCFA /* DebugViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C84BA61A6E7A690022BCFA /* DebugViewController.m */; };
+		49C84BA91A6F11090022BCFA /* WaterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C84BA81A6F11090022BCFA /* WaterViewController.m */; };
 		49CB631C1A602A5E00459735 /* MSPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CB63191A602A5E00459735 /* MSPageViewController.m */; };
 		49CB631D1A602A5E00459735 /* MSPageViewControllerPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CB631B1A602A5E00459735 /* MSPageViewControllerPage.m */; };
 		49CB63201A60384F00459735 /* InViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CB631F1A60384F00459735 /* InViewController.m */; };
@@ -88,6 +89,8 @@
 		49B1429C1A5EA81B00CED2A0 /* HealthTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HealthTests.m; sourceTree = "<group>"; };
 		49C84BA51A6E7A690022BCFA /* DebugViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DebugViewController.h; sourceTree = "<group>"; };
 		49C84BA61A6E7A690022BCFA /* DebugViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DebugViewController.m; sourceTree = "<group>"; };
+		49C84BA81A6F11090022BCFA /* WaterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaterViewController.m; sourceTree = "<group>"; };
+		49C84BAA1A6F11140022BCFA /* WaterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WaterViewController.h; sourceTree = "<group>"; };
 		49CB63171A602A5E00459735 /* MSPageViewController+Protected.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MSPageViewController+Protected.h"; sourceTree = "<group>"; };
 		49CB63181A602A5E00459735 /* MSPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSPageViewController.h; sourceTree = "<group>"; };
 		49CB63191A602A5E00459735 /* MSPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSPageViewController.m; sourceTree = "<group>"; };
@@ -275,6 +278,8 @@
 				49CB63311A603EA100459735 /* HappinessViewController.m */,
 				49CB63331A603F0400459735 /* PomodoroViewController.h */,
 				49CB63341A603F0400459735 /* PomodoroViewController.m */,
+				49C84BAA1A6F11140022BCFA /* WaterViewController.h */,
+				49C84BA81A6F11090022BCFA /* WaterViewController.m */,
 			);
 			name = Input;
 			sourceTree = "<group>";
@@ -422,6 +427,7 @@
 				49CB631C1A602A5E00459735 /* MSPageViewController.m in Sources */,
 				49CB63381A603F7000459735 /* NetworkViewController.m in Sources */,
 				49C84BA71A6E7A690022BCFA /* DebugViewController.m in Sources */,
+				49C84BA91A6F11090022BCFA /* WaterViewController.m in Sources */,
 				49CB63261A603BC000459735 /* AnalysisViewController.m in Sources */,
 				49CB631D1A602A5E00459735 /* MSPageViewControllerPage.m in Sources */,
 				49CD32811A6D20DD00BFFEBE /* ImportViewController.m in Sources */,

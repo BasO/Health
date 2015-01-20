@@ -73,6 +73,10 @@
     [self importSleep];
 }
 
+- (IBAction)stepsButtonPress:(id)sender {
+    [self importSteps];
+}
+
 
 
 - (void) setAverage {
@@ -218,9 +222,70 @@
     });
     
     NSLog(@"DONE");
-    
-    
 }
+
+- (void) importSteps {
+    
+    NSLog(@"importing steps");
+    
+    NSDate* endDate = [NSDate date];
+    
+    NSDate* startDate = [endDate dateByAddingTimeInterval:-(60*60*24*30)];
+    
+    // Use the sample type for step count
+    HKSampleType *sampleType = [HKSampleType quantityTypeForIdentifier:HKQuantityTypeIdentifierStepCount];
+    
+    // Create a predicate to set start/end date bounds of the query
+    NSPredicate *predicate = [HKQuery predicateForSamplesWithStartDate:startDate endDate:endDate options:HKQueryOptionStrictStartDate];
+    
+    // Create a sort descriptor for sorting by start date
+    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:HKSampleSortIdentifierStartDate ascending:YES];
+    
+    
+    HKSampleQuery *sampleQuery = [[HKSampleQuery alloc] initWithSampleType:sampleType
+                                                                 predicate:predicate
+                                                                     limit:HKObjectQueryNoLimit
+                                                           sortDescriptors:@[sortDescriptor]
+                                                            resultsHandler:^(HKSampleQuery *query, NSArray *results, NSError *error) {
+                                                                
+                                                                if(!error && results)
+                                                                {
+                                                                    NSInteger dailySteps;
+                                                                    
+                                                                    NSMutableString* currentDate = [[NSMutableString alloc] init];
+                                                                    
+                                                                    NSDateFormatter* timeFormat = [[NSDateFormatter alloc] init];
+                                                                    [timeFormat setDateFormat:@"YYYYMMdd"];
+                                                                    
+                                                                    for(HKQuantitySample *samples in results)
+                                                                    {
+                                                                        if (currentDate != [timeFormat stringFromDate:[samples endDate]]) {
+                                                                            NSLog(@"currentDate is %@. newDate is %@.", currentDate, [timeFormat stringFromDate:[samples endDate]]);
+                                                                            if (dailySteps != 0) {
+                                                                                [plist writeDailyValue:[NSNumber numberWithInteger:dailySteps] \
+                                                                                              withDate:[samples endDate]
+                                                                                            ofVariable:@"Steps"];
+                                                                                [currentDate setString:[timeFormat stringFromDate:[samples endDate]]];
+                                                                                dailySteps = 0;
+                                                                            }
+                                                                            
+                                                                            NSLog(@"%i", [samples quantity]);
+                                                                            NSString* dailyStepsQuantity = [[NSString alloc] initWithFormat:@"%@", [samples quantity]];
+                                                                            
+                                                                            NSArray* dailyStepsArray = [dailyStepsQuantity componentsSeparatedByString:@" "];
+                                                                            
+                                                                            int sampleSteps = [[dailyStepsArray objectAtIndex:0] intValue];
+                                                                            
+                                                                            dailySteps += sampleSteps;
+                                                                        }
+                                                                    }
+                                                                }
+                                                                
+                                                            }];
+    // Execute the query
+    [healthStore executeQuery:sampleQuery];
+}
+
 
 
 /*
