@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		490407251A67D6E900F623D8 /* PsychologicalScores.plist in Resources */ = {isa = PBXBuildFile; fileRef = 490407241A67D6E900F623D8 /* PsychologicalScores.plist */; };
+		490407251A67D6E900F623D8 /* InputScores.plist in Resources */ = {isa = PBXBuildFile; fileRef = 490407241A67D6E900F623D8 /* InputScores.plist */; };
 		4904072D1A6871F700F623D8 /* BEMCircle.m in Sources */ = {isa = PBXBuildFile; fileRef = 490407281A6871F700F623D8 /* BEMCircle.m */; };
 		4904072E1A6871F700F623D8 /* BEMLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 4904072A1A6871F700F623D8 /* BEMLine.m */; };
 		4904072F1A6871F700F623D8 /* BEMSimpleLineGraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4904072C1A6871F700F623D8 /* BEMSimpleLineGraphView.m */; };
@@ -28,6 +28,7 @@
 		49B1428E1A5EA81B00CED2A0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49B1428D1A5EA81B00CED2A0 /* Images.xcassets */; };
 		49B142911A5EA81B00CED2A0 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49B1428F1A5EA81B00CED2A0 /* LaunchScreen.xib */; };
 		49B1429D1A5EA81B00CED2A0 /* HealthTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 49B1429C1A5EA81B00CED2A0 /* HealthTests.m */; };
+		49C84BA71A6E7A690022BCFA /* DebugViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C84BA61A6E7A690022BCFA /* DebugViewController.m */; };
 		49CB631C1A602A5E00459735 /* MSPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CB63191A602A5E00459735 /* MSPageViewController.m */; };
 		49CB631D1A602A5E00459735 /* MSPageViewControllerPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CB631B1A602A5E00459735 /* MSPageViewControllerPage.m */; };
 		49CB63201A60384F00459735 /* InViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CB631F1A60384F00459735 /* InViewController.m */; };
@@ -52,7 +53,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		490407241A67D6E900F623D8 /* PsychologicalScores.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PsychologicalScores.plist; sourceTree = "<group>"; };
+		490407241A67D6E900F623D8 /* InputScores.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = InputScores.plist; sourceTree = "<group>"; };
 		490407271A6871F700F623D8 /* BEMCircle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BEMCircle.h; sourceTree = "<group>"; };
 		490407281A6871F700F623D8 /* BEMCircle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BEMCircle.m; sourceTree = "<group>"; };
 		490407291A6871F700F623D8 /* BEMLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BEMLine.h; sourceTree = "<group>"; };
@@ -85,6 +86,8 @@
 		49B142961A5EA81B00CED2A0 /* HealthTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HealthTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		49B1429B1A5EA81B00CED2A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		49B1429C1A5EA81B00CED2A0 /* HealthTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HealthTests.m; sourceTree = "<group>"; };
+		49C84BA51A6E7A690022BCFA /* DebugViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DebugViewController.h; sourceTree = "<group>"; };
+		49C84BA61A6E7A690022BCFA /* DebugViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DebugViewController.m; sourceTree = "<group>"; };
 		49CB63171A602A5E00459735 /* MSPageViewController+Protected.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MSPageViewController+Protected.h"; sourceTree = "<group>"; };
 		49CB63181A602A5E00459735 /* MSPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSPageViewController.h; sourceTree = "<group>"; };
 		49CB63191A602A5E00459735 /* MSPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSPageViewController.m; sourceTree = "<group>"; };
@@ -204,6 +207,8 @@
 				49B142811A5EA81A00CED2A0 /* AppDelegate.h */,
 				49B142821A5EA81A00CED2A0 /* AppDelegate.m */,
 				49B1428A1A5EA81A00CED2A0 /* Main.storyboard */,
+				49C84BA51A6E7A690022BCFA /* DebugViewController.h */,
+				49C84BA61A6E7A690022BCFA /* DebugViewController.m */,
 				49CB633C1A60400300459735 /* Input */,
 				4922CC2D1A62E1860044AD98 /* Log */,
 				49CB633D1A60403A00459735 /* Analysis */,
@@ -212,7 +217,7 @@
 				494E72561A6D6DC800D3ED5F /* PListFunctions.h */,
 				494E72571A6D6DC800D3ED5F /* PListFunctions.m */,
 				49B1428D1A5EA81B00CED2A0 /* Images.xcassets */,
-				490407241A67D6E900F623D8 /* PsychologicalScores.plist */,
+				490407241A67D6E900F623D8 /* InputScores.plist */,
 				49B1428F1A5EA81B00CED2A0 /* LaunchScreen.xib */,
 				494E72521A6D67C400D3ED5F /* DailyScores.plist */,
 				49B1427D1A5EA81A00CED2A0 /* Supporting Files */,
@@ -377,7 +382,7 @@
 				4922CBF11A6088EE0044AD98 /* sorted.png in Resources */,
 				49B1428C1A5EA81A00CED2A0 /* Main.storyboard in Resources */,
 				4922CBEF1A6088EE0044AD98 /* var.png in Resources */,
-				490407251A67D6E900F623D8 /* PsychologicalScores.plist in Resources */,
+				490407251A67D6E900F623D8 /* InputScores.plist in Resources */,
 				4922CBF01A6088EE0044AD98 /* network.png in Resources */,
 				49B142911A5EA81B00CED2A0 /* LaunchScreen.xib in Resources */,
 				494E72531A6D67C400D3ED5F /* DailyScores.plist in Resources */,
@@ -416,6 +421,7 @@
 				49CB63201A60384F00459735 /* InViewController.m in Sources */,
 				49CB631C1A602A5E00459735 /* MSPageViewController.m in Sources */,
 				49CB63381A603F7000459735 /* NetworkViewController.m in Sources */,
+				49C84BA71A6E7A690022BCFA /* DebugViewController.m in Sources */,
 				49CB63261A603BC000459735 /* AnalysisViewController.m in Sources */,
 				49CB631D1A602A5E00459735 /* MSPageViewControllerPage.m in Sources */,
 				49CD32811A6D20DD00BFFEBE /* ImportViewController.m in Sources */,

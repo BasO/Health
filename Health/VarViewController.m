@@ -13,6 +13,9 @@
 @end
 
 @implementation VarViewController
+{
+    PListFunctions* plist;
+}
 
 #pragma mark - Managing the detail item
 
@@ -30,17 +33,21 @@
     if (self.variable) {
         self.varTitle.title = [NSString stringWithString:self.variable];
         
-        self.lastRatingLabel.text = [NSString stringWithFormat:@"%@", [self inputValueForIndex:[[self lastVariableIndex] integerValue]]];
+        NSLog(@"last one was %@", [[self lastVariableInput] valueForKey:@"value"]);
+        NSNumber* lastAverage = [[self lastVariableInput] valueForKey:@"value"];
+        float lastAverageFloat = [lastAverage floatValue];
+        
+        self.lastRatingLabel.text = [NSString stringWithFormat:@"%f", lastAverageFloat];
     }
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    [self configureView];
     
-    NSLog(@"varviewcontroller");
-    NSLog(@"%@", [self allData]);
+    plist = [[PListFunctions alloc] init];
+    
+    [self configureView];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -51,10 +58,14 @@
 
 - (NSInteger)numberOfPointsInLineGraph:(BEMSimpleLineGraphView *)graph {
     
-    return (int)[[[self variableData] allKeys] count];
+    NSLog(@"numberofPointsinLineGraph is %i", (int)[[[plist variableDailyDict:self.variable] allKeys] count]);
+    
+    return (int)[[[plist variableDailyDict:self.variable] allKeys] count];
 }
 
 - (CGFloat)lineGraph:(BEMSimpleLineGraphView *)graph valueForPointAtIndex:(NSInteger)index {
+    
+    NSLog(@"valueForPointAtIndex is %f", [[self inputValueForIndex:index] floatValue]);
     
     return [[self inputValueForIndex:index] floatValue];
     
@@ -69,37 +80,22 @@
     return [label stringByReplacingOccurrencesOfString:@" " withString:@"\n"];
 }
 
-
-- (NSDictionary*)allData {
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory =  [paths objectAtIndex:0];
-    NSString *path = [documentsDirectory stringByAppendingPathComponent:@"HappinessScores.plist"];
-    
-    return [[[NSDictionary alloc] initWithContentsOfFile:path]mutableCopy];
-}
-
-- (NSDictionary*)variableData {
-    return [[NSDictionary alloc] initWithDictionary:[[self allData] objectForKey:self.variable]];
-}
-
-- (NSString*) lastVariableIndex {
-    NSMutableArray*keys = [[NSMutableArray alloc] initWithArray:[[self variableData] allKeys]];
-    
-    [keys sortUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
-
-    return [keys lastObject];
+- (NSString*) lastVariableKey {
+    return ([[plist dailyDictKeysFor:self.variable] lastObject]);
 }
 
 - (NSDictionary*) lastVariableInput {
-    return [[self variableData] objectForKey:[self lastVariableIndex]];
+    return [[plist variableDailyDict:self.variable] objectForKey:[self lastVariableKey]];
 }
 
 - (NSDate*) inputTimeForIndex:(NSInteger)index {
-    return [[[self variableData] objectForKey:[NSString stringWithFormat:@"%08i", (int)index]] objectForKey:@"time"];
+    return [[[plist variableDailyDict:self.variable] objectForKey:[[plist dailyDictKeysFor:self.variable] objectAtIndex:index]] objectForKey:@"time"];
 }
 
 - (NSNumber*) inputValueForIndex:(NSInteger)index {
-    return [[[self variableData] objectForKey:[NSString stringWithFormat:@"%08i", (int)index]] objectForKey:@"value"];
+    
+    return [[[plist variableDailyDict:self.variable] objectForKey:[[plist dailyDictKeysFor:self.variable] objectAtIndex:index]] objectForKey:@"value"];
 }
+
 
 @end

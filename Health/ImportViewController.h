@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <HealthKit/HealthKit.h>
+#import "PListFunctions.h"
 
 @interface ImportViewController : UITableViewController
 

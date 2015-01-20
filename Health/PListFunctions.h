@@ -10,16 +10,29 @@
 
 @interface PListFunctions : NSObject
 
-- (NSDictionary*)allData;
+@property (nonatomic) NSMutableDictionary* inputDict;
+@property (nonatomic) NSMutableDictionary* dailyDict;
 
-- (NSDictionary*)variableDataFor:(NSString*)variable;
+- (NSMutableArray *)dailyDictKeysFor:(NSString*)variable;
+- (NSMutableArray *)inputDictKeysFor:(NSString*)variable;
 
-- (NSString*) lastVariableIndexFor:(NSString*)variable;
+- (void)resetInputDict;
+- (void)resetDailyDict;
 
-- (NSDictionary*) lastVariableInputFor:(NSString*)variable;
+- (NSMutableDictionary*) variableInputDict:(NSString*)variable;
 
-- (NSDate*) inputTimeFor:(NSString*)variable ForIndex:(NSInteger)index;
 
-- (NSNumber*) inputValueFor:(NSString*)variable ForIndex:(NSInteger)index;
+- (void) writeInputValue:(NSNumber*)inputValue
+                withDate:(NSDate*)historicalDate
+              ofVariable:(NSString*)variable;
+
+- (NSMutableDictionary*) variableDailyDict:(NSString*)variable;
+
+- (void) writeDailyValue:(NSNumber*)dailyValue
+                withDate:(NSDate*)historicalDate
+              ofVariable:(NSString*)variable;
+
+- (NSString*) pathOfPList:(NSString*)fileName;
+
 
 @end

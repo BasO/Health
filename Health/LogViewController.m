@@ -9,6 +9,7 @@
 #import "LogViewController.h"
 #import "VarViewController.h"
 #import "InAppVar.h"
+#import "PListFunctions.h"
 
 @interface LogViewController ()
 
@@ -18,6 +19,7 @@
 {
     NSArray* vars;
     HKHealthStore *healthStore;
+    PListFunctions* plist;
 }
 
 
@@ -30,7 +32,12 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
-    vars = [[NSArray alloc] initWithArray:[[self allData] allKeys]];    
+    plist = [[PListFunctions alloc] init];
+    
+    vars = [[NSArray alloc] initWithArray:[[plist dailyDict] allKeys]];
+    NSLog(@"all vars are: %@", vars);
+    
+    NSLog(@"dict is %@", [plist dailyDict]);
 }
 
 - (void)didReceiveMemoryWarning {
@@ -98,12 +105,11 @@
     return cell;
 }
 
-- (NSDictionary*)allData {
+
+- (NSString*) pathOfPList:(NSString*)fileName {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory =  [paths objectAtIndex:0];
-    NSString *path = [documentsDirectory stringByAppendingPathComponent:@"HappinessScores.plist"];
-    
-    return [[[NSDictionary alloc] initWithContentsOfFile:path]mutableCopy];
+    return [documentsDirectory stringByAppendingPathComponent:fileName];
 }
 
 /*

@@ -13,6 +13,9 @@
 @end
 
 @implementation HappinessViewController
+{
+    PListFunctions* plist;
+}
 
 NSDateFormatter* timeFormat;
 
@@ -20,6 +23,8 @@ NSDateFormatter* timeFormat;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    plist = [[PListFunctions alloc] init];
     
     // somehow have to do this for the position of timeLabel to work
     timeFormat = [[NSDateFormatter alloc] init];
@@ -63,7 +68,11 @@ NSDateFormatter* timeFormat;
     else if ([input compare:@"😪"] == NSOrderedSame)
         buttonValue = 1;
     
-    [self writeScoreToPList:buttonValue];
+    [plist writeInputValue:[NSNumber numberWithInt:buttonValue]
+                  withDate:[NSDate date]
+                ofVariable:@"Happiness"];
+    
+    [self writeDailyScoreToPList:buttonValue];
     
 }
 
@@ -77,7 +86,7 @@ NSDateFormatter* timeFormat;
     
     // set correct position of timeLabel
     [self.timeLabel setCenter:CGPointMake(button.frame.origin.x - 30, button.center.y)];
-    NSLog(@"button y is %f", button.center.y);
+//    NSLog(@"button y is %f", button.center.y);
     
     self.timeLabel.hidden = NO;
     self.timeLabel.alpha = 1;
@@ -88,7 +97,7 @@ NSDateFormatter* timeFormat;
                         options: UIViewAnimationOptionAllowUserInteraction | UIViewAnimationOptionAllowAnimatedContent
                      animations:^{
                          self.timeLabel.alpha = 0;
-                         NSLog(@"2 y is %f", self.timeLabel.frame.origin.y);
+//                         NSLog(@"2 y is %f", self.timeLabel.frame.origin.y);
                          self.timeLabel.center = CGPointMake(self.view.frame.origin.x + 50, button.center.y);
                          
                      }
@@ -99,52 +108,40 @@ NSDateFormatter* timeFormat;
 
 }
 
--(NSString *)getFilePath
+
+- (void) writeDailyScoreToPList:(int)value
 {
-    NSArray *pathArray = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    return [[pathArray objectAtIndex:0] stringByAppendingPathComponent:@"HappinessScores.plist"];
+    float dailyScoreTotal = 0;
+    float dailyScoreNumber = 0;
+    
+    NSMutableDictionary* happinessInputDict = [plist variableInputDict:@"Happiness"];
+    
+    for (id key in happinessInputDict) {
+        NSDictionary* saveKey = [happinessInputDict objectForKey:key];
+        NSTimeZone *gmt = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
+        NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier: NSCalendarIdentifierGregorian];
+        [gregorian setTimeZone:gmt];
+        NSDateComponents *todayComps = [gregorian components: NSUIntegerMax fromDate: [NSDate date]];
+        NSDateComponents *dictDateComps = [gregorian components: NSUIntegerMax fromDate: [saveKey valueForKey:@"time"]];
+
+        if([todayComps day] == [dictDateComps day] &&
+           [todayComps month] == [dictDateComps month] &&
+           [todayComps year] == [dictDateComps year] &&
+           [todayComps era] == [dictDateComps era]) {
+            
+            dailyScoreTotal += [[saveKey valueForKey:@"value"] intValue];
+            dailyScoreNumber += 1;
+        
+        }
+        else
+            break;
+    }
+    
+    float dailyAverage = (dailyScoreTotal / dailyScoreNumber);
+    
+    [plist writeDailyValue:[NSNumber numberWithFloat:dailyAverage]
+                  withDate:[NSDate date]
+                ofVariable:@"Happiness"];
 }
-
--(void) writeScoreToPList:(int)value
-{
-    int happinessDataPoints = (int)[[NSUserDefaults standardUserDefaults] integerForKey:@"happinessDataPoints"];
-    
-    NSString* saveKey = [NSString stringWithFormat:@"%.8d", happinessDataPoints];
-    
-    [[NSUserDefaults standardUserDefaults] setInteger:(happinessDataPoints + 1) forKey:@"happinessDataPoints"];
-    
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory =  [paths objectAtIndex:0];
-    NSString *path = [documentsDirectory stringByAppendingPathComponent:@"HappinessScores.plist"];
-    NSMutableDictionary *newDict = [[[NSMutableDictionary alloc] initWithContentsOfFile:path]mutableCopy];
-    
-    NSMutableDictionary* happinessDict = [[NSMutableDictionary alloc] initWithDictionary:[newDict objectForKey:@"Happiness"]];
-    
-    NSMutableDictionary* subDict = [[NSMutableDictionary alloc] init];
-    
-    [subDict setValue:[NSNumber numberWithInt:value] forKey:@"value"];
-    [subDict setValue:[NSDate date] forKey:@"time"];
-    
-    //
-    
-    [happinessDict setValue:subDict forKey:[NSString stringWithString:saveKey]];
-    
-    NSLog(@"%@", happinessDict);
-    
-    [newDict setValue:happinessDict forKey:@"Happiness"];
-    
-    
-    NSLog(@"WROTE TO PLIST? %i", [newDict writeToFile:path atomically:YES]);
-    
-    NSLog(@"PLIST DICT IS %@", newDict);
-
-    
-    [[NSUserDefaults standardUserDefaults] synchronize];
-
-    
-}
-
-
-
 
 @end

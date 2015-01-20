@@ -14,10 +14,10 @@
 
 @implementation ImportViewController
 {
-    NSArray* vars;
     HKHealthStore *healthStore;
     NSTimeInterval totalAwakeSince15;
     int numberOfSleepRecordings;
+    PListFunctions* plist;
 }
 
 - (void)awakeFromNib {
@@ -28,25 +28,17 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
-    vars = [[NSArray alloc] initWithArray:[[self allData] allKeys]];
     healthStore = [[HKHealthStore alloc] init];
     
     [self requestHealthAccess];
+    
+    plist = [[PListFunctions alloc] init];
     
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-
-- (NSDictionary*)allData {
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory =  [paths objectAtIndex:0];
-    NSString *path = [documentsDirectory stringByAppendingPathComponent:@"PsychologicalScores.plist"];
-    
-    return [[[NSDictionary alloc] initWithContentsOfFile:path]mutableCopy];
 }
 
 - (void)requestHealthAccess {
@@ -75,6 +67,13 @@
 - (IBAction)averageButtonPress:(id)sender {
     [self setAverage];
 }
+
+
+- (IBAction)sleepButtonPress:(id)sender {
+    [self importSleep];
+}
+
+
 
 - (void) setAverage {
     
@@ -119,7 +118,6 @@
                 int hourInt = hour;
                 
                 NSLog(@"hour is %i", hourInt);
-                NSDate *date = [NSDate date];
                 
                 if ([components hour] < 14)
                     [components setDay: ([components day] - 1)];
@@ -168,9 +166,62 @@
     
     
     NSLog(@"DONE");
-    
-
 }
+
+
+- (void) importSleep {
+    
+    NSDate* endDate = [NSDate date];
+    
+    NSDate* startDate = [endDate dateByAddingTimeInterval:-(60*60*24*30)];
+    
+    NSLog(@"----- startdate is %@, enddate is %@ -----", startDate, endDate);
+    
+    // use the sample type for sleep
+    HKSampleType *sampleType = [HKSampleType categoryTypeForIdentifier:HKCategoryTypeIdentifierSleepAnalysis];
+    
+    // Create a predicate to set start/end date bounds of the query
+    NSPredicate *predicate = [HKQuery predicateForSamplesWithStartDate:startDate endDate:endDate options:HKQueryOptionStrictStartDate];
+    
+    // Create a sort descriptor for sorting by start date
+    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:HKSampleSortIdentifierStartDate ascending:YES];
+    
+    
+    HKSampleQuery *sampleQuery = [[HKSampleQuery alloc] initWithSampleType:sampleType
+                                                                 predicate:predicate
+                                                                     limit:HKObjectQueryNoLimit
+                                                           sortDescriptors:@[sortDescriptor]
+                                                            resultsHandler:^(HKSampleQuery *query, NSArray *results, NSError *error) {
+                                                                if(!error && results)
+                                                                {
+                                                                    
+                                                                    for(HKCategorySample *samples in results)
+                                                                    {
+                                                                        
+                                                                        NSTimeInterval timeAsleep = [[samples endDate] timeIntervalSinceDate:[samples startDate]];
+                                                                        
+                                                                        [plist writeDailyValue:[NSNumber numberWithFloat:timeAsleep]
+                                                                                      withDate:[samples endDate]
+                                                                                    ofVariable:@"Sleep"];
+                                                                    }
+                                                                    
+                                                                    NSLog(@"sleepDict is %@", [plist dailyDict]);
+                                                                }
+                                                            }];
+    
+    // Execute the query
+    dispatch_group_t d_group = dispatch_group_create();
+    dispatch_queue_t bg_queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    
+    dispatch_group_async(d_group, bg_queue, ^{
+        [healthStore executeQuery:sampleQuery];
+    });
+    
+    NSLog(@"DONE");
+    
+    
+}
+
 
 /*
  

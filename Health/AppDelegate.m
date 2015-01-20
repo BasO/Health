@@ -13,14 +13,22 @@
 @end
 
 @implementation AppDelegate
-{
-    NSMutableArray *_vars;
-}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     [self copyPlist];
     [self createUserSettings];
+    
+    /*
+    UIColor* defaultTintColor = [UIColor colorWithRed:230/255.0 green:38/255.0 blue:43/255.0 alpha:1];
+    
+    NSLog(@"tintcolor is %@", defaultTintColor);
+    
+    [[UINavigationBar appearance] setTintColor:defaultTintColor];
+    [[UITabBar appearance] setTintColor:defaultTintColor];
+    
+    NSLog(@"tabbar color is %@", [[UITabBar appearance] tintColor]);
+     */
     
     return YES;
 }
@@ -51,14 +59,29 @@
     NSError *error;
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory =  [paths objectAtIndex:0];
-    NSString *path = [documentsDirectory stringByAppendingPathComponent:@"HappinessScores.plist"];
+    NSString *path = [documentsDirectory stringByAppendingPathComponent:@"InputScores.plist"];
     NSFileManager *fileManager = [NSFileManager defaultManager];
     
     //check if the file exists already in users documents folder
     //if file does not exist copy it from the application bundle Plist file
     if ( ![fileManager fileExistsAtPath:path] ) {
         NSLog(@"copying database to users documents");
-        NSString *pathToSettingsInBundle = [[NSBundle mainBundle] pathForResource:@"HappinessScores" ofType:@"plist"];
+        NSString *pathToSettingsInBundle = [[NSBundle mainBundle] pathForResource:@"InputScores" ofType:@"plist"];
+        [fileManager copyItemAtPath:pathToSettingsInBundle toPath:path error:&error];
+    }
+    //if file is already there do nothing
+    else {
+        NSLog(@"users database already configured");
+    }
+    
+    path = [documentsDirectory stringByAppendingPathComponent:@"DailyScores.plist"];
+    fileManager = [NSFileManager defaultManager];
+    
+    //check if the file exists already in users documents folder
+    //if file does not exist copy it from the application bundle Plist file
+    if ( ![fileManager fileExistsAtPath:path] ) {
+        NSLog(@"copying database to users documents");
+        NSString *pathToSettingsInBundle = [[NSBundle mainBundle] pathForResource:@"DailyScores" ofType:@"plist"];
         [fileManager copyItemAtPath:pathToSettingsInBundle toPath:path error:&error];
     }
     //if file is already there do nothing

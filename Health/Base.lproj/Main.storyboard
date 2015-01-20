@@ -125,7 +125,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Log" id="STx-2J-j3g">
                         <barButtonItem key="rightBarButtonItem" title="import" id="rKj-lu-orf">
-                            <color key="tintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="tintColor" red="0.90196078431372551" green="0.14901960784313725" blue="0.16862745098039217" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <segue destination="PhJ-QT-lP1" kind="push" id="d9A-eT-Ynl"/>
                             </connections>
@@ -198,12 +198,15 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QY7-qv-Yef" id="jCz-Wq-PlX">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sleep" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iEN-xn-PrF">
-                                                    <rect key="frame" x="16" y="11" width="44" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rq3-Me-Z8N">
+                                                    <rect key="frame" x="24" y="5" width="39" height="30"/>
+                                                    <state key="normal" title="Sleep">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="sleepButtonPress:" destination="PhJ-QT-lP1" eventType="touchUpInside" id="AEU-uO-qBt"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -237,7 +240,7 @@
                     <connections>
                         <outlet property="averageButton" destination="auu-5k-fXk" id="c6u-UU-W9f"/>
                         <outlet property="datePicker" destination="jBz-qw-dMP" id="ddQ-QH-i90"/>
-                        <outlet property="sleepButton" destination="jCz-Wq-PlX" id="0hV-Ds-k3s"/>
+                        <outlet property="sleepButton" destination="Rq3-Me-Z8N" id="5Cc-Dd-ho1"/>
                         <outlet property="stepsButton" destination="Z9V-We-8je" id="haw-fq-Ag4"/>
                     </connections>
                 </tableViewController>
@@ -443,11 +446,57 @@
                         <segue destination="KqG-mq-yAc" kind="relationship" relationship="viewControllers" id="FGV-jT-BCj"/>
                         <segue destination="ajC-rd-yZm" kind="relationship" relationship="viewControllers" id="44a-sO-0pr"/>
                         <segue destination="0Oh-kH-LPH" kind="relationship" relationship="viewControllers" id="VaK-N5-Mtc"/>
+                        <segue destination="rgg-hd-2hB" kind="relationship" relationship="viewControllers" id="Cvs-aN-AY5"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1017.6" y="-586.93333333333328"/>
+        </scene>
+        <!--Debug-->
+        <scene sceneID="hhK-sp-1pt">
+            <objects>
+                <viewController id="rgg-hd-2hB" customClass="DebugViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="AN5-wr-FhN"/>
+                        <viewControllerLayoutGuide type="bottom" id="huY-EC-MOJ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="rSZ-rh-DeM">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YOb-E5-s31">
+                                <rect key="frame" x="65" y="93" width="161" height="30"/>
+                                <state key="normal" title="Enter happiness scores">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="happinessButtonPress:" destination="rgg-hd-2hB" eventType="touchUpInside" id="8Vc-cH-Rg7"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="18 januari: 1 - 2 - 3 - 4" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zYv-d2-f6k">
+                                <rect key="frame" x="47" y="160" width="172" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="19 januari: 2 - 3 - 4 - 5" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P34-3B-bL7">
+                                <rect key="frame" x="47" y="189" width="172" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Debug" id="Nxc-9Q-7Qa"/>
+                    <connections>
+                        <outlet property="happinessButton" destination="YOb-E5-s31" id="wjE-vp-WUq"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nGc-ep-cCF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-613" y="-659"/>
         </scene>
         <!--In-->
         <scene sceneID="gXx-S4-13c">

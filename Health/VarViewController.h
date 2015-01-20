@@ -9,8 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "InAppVar.h"
 #import "BEMSimpleLineGraphView.h"
+#import "PListFunctions.h"
 
 @interface VarViewController : UITableViewController <BEMSimpleLineGraphDelegate, BEMSimpleLineGraphDataSource>
+
+@property (nonatomic) NSMutableArray* inputKeys;
+@property (nonatomic) NSMutableArray* dailyKeys;
 
 @property (strong, nonatomic) NSString* variable;
 @property (weak, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
