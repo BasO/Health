@@ -1,5 +1,5 @@
 //
-//  InViewController.h
+//  InputViewController.h
 //  Health
 //
 //  Created by Bas Oppenheim on 08-01-15.
@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "MSPageViewController.h"
 
-@interface InViewController : MSPageViewController
+@interface InputViewController : MSPageViewController
 
 @end

@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "PListFunctions.h"
+#import "DailyScores.h"
 
 @interface DebugViewController : UIViewController
 

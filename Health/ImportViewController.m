@@ -17,7 +17,7 @@
     HKHealthStore *healthStore;
     NSTimeInterval totalAwakeSince15;
     int numberOfSleepRecordings;
-    PListFunctions* plist;
+    DailyScores* dailyScores;
 }
 
 - (void)awakeFromNib {
@@ -28,12 +28,10 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
+    dailyScores = [[DailyScores alloc] init];
     healthStore = [[HKHealthStore alloc] init];
     
     [self requestHealthAccess];
-    
-    plist = [[PListFunctions alloc] init];
-    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -113,8 +111,6 @@
                 [gregorian setTimeZone:gmt];
                 NSDateComponents *components = [gregorian components: NSUIntegerMax fromDate: [samples startDate]];
                 
-                NSInteger hour = [components hour];
-                
                 if ([components hour] < 14)
                     [components setDay: ([components day] - 1)];
                 [components setHour: 15];
@@ -176,18 +172,15 @@
                                                             resultsHandler:^(HKSampleQuery *query, NSArray *results, NSError *error) {
                                                                 if(!error && results)
                                                                 {
-                                                                    
                                                                     for(HKCategorySample *samples in results)
                                                                     {
                                                                         
                                                                         NSTimeInterval timeAsleep = [[samples endDate] timeIntervalSinceDate:[samples startDate]];
                                                                         
-                                                                        [plist writeDailyValue:[NSNumber numberWithFloat:timeAsleep]
-                                                                                      withDate:[samples endDate]
-                                                                                    ofVariable:@"Sleep"];
+                                                                        [dailyScores writeValue:[NSNumber numberWithFloat:timeAsleep]
+                                                                                       withDate:[samples endDate]
+                                                                                     ofVariable:@"Sleep"];
                                                                     }
-                                                                    
-                                                                    NSLog(@"sleepDict is %@", [plist dailyDict]);
                                                                 }
                                                             }];
     
@@ -250,17 +243,14 @@
                                                                             lastDate = [samples endDate];
                                                                         }
                                                                         
-                                                                        [plist writeDailyValue:[NSNumber numberWithInteger:dailySteps]
-                                                                                      withDate:lastDate
-                                                                                    ofVariable:@"Steps"];
+                                                                        [dailyScores writeValue:[NSNumber numberWithInteger:dailySteps]
+                                                                                       withDate:lastDate
+                                                                                     ofVariable:@"Steps"];
                                                                     }
-                                      
                                                                 }];
-        
             
         // Execute the query
         [healthStore executeQuery:sampleQuery];
-        
     }
 }
 

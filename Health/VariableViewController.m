@@ -1,21 +1,20 @@
 //
-//  VarViewController.m
+//  VariableViewController.m
 //  Health
 //
 //  Created by Bas Oppenheim on 11-01-15.
 //  Copyright (c) 2015 Bas Oppenheim. All rights reserved.
 //
 
-#import "VarViewController.h"
+#import "VariableViewController.h"
 
-@interface VarViewController ()
+@interface VariableViewController ()
 
 @end
 
-@implementation VarViewController
-{
-    PListFunctions* plist;
-}
+@implementation VariableViewController
+
+DailyScores* dailyScores;
 
 #pragma mark - Managing the detail item
 
@@ -30,31 +29,34 @@
 
 - (void)configureView {
     // Update the user interface for the detail item.
-    
-    plist = [[PListFunctions alloc] init];
     [self.graph reloadGraph];
     
     if (self.variable) {
         self.varTitle.title = [NSString stringWithString:self.variable];
         
-        NSString* lastSaveKey = [[plist dailyDictKeysFor:self.variable] lastObject];
-        NSDictionary* lastSample = [[plist variableDailyDict:self.variable] objectForKey:lastSaveKey];
+        NSString* lastSaveKey = [[dailyScores saveKeysFor:self.variable] lastObject];
+        NSDictionary* lastSample = [[dailyScores variableDict:self.variable] objectForKey:lastSaveKey];
         NSNumber* dayScoreNumber = [lastSample valueForKey:@"value"];
+                                 
         self.lastRatingLabel.text = [NSString stringWithFormat:@"%@", dayScoreNumber];
     }
 }
+
+# pragma mark - viewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
-    plist = [[PListFunctions alloc] init];
+    dailyScores = [[DailyScores alloc] init];
     
     [self configureView];
 }
 
 -(void)viewWillAppear:(BOOL)animated {
-    [self configureView];
+    if ([dailyScores syncDailyDict]) {
+        [self configureView];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -62,28 +64,26 @@
     // Dispose of any resources that can be recreated.
 }
 
+
 # pragma - graph
 
 - (NSInteger)numberOfPointsInLineGraph:(BEMSimpleLineGraphView *)graph {
-    return [[plist dailyDictKeysFor:self.variable] count];
+    return [[dailyScores variableDict:self.variable] count];
 }
 
 - (CGFloat)lineGraph:(BEMSimpleLineGraphView *)graph valueForPointAtIndex:(NSInteger)index {
-    NSString* keyOfIndex = [[plist dailyDictKeysFor:self.variable] objectAtIndex:index];
-    NSDictionary* sampleDictOfIndex = [[plist variableDailyDict:self.variable] objectForKey:keyOfIndex];
-    NSNumber* valueOfSample = [sampleDictOfIndex objectForKey:@"value"];
-    
-    return [valueOfSample floatValue];
+    return [[[self sampleForIndex:index] objectForKey:@"value"] floatValue];
 }
 
 - (NSString *)lineGraph:(BEMSimpleLineGraphView *)graph labelOnXAxisForIndex:(NSInteger)index {
-    
-    NSString* keyOfIndex = [[plist dailyDictKeysFor:self.variable] objectAtIndex:index];
-    NSDictionary* sampleDictOfIndex = [[plist variableDailyDict:self.variable] objectForKey:keyOfIndex];
-    NSDate* dateOfSample = [sampleDictOfIndex objectForKey:@"time"];
-    
+    NSDate* dateOfSample = [[self sampleForIndex:index] objectForKey:@"time"];
     NSString *label = [NSString stringWithFormat:@"%@", dateOfSample];
     return [label stringByReplacingOccurrencesOfString:@" " withString:@"\n"];
+}
+
+- (NSDictionary*) sampleForIndex:(NSInteger)index {
+    NSString* keyOfIndex = [[dailyScores saveKeysFor:self.variable] objectAtIndex:index];
+    return [[dailyScores variableDict:self.variable] objectForKey:keyOfIndex];
 }
 
 

@@ -14,36 +14,41 @@
 
 @implementation DebugViewController
 {
-    PListFunctions* plist;
+    DailyScores* dailyScores;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do view setup here.
     
-    plist = [[PListFunctions alloc] init];
+    dailyScores = [[DailyScores alloc] init];
 }
 
 - (IBAction)happinessButtonPress:(id)sender {
     
     // write average Happiness-score of 4.32 for yesterday's date
+    
     NSDate* date = [NSDate date];
     NSDateComponents* comps = [[NSDateComponents alloc]init];
     comps.day = -1;
     NSCalendar* calendar = [NSCalendar currentCalendar];
     NSDate* yesterday = [calendar dateByAddingComponents:comps toDate:date options:0];
     
-    [plist writeDailyValue:[NSNumber numberWithFloat:4.32] withDate:yesterday ofVariable:@"Happiness"];
+    [dailyScores writeValue:[NSNumber numberWithFloat:4.32]
+                   withDate:yesterday
+                 ofVariable:@"Happiness"];
     
     // write average Happiness-score of 4.56 for day before yesterday's date
+    
     date = [NSDate date];
     comps = [[NSDateComponents alloc]init];
     comps.day = -2;
     calendar = [NSCalendar currentCalendar];
     NSDate* dayBeforeYesterday = [calendar dateByAddingComponents:comps toDate:date options:0];
-    
 
-    [plist writeDailyValue:[NSNumber numberWithInt:4.56] withDate:dayBeforeYesterday ofVariable:@"Happiness"];
+    [dailyScores writeValue:[NSNumber numberWithInt:4.56]
+                   withDate:dayBeforeYesterday
+                 ofVariable:@"Happiness"];
     
 }
 

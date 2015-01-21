@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "MSPageViewController.h"
-#import "PListFunctions.h"
+#import "InputScores.h"
+#import "DailyScores.h"
 
 @interface HappinessViewController : UIViewController <MSPageViewControllerChild>
 

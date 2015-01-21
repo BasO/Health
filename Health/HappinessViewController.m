@@ -14,17 +14,18 @@
 
 @implementation HappinessViewController
 {
-    PListFunctions* plist;
+    InputScores* inputScores;
+    DailyScores* dailyScores;
+    NSDateFormatter* timeFormat;
 }
-
-NSDateFormatter* timeFormat;
 
 @synthesize pageIndex;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    plist = [[PListFunctions alloc] init];
+    inputScores = [[InputScores alloc] init];
+    dailyScores = [[DailyScores alloc] init];
     
     // somehow have to do this for the position of timeLabel to work
     timeFormat = [[NSDateFormatter alloc] init];
@@ -69,12 +70,16 @@ NSDateFormatter* timeFormat;
     else if ([input compare:@"😪"] == NSOrderedSame)
         buttonValue = 1;
     
-    [plist writeInputValue:[NSNumber numberWithInt:buttonValue]
-                  withDate:[NSDate date]
-                ofVariable:@"Happiness"];
+    [inputScores writeValue:[NSNumber numberWithInt:buttonValue]
+                   withDate:[NSDate date]
+                 ofVariable:@"Happiness"];
     
-    [plist writeDailyAverageOfDate:[NSDate date]
-                        ofVariable:@"Happiness"];
+    NSNumber* averageScore = [inputScores averageValueForDate:[NSDate date]
+                                                  forVariable:@"Happiness"];
+    
+    [dailyScores writeValue:averageScore
+                   withDate:[NSDate date]
+                 ofVariable:@"Happiness"];
 }
 
 

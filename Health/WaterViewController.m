@@ -14,8 +14,9 @@
 @end
 
 @implementation WaterViewController{
-    PListFunctions* plist;
     int totalWaterIntake;
+    InputScores* inputScores;
+    DailyScores* dailyScores;
 }
 @synthesize pageIndex;
 
@@ -23,7 +24,13 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    plist = [[PListFunctions alloc] init];
+    inputScores = [[InputScores alloc] init];
+    dailyScores = [[DailyScores alloc] init];
+    
+    NSNumber* dailyTotal = [inputScores totalValueForDate:[NSDate date]
+                                              forVariable:@"Water"];
+    
+    self.drinkLabel.text = [NSString stringWithFormat:@"%@", dailyTotal];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -46,27 +53,35 @@
 
 - (IBAction)ml33ButtonPress:(id)sender {
     
-    [plist writeInputValue:[NSNumber numberWithInt:33]
-                  withDate:[NSDate date]
-                ofVariable:@"Water"];
+    [inputScores writeValue:[NSNumber numberWithInt:33]
+                   withDate:[NSDate date]
+                 ofVariable:@"Water"];
     
-    [plist writeDailyTotalOfDate:[NSDate date]
-                      ofVariable:@"Water"];
+    NSNumber* dailyTotal = [inputScores totalValueForDate:[NSDate date]
+                                        forVariable:@"Water"];
     
-    self.drinkLabel.text = [NSString stringWithFormat:@"%i", totalWaterIntake];
+    [dailyScores writeValue:dailyTotal
+                   withDate:[NSDate date]
+                 ofVariable:@"Water"];
+    
+    self.drinkLabel.text = [NSString stringWithFormat:@"%@", dailyTotal];
     
 }
 
 - (IBAction)ml50ButtonPress:(id)sender {
     
-    [plist writeInputValue:[NSNumber numberWithInt:50]
-                  withDate:[NSDate date]
-                ofVariable:@"Water"];
+    [inputScores writeValue:[NSNumber numberWithInt:50]
+                   withDate:[NSDate date]
+                 ofVariable:@"Water"];
     
-    [plist writeDailyTotalOfDate:[NSDate date]
-                      ofVariable:@"Water"];
+    NSNumber* dailyTotal = [inputScores totalValueForDate:[NSDate date]
+                                              forVariable:@"Water"];
     
-    self.drinkLabel.text = [NSString stringWithFormat:@"%i", totalWaterIntake];
+    [dailyScores writeValue:dailyTotal
+                   withDate:[NSDate date]
+                 ofVariable:@"Water"];
+    
+    self.drinkLabel.text = [NSString stringWithFormat:@"%@", dailyTotal];
 }
 
 - (IBAction)undoButtonPress:(id)sender {

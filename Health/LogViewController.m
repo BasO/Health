@@ -7,9 +7,8 @@
 //
 
 #import "LogViewController.h"
-#import "VarViewController.h"
+#import "VariableViewController.h"
 #import "InAppVar.h"
-#import "PListFunctions.h"
 
 @interface LogViewController ()
 
@@ -19,7 +18,7 @@
 {
     NSArray* vars;
     HKHealthStore *healthStore;
-    PListFunctions* plist;
+    DailyScores* dailyScores;;
     
     NSMutableArray* inputVariables;
     NSMutableArray* healthVariables;
@@ -30,16 +29,18 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
-    [self setupTableArrays];
+    dailyScores = [[DailyScores alloc] init];
     
+    [self setupTableArrays];
 }
 
 -(void)viewWillAppear:(BOOL)animated {
-    
     [super viewDidAppear:animated];
     
-    [self setupTableArrays];
-    [self.tableView reloadData];
+    if ([dailyScores syncDailyDict]) {
+        [self setupTableArrays];
+        [self.tableView reloadData];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -49,17 +50,18 @@
 
 - (void)setupTableArrays {
     
-    plist = [[PListFunctions alloc] init];
-    vars = [[NSArray alloc] initWithArray:[[plist dailyDict] allKeys]];
+    // get alphabetic list of available variables
+    NSMutableArray* unsortedVars = [[NSMutableArray alloc] initWithArray:[[dailyScores dailyDict] allKeys]];
+    [unsortedVars sortUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+    vars = [[NSArray alloc] initWithArray:unsortedVars];
     
+    // sort variables into categories (for sections)
     inputVariables = [[NSMutableArray alloc] init];
     healthVariables = [[NSMutableArray alloc] init];
-    
     for (NSString *variable in vars) {
         if ([variable compare:@"Happiness"] == NSOrderedSame ||
             [variable compare:@"Pomodoros"] == NSOrderedSame ||
             [variable compare:@"Water"] == NSOrderedSame) {
-            
             [inputVariables addObject:variable];
         }
         else
@@ -82,7 +84,7 @@
     if([segue.identifier isEqualToString:@"showDetail"])
     {
 
-        VarViewController *varViewController = (VarViewController *)segue.destinationViewController;
+        VariableViewController *variableViewController = (VariableViewController *)segue.destinationViewController;
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         
         NSMutableString* variable = [[NSMutableString alloc] init];
@@ -98,12 +100,9 @@
             }
         }
         
-        [varViewController setVariable:[NSString stringWithString:variable]];
+        [variableViewController setVariable:[NSString stringWithString:variable]];
     }
 }
-
-
-
 
 #pragma mark - Table View
 
@@ -125,13 +124,11 @@
     if ([healthVariables count] > 0 && !([inputVariables count] > 0)) {
         return @"HEALTH";
     }
-    else
-    if ([inputVariables count] > 0) {
+    else if ([inputVariables count] > 0) {
         if(section == 0)
             return @"THIS APP";
         if(section == 1)
             return @"OTHER APPS";
-    
     }
     return 0;
 }
@@ -174,7 +171,22 @@
         if (indexPath.section == 1)
             cell.textLabel.text = [healthVariables objectAtIndex:indexPath.row];
     }
+    
+    /* 
+     EXPERIMENTING WITH COLORS
+     
+    self.tableView.backgroundColor = [UIColor whiteColor];
+    if ([cell.textLabel.text isEqual: @"Happiness"])
+        cell.backgroundColor = [UIColor colorWithRed:255/255.0f green:191/255.0f blue:0/255.0f alpha:0.15];
+    if ([cell.textLabel.text isEqual: @"Steps"])
+        cell.backgroundColor = [UIColor colorWithRed:255/255.0f green:115/255.0f blue:0/255.0f alpha:0.15];
+    if ([cell.textLabel.text isEqual: @"Sleep"])
+        cell.backgroundColor = [UIColor colorWithRed:83/255.0f green:0/255.0f blue:255/255.0f alpha:0.15];
+    if ([cell.textLabel.text isEqual: @"Water"])
+        cell.backgroundColor = [UIColor colorWithRed:0/255.0f green:183/255.0f blue:255/255.0f alpha:0.15];
 
+     */
+    
     return cell;
 }
 

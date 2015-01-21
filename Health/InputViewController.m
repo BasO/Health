@@ -1,18 +1,18 @@
 //
-//  InViewController.m
+//  InputViewController.m
 //  Health
 //
 //  Created by Bas Oppenheim on 08-01-15.
 //  Copyright (c) 2015 Bas Oppenheim. All rights reserved.
 //
 
-#import "InViewController.h"
+#import "InputViewController.h"
 
-@interface InViewController ()
+@interface InputViewController ()
 
 @end
 
-@implementation InViewController
+@implementation InputViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -36,7 +36,7 @@
 
 
 + (void)initialize {
-    if (self == InViewController.class) {
+    if (self == InputViewController.class) {
         
         UIPageControl *pageControl = UIPageControl.appearance;
         pageControl.pageIndicatorTintColor = [UIColor lightGrayColor];

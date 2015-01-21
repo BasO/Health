@@ -8,7 +8,7 @@
         <!--Variable-->
         <scene sceneID="qG3-Of-8Nl">
             <objects>
-                <tableViewController id="edV-dr-H1x" customClass="VarViewController" sceneMemberID="viewController">
+                <tableViewController id="edV-dr-H1x" customClass="VariableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="hG6-9u-4Q4">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -455,7 +455,7 @@
         <!--In-->
         <scene sceneID="gXx-S4-13c">
             <objects>
-                <pageViewController storyboardIdentifier="inViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="KqG-mq-yAc" customClass="InViewController" sceneMemberID="viewController">
+                <pageViewController storyboardIdentifier="inputViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="KqG-mq-yAc" customClass="InputViewController" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="In" image="first" id="m9c-9B-zsz"/>
                 </pageViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WGc-ye-H4a" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -548,6 +548,7 @@
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" red="1" green="0.76927916911413163" blue="0.45911029629916522" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="0Tq-7Z-CJp" secondAttribute="centerX" id="BUj-gk-tt6"/>
                             <constraint firstItem="PjO-j6-STq" firstAttribute="top" secondItem="ZKs-ji-of5" secondAttribute="bottom" constant="-20" id="F66-LM-X2c"/>
@@ -726,6 +727,7 @@
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hWA-Kc-nul" id="b16-hV-wiK">
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <color key="backgroundColor" red="1" green="0.75" blue="0.0" alpha="0.14999999999999999" colorSpace="calibratedRGB"/>
                                         </tableViewCellContentView>
                                         <connections>
                                             <segue destination="edV-dr-H1x" kind="push" identifier="showDetail" id="cah-74-YcQ"/>
@@ -735,6 +737,7 @@
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rsA-Cc-08C" id="lzC-HG-C6g">
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <color key="backgroundColor" red="0.32413650823012929" green="0.0" blue="1" alpha="0.14999999999999999" colorSpace="calibratedRGB"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="SimpleTableCell" rowHeight="65" id="rRN-MF-6lH">

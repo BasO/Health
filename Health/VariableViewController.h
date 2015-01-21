@@ -1,5 +1,5 @@
 //
-//  VarViewController.h
+//  VariableViewController.h
 //  Health
 //
 //  Created by Bas Oppenheim on 11-01-15.
@@ -9,9 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "InAppVar.h"
 #import "BEMSimpleLineGraphView.h"
-#import "PListFunctions.h"
+#import "DailyScores.h"
 
-@interface VarViewController : UITableViewController <BEMSimpleLineGraphDelegate, BEMSimpleLineGraphDataSource>
+@interface VariableViewController : UITableViewController <BEMSimpleLineGraphDelegate, BEMSimpleLineGraphDataSource>
 
 @property (nonatomic) NSMutableArray* inputKeys;
 @property (nonatomic) NSMutableArray* dailyKeys;
