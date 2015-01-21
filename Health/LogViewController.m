@@ -40,10 +40,6 @@
     
     [self setupTableArrays];
     [self.tableView reloadData];
-    
-    NSLog(@"all vars are: %@", vars);
-    
-    NSLog(@"dict is %@", [plist dailyDict]);
 }
 
 - (void)didReceiveMemoryWarning {
@@ -56,24 +52,19 @@
     plist = [[PListFunctions alloc] init];
     vars = [[NSArray alloc] initWithArray:[[plist dailyDict] allKeys]];
     
-    NSLog(@"DAILYDICT ALLKEYS is %@", [[plist dailyDict] allKeys]);
     inputVariables = [[NSMutableArray alloc] init];
     healthVariables = [[NSMutableArray alloc] init];
     
     for (NSString *variable in vars) {
         if ([variable compare:@"Happiness"] == NSOrderedSame ||
-            [variable compare:@"Pomodoros"] == NSOrderedSame
-            ||
-            [variable compare:@"Water"] == NSOrderedSame)
-        {
+            [variable compare:@"Pomodoros"] == NSOrderedSame ||
+            [variable compare:@"Water"] == NSOrderedSame) {
             
             [inputVariables addObject:variable];
         }
         else
             [healthVariables addObject:variable];
     }
-    
-    NSLog(@"HEALTHVARIABLES IS %@", healthVariables);
 }
 
 #pragma mark - Segues
@@ -90,13 +81,11 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if([segue.identifier isEqualToString:@"showDetail"])
     {
-        
+
         VarViewController *varViewController = (VarViewController *)segue.destinationViewController;
-        
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         
         NSMutableString* variable = [[NSMutableString alloc] init];
-        
         if ([healthVariables count] > 0 && !([inputVariables count] > 0)) {
             variable = healthVariables[indexPath.row];
         }
@@ -113,19 +102,19 @@
     }
 }
 
+
+
+
+#pragma mark - Table View
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Conditionally perform segues, here is an example:
     
     [self performSegueWithIdentifier:@"showDetail" sender:self];
-    [self.psychoTable deselectRowAtIndexPath:indexPath animated:YES];
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     
 }
-
-
-#pragma mark - Table View
-
-
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return (2 - !([inputVariables count] > 0) - !([healthVariables count] > 0));
@@ -190,11 +179,6 @@
 }
 
 
-- (NSString*) pathOfPList:(NSString*)fileName {
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory =  [paths objectAtIndex:0];
-    return [documentsDirectory stringByAppendingPathComponent:fileName];
-}
 
 /*
 

@@ -30,6 +30,16 @@
     return _dailyDict;
 }
 
+#pragma - resetters
+- (void)resetInputDict {
+    _inputDict = [[[NSMutableDictionary alloc] initWithContentsOfFile:[self pathOfPList:@"InputScores.plist"]] mutableCopy];
+}
+
+- (void)resetDailyDict {
+    _dailyDict = [[[NSMutableDictionary alloc] initWithContentsOfFile:[self pathOfPList:@"DailyScores.plist"]] mutableCopy];
+}
+
+#pragma - get dictionary keys
 - (NSMutableArray *)inputDictKeysFor:(NSString*)variable {
     
     
@@ -47,15 +57,7 @@
     return tempArray;
 }
 
-#pragma - resetters
-- (void)resetInputDict {
-    _inputDict = [[[NSMutableDictionary alloc] initWithContentsOfFile:[self pathOfPList:@"InputScores.plist"]] mutableCopy];
-}
-
-- (void)resetDailyDict {
-    _dailyDict = [[[NSMutableDictionary alloc] initWithContentsOfFile:[self pathOfPList:@"DailyScores.plist"]] mutableCopy];
-}
-
+# pragma - read/write variable of InputScores.plist
 
 // Read variable in input-dictionary.
 - (NSMutableDictionary*) variableInputDict:(NSString*)variable {
@@ -89,8 +91,45 @@
     NSLog(@"wrote InputDict? %i", [totalInputDict writeToFile:[self pathOfPList:@"InputScores.plist"] atomically:YES]);
 }
 
+// Return an array containing the number of inputs for one date, and the total value.
+- (NSDictionary*) dailyInputCountAndTotalOfDate:(NSDate*)historicalDate
+                                    forVariable:(NSString*)variable {
+    float dailyInputCount = 0;
+    float dailyInputTotal = 0;
+    
+    NSMutableDictionary* variableInputDict = [self variableInputDict:variable];
+    
+    for (id key in variableInputDict) {
+        NSDictionary* saveKey = [variableInputDict objectForKey:key];
+        NSTimeZone *gmt = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
+        NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier: NSCalendarIdentifierGregorian];
+        [gregorian setTimeZone:gmt];
+        NSDateComponents *dateComps = [gregorian components: NSUIntegerMax fromDate: historicalDate];
+        NSDateComponents *dictDateComps = [gregorian components: NSUIntegerMax fromDate: [saveKey valueForKey:@"time"]];
+        
+        if([dateComps day] == [dictDateComps day] &&
+           [dateComps month] == [dictDateComps month] &&
+           [dateComps year] == [dictDateComps year] &&
+           [dateComps era] == [dictDateComps era]) {
+            
+            dailyInputTotal += [[saveKey valueForKey:@"value"] floatValue];
+            dailyInputCount += 1;
+            
+        }
+        else
+            break;
+    }
+    
+    NSDictionary* inputCountAndTotal = [[NSDictionary alloc] initWithObjectsAndKeys:
+                                        [NSNumber numberWithFloat:dailyInputCount], @"count",
+                                        [NSNumber numberWithFloat:dailyInputTotal], @"total",
+                                        nil];
+    
+    return inputCountAndTotal;
+}
 
-# pragma - DailyScores.plist functions
+
+# pragma - read/write DailyScores.plist
 
 
 
@@ -127,12 +166,36 @@
     NSLog(@"wrote DailyDict? %i", [totalDailyDict writeToFile:[self pathOfPList:@"DailyScores.plist"] atomically:YES]);
 }
 
+// Write as daily score the average value of one day in InputScores.plist
+- (void) writeDailyAverageOfDate:(NSDate*)historicalDate
+                      ofVariable:(NSString*)variable {
+    
+    NSDictionary* dailyInputCountAndTotal = [[NSDictionary alloc] initWithDictionary:[self dailyInputCountAndTotalOfDate:historicalDate forVariable:variable]];
+    float dailyAverage = ([[dailyInputCountAndTotal objectForKey:@"total"] floatValue] /
+                          [[dailyInputCountAndTotal objectForKey:@"count"] floatValue]);
+    [self writeDailyValue:[NSNumber numberWithFloat:dailyAverage] withDate:historicalDate ofVariable:variable];
+    
+}
 
+// Write as daily score the total value of one day in InputScores.plist
+- (void) writeDailyTotalOfDate:(NSDate*)historicalDate
+                    ofVariable:(NSString*)variable {
+    
+    NSDictionary* dailyInputCountAndTotal = [[NSDictionary alloc] initWithDictionary:[self dailyInputCountAndTotalOfDate:historicalDate forVariable:variable]];
+    [self writeDailyValue:[dailyInputCountAndTotal objectForKey:@"total"] withDate:historicalDate ofVariable:variable];
+}
+
+# pragma - other
+
+// Return the path of a .plist-file.
 - (NSString*) pathOfPList:(NSString*)fileName {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory =  [paths objectAtIndex:0];
     return [documentsDirectory stringByAppendingPathComponent:fileName];
 }
+
+
+
 
 
 @end

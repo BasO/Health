@@ -13,6 +13,8 @@
 @property (nonatomic) NSMutableDictionary* inputDict;
 @property (nonatomic) NSMutableDictionary* dailyDict;
 
+// met een + : aanroepen vanuit andere ViewControllers zonder alloc
+
 - (NSMutableArray *)dailyDictKeysFor:(NSString*)variable;
 - (NSMutableArray *)inputDictKeysFor:(NSString*)variable;
 
@@ -33,6 +35,14 @@
               ofVariable:(NSString*)variable;
 
 - (NSString*) pathOfPList:(NSString*)fileName;
+
+- (NSDictionary*) todaysInputCountAndTotalForVariable:(NSString*)variable;
+
+- (void) writeDailyAverageOfDate:(NSDate*)historicalDate
+                      ofVariable:(NSString*)variable;
+
+- (void) writeDailyTotalOfDate:(NSDate*)historicalDate
+                    ofVariable:(NSString*)variable;
 
 
 @end

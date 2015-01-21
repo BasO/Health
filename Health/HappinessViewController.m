@@ -50,6 +50,7 @@ NSDateFormatter* timeFormat;
     // Pass the selected object to the new view controller.
 }
 */
+
 - (IBAction)feelingsButtonPressed:(id)sender {
     [self showTimeForButton:sender];
     
@@ -72,8 +73,8 @@ NSDateFormatter* timeFormat;
                   withDate:[NSDate date]
                 ofVariable:@"Happiness"];
     
-    [self writeDailyScoreToPList:buttonValue];
-    
+    [plist writeDailyAverageOfDate:[NSDate date]
+                        ofVariable:@"Happiness"];
 }
 
 
@@ -106,42 +107,6 @@ NSDateFormatter* timeFormat;
                              self.timeLabel.hidden = YES;
                      }];
 
-}
-
-
-- (void) writeDailyScoreToPList:(int)value
-{
-    float dailyScoreTotal = 0;
-    float dailyScoreNumber = 0;
-    
-    NSMutableDictionary* happinessInputDict = [plist variableInputDict:@"Happiness"];
-    
-    for (id key in happinessInputDict) {
-        NSDictionary* saveKey = [happinessInputDict objectForKey:key];
-        NSTimeZone *gmt = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
-        NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier: NSCalendarIdentifierGregorian];
-        [gregorian setTimeZone:gmt];
-        NSDateComponents *todayComps = [gregorian components: NSUIntegerMax fromDate: [NSDate date]];
-        NSDateComponents *dictDateComps = [gregorian components: NSUIntegerMax fromDate: [saveKey valueForKey:@"time"]];
-
-        if([todayComps day] == [dictDateComps day] &&
-           [todayComps month] == [dictDateComps month] &&
-           [todayComps year] == [dictDateComps year] &&
-           [todayComps era] == [dictDateComps era]) {
-            
-            dailyScoreTotal += [[saveKey valueForKey:@"value"] intValue];
-            dailyScoreNumber += 1;
-        
-        }
-        else
-            break;
-    }
-    
-    float dailyAverage = (dailyScoreTotal / dailyScoreNumber);
-    
-    [plist writeDailyValue:[NSNumber numberWithFloat:dailyAverage]
-                  withDate:[NSDate date]
-                ofVariable:@"Happiness"];
 }
 
 @end

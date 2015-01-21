@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 
+
 @interface AppDelegate ()
 
 @end
@@ -16,19 +17,11 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
     [self copyPlist];
-    [self createUserSettings];
     
-    /*
-    UIColor* defaultTintColor = [UIColor colorWithRed:230/255.0 green:38/255.0 blue:43/255.0 alpha:1];
     
-    NSLog(@"tintcolor is %@", defaultTintColor);
-    
-    [[UINavigationBar appearance] setTintColor:defaultTintColor];
-    [[UITabBar appearance] setTintColor:defaultTintColor];
-    
-    NSLog(@"tabbar color is %@", [[UITabBar appearance] tintColor]);
-     */
+    // [self createUIColors];
     
     return YES;
 }
@@ -56,6 +49,9 @@
 }
 
 - (void) copyPlist {
+    
+    // For InputScores.plist :
+    
     NSError *error;
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory =  [paths objectAtIndex:0];
@@ -74,6 +70,8 @@
         NSLog(@"users database already configured");
     }
     
+    // For DailyScores.plist :
+    
     path = [documentsDirectory stringByAppendingPathComponent:@"DailyScores.plist"];
     fileManager = [NSFileManager defaultManager];
     
@@ -90,15 +88,11 @@
     }
 }
 
-- (void) createUserSettings {
-    NSUserDefaults *settings = [NSUserDefaults standardUserDefaults];
-    if (![settings objectForKey:@"launched"])
-    {
-        [settings setInteger:0 forKey:@"happinessDataPoints"];
-        [settings setBool:true forKey:@"launched"];
-    }
+- (void) createUIColors {
+    UIColor* defaultTintColor = [UIColor colorWithRed:230/255.0 green:38/255.0 blue:43/255.0 alpha:1];
     
-    [settings synchronize];
+    [[UINavigationBar appearance] setTintColor:defaultTintColor];
+    [[UITabBar appearance] setTintColor:defaultTintColor];
 }
 
 @end

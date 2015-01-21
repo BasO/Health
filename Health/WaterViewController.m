@@ -31,68 +31,45 @@
     // Dispose of any resources that can be recreated.
 }
 
+/*
+- (IBAction)drinkButtonPress:(id)sender {
+    UIButton *resultButton = (UIButton *)sender;
+    NSString* input = resultButton.currentTitle;
+    
+    int buttonValue;
+    if ([input compare:@"Drink 33 mL"] == NSOrderedSame)
+        buttonValue = 33;
+    else if ([input compare:@"Drink 50 mL"] == NSOrderedSame)
+        buttonValue = 50;
+}
+ */
+
 - (IBAction)ml33ButtonPress:(id)sender {
     
     [plist writeInputValue:[NSNumber numberWithInt:33]
                   withDate:[NSDate date]
                 ofVariable:@"Water"];
     
-    [self writeDailyTotalToPList:33];
+    [plist writeDailyTotalOfDate:[NSDate date]
+                      ofVariable:@"Water"];
     
     self.drinkLabel.text = [NSString stringWithFormat:@"%i", totalWaterIntake];
     
 }
 
 - (IBAction)ml50ButtonPress:(id)sender {
+    
+    [plist writeInputValue:[NSNumber numberWithInt:50]
+                  withDate:[NSDate date]
+                ofVariable:@"Water"];
+    
+    [plist writeDailyTotalOfDate:[NSDate date]
+                      ofVariable:@"Water"];
+    
+    self.drinkLabel.text = [NSString stringWithFormat:@"%i", totalWaterIntake];
 }
 
 - (IBAction)undoButtonPress:(id)sender {
 }
-
-- (void) writeDailyTotalToPList:(int)value
-{
-    int dailyScoreTotal = 0;
-    
-    NSMutableDictionary* waterInputDict = [plist variableInputDict:@"Water"];
-    
-    for (id key in waterInputDict) {
-        NSDictionary* saveKey = [waterInputDict objectForKey:key];
-        NSTimeZone *gmt = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
-        NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier: NSCalendarIdentifierGregorian];
-        [gregorian setTimeZone:gmt];
-        NSDateComponents *todayComps = [gregorian components: NSUIntegerMax fromDate: [NSDate date]];
-        NSDateComponents *dictDateComps = [gregorian components: NSUIntegerMax fromDate: [saveKey valueForKey:@"time"]];
-        
-        if([todayComps day] == [dictDateComps day] &&
-           [todayComps month] == [dictDateComps month] &&
-           [todayComps year] == [dictDateComps year] &&
-           [todayComps era] == [dictDateComps era]) {
-            
-            dailyScoreTotal += [[saveKey valueForKey:@"value"] intValue];
-        }
-        else
-            break;
-    }
-    
-    NSLog(@"%i", dailyScoreTotal);
-    
-    
-    [plist writeDailyValue:[NSNumber numberWithInt:dailyScoreTotal]
-                  withDate:[NSDate date]
-                ofVariable:@"Water"];
-    
-    totalWaterIntake = dailyScoreTotal;
-}
-/*
-- (int) totalWaterIntake {
-    NSMutableDictionary* waterDict = [[NSMutableDictionary alloc] initWithDictionary:[plist variableDailyDict:@"Water"]];
-    
-    NSMutableArray* waterKeys = [waterDict allKeys];
-    
-    [waterKeys sortUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
-    
-   // ...
-}
-*/
 
 @end

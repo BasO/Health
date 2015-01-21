@@ -68,7 +68,6 @@
     [self setAverage];
 }
 
-
 - (IBAction)sleepButtonPress:(id)sender {
     [self importSleep];
 }
@@ -76,7 +75,6 @@
 - (IBAction)stepsButtonPress:(id)sender {
     [self importSteps];
 }
-
 
 
 - (void) setAverage {
@@ -110,18 +108,12 @@
             
             for(HKCategorySample *samples in results)
             {
-                NSLog(@"found %@", [samples startDate]);
-                
-                
                 NSTimeZone *gmt = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
                 NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier: NSCalendarIdentifierGregorian];
                 [gregorian setTimeZone:gmt];
                 NSDateComponents *components = [gregorian components: NSUIntegerMax fromDate: [samples startDate]];
                 
                 NSInteger hour = [components hour];
-                int hourInt = hour;
-                
-                NSLog(@"hour is %i", hourInt);
                 
                 if ([components hour] < 14)
                     [components setDay: ([components day] - 1)];
@@ -130,15 +122,8 @@
                 [components setSecond: 0];
                 NSDate *comparisonDate = [gregorian dateFromComponents: components];
                 
-                NSLog(@"Comparing %@ to %@", comparisonDate, [samples startDate]);
-                
-                NSLog(@"interval is %f", [[samples startDate] timeIntervalSinceDate: comparisonDate]);
-                
                 totalAwakeSince15 += [[samples startDate] timeIntervalSinceDate:comparisonDate];
-                
                 numberOfSleepRecordings += 1;
-                
-                NSLog(@"totalAwake is %f, number is %i", totalAwakeSince15, numberOfSleepRecordings);
             }
             
             NSLog(@"you slept %f for %i times", totalAwakeSince15, numberOfSleepRecordings);
@@ -160,14 +145,7 @@
         }
     }];
     
-    // Execute the query
-    dispatch_group_t d_group = dispatch_group_create();
-    dispatch_queue_t bg_queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    
-    dispatch_group_async(d_group, bg_queue, ^{
-        [healthStore executeQuery:sampleQuery];
-    });
-    
+    [healthStore executeQuery:sampleQuery];
     
     NSLog(@"DONE");
 }
@@ -213,13 +191,7 @@
                                                                 }
                                                             }];
     
-    // Execute the query
-    dispatch_group_t d_group = dispatch_group_create();
-    dispatch_queue_t bg_queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    
-    dispatch_group_async(d_group, bg_queue, ^{
-        [healthStore executeQuery:sampleQuery];
-    });
+    [healthStore executeQuery:sampleQuery];
     
     NSLog(@"DONE");
 }
@@ -237,6 +209,7 @@
     
     NSLog(@"importing steps");
     
+    // import steps PER DAY. Best way (for now) to get the cumulative number of steps per day.
     for (int i = 0; i < 30; i++) {
         
         NSDate* endDate = [startOfToday dateByAddingTimeInterval:-(60*60*24 * i)];

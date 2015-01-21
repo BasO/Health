@@ -26,6 +26,7 @@
 
 - (IBAction)happinessButtonPress:(id)sender {
     
+    // write average Happiness-score of 4.32 for yesterday's date
     NSDate* date = [NSDate date];
     NSDateComponents* comps = [[NSDateComponents alloc]init];
     comps.day = -1;
@@ -34,6 +35,7 @@
     
     [plist writeDailyValue:[NSNumber numberWithFloat:4.32] withDate:yesterday ofVariable:@"Happiness"];
     
+    // write average Happiness-score of 4.56 for day before yesterday's date
     date = [NSDate date];
     comps = [[NSDateComponents alloc]init];
     comps.day = -2;

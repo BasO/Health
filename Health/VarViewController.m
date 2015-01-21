@@ -37,11 +37,10 @@
     if (self.variable) {
         self.varTitle.title = [NSString stringWithString:self.variable];
         
-        NSLog(@"last one was %@", [[self lastVariableInput] valueForKey:@"value"]);
-        NSNumber* lastAverage = [[self lastVariableInput] valueForKey:@"value"];
-        float lastAverageFloat = [lastAverage floatValue];
-        
-        self.lastRatingLabel.text = [NSString stringWithFormat:@"%f", lastAverageFloat];
+        NSString* lastSaveKey = [[plist dailyDictKeysFor:self.variable] lastObject];
+        NSDictionary* lastSample = [[plist variableDailyDict:self.variable] objectForKey:lastSaveKey];
+        NSNumber* dayScoreNumber = [lastSample valueForKey:@"value"];
+        self.lastRatingLabel.text = [NSString stringWithFormat:@"%@", dayScoreNumber];
     }
 }
 
@@ -63,46 +62,28 @@
     // Dispose of any resources that can be recreated.
 }
 
+# pragma - graph
 
 - (NSInteger)numberOfPointsInLineGraph:(BEMSimpleLineGraphView *)graph {
-    
-    NSLog(@"numberofPointsinLineGraph is %i", (int)[[[plist variableDailyDict:self.variable] allKeys] count]);
-    
-    return (int)[[[plist variableDailyDict:self.variable] allKeys] count];
+    return [[plist dailyDictKeysFor:self.variable] count];
 }
 
 - (CGFloat)lineGraph:(BEMSimpleLineGraphView *)graph valueForPointAtIndex:(NSInteger)index {
+    NSString* keyOfIndex = [[plist dailyDictKeysFor:self.variable] objectAtIndex:index];
+    NSDictionary* sampleDictOfIndex = [[plist variableDailyDict:self.variable] objectForKey:keyOfIndex];
+    NSNumber* valueOfSample = [sampleDictOfIndex objectForKey:@"value"];
     
-    NSLog(@"valueForPointAtIndex is %f", [[self inputValueForIndex:index] floatValue]);
-    
-    return [[self inputValueForIndex:index] floatValue];
-    
-    // return [[self.arrayOfValues objectAtIndex:index] floatValue];
+    return [valueOfSample floatValue];
 }
 
 - (NSString *)lineGraph:(BEMSimpleLineGraphView *)graph labelOnXAxisForIndex:(NSInteger)index {
     
-    NSString *label = [NSString stringWithFormat:@"%@", [self inputTimeForIndex:index]];
+    NSString* keyOfIndex = [[plist dailyDictKeysFor:self.variable] objectAtIndex:index];
+    NSDictionary* sampleDictOfIndex = [[plist variableDailyDict:self.variable] objectForKey:keyOfIndex];
+    NSDate* dateOfSample = [sampleDictOfIndex objectForKey:@"time"];
     
-    // NSString *label = [self.arrayOfDates objectAtIndex:index];
+    NSString *label = [NSString stringWithFormat:@"%@", dateOfSample];
     return [label stringByReplacingOccurrencesOfString:@" " withString:@"\n"];
-}
-
-- (NSString*) lastVariableKey {
-    return ([[plist dailyDictKeysFor:self.variable] lastObject]);
-}
-
-- (NSDictionary*) lastVariableInput {
-    return [[plist variableDailyDict:self.variable] objectForKey:[self lastVariableKey]];
-}
-
-- (NSDate*) inputTimeForIndex:(NSInteger)index {
-    return [[[plist variableDailyDict:self.variable] objectForKey:[[plist dailyDictKeysFor:self.variable] objectAtIndex:index]] objectForKey:@"time"];
-}
-
-- (NSNumber*) inputValueForIndex:(NSInteger)index {
-    
-    return [[[plist variableDailyDict:self.variable] objectForKey:[[plist dailyDictKeysFor:self.variable] objectAtIndex:index]] objectForKey:@"value"];
 }
 
 
