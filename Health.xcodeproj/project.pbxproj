@@ -10,6 +10,7 @@
 		4904072D1A6871F700F623D8 /* BEMCircle.m in Sources */ = {isa = PBXBuildFile; fileRef = 490407281A6871F700F623D8 /* BEMCircle.m */; };
 		4904072E1A6871F700F623D8 /* BEMLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 4904072A1A6871F700F623D8 /* BEMLine.m */; };
 		4904072F1A6871F700F623D8 /* BEMSimpleLineGraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4904072C1A6871F700F623D8 /* BEMSimpleLineGraphView.m */; };
+		4908AE0A1A72FF7400C48189 /* Statistics.m in Sources */ = {isa = PBXBuildFile; fileRef = 4908AE091A72FF7400C48189 /* Statistics.m */; };
 		4913835F1A6FF1EE00FC9AFB /* InputScores.m in Sources */ = {isa = PBXBuildFile; fileRef = 4913835E1A6FF1EE00FC9AFB /* InputScores.m */; };
 		491383621A6FF1F900FC9AFB /* DailyScores.m in Sources */ = {isa = PBXBuildFile; fileRef = 491383611A6FF1F900FC9AFB /* DailyScores.m */; };
 		4922CBEE1A6088EE0044AD98 /* happiness.png in Resources */ = {isa = PBXBuildFile; fileRef = 4922CBE81A6088EE0044AD98 /* happiness.png */; };
@@ -20,24 +21,23 @@
 		4922CBF31A6088EE0044AD98 /* varlist.png in Resources */ = {isa = PBXBuildFile; fileRef = 4922CBED1A6088EE0044AD98 /* varlist.png */; };
 		4922CC2C1A62E17F0044AD98 /* VariableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4922CC2B1A62E17F0044AD98 /* VariableViewController.m */; };
 		494E724F1A6D4AD400D3ED5F /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 494E724E1A6D4AD400D3ED5F /* HealthKit.framework */; };
-		49602A941A63EDF9008060C1 /* InAppVar.m in Sources */ = {isa = PBXBuildFile; fileRef = 49602A931A63EDF9008060C1 /* InAppVar.m */; };
 		49B142801A5EA81A00CED2A0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 49B1427F1A5EA81A00CED2A0 /* main.m */; };
 		49B142831A5EA81A00CED2A0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 49B142821A5EA81A00CED2A0 /* AppDelegate.m */; };
 		49B1428C1A5EA81A00CED2A0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49B1428A1A5EA81A00CED2A0 /* Main.storyboard */; };
 		49B1428E1A5EA81B00CED2A0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49B1428D1A5EA81B00CED2A0 /* Images.xcassets */; };
 		49B142911A5EA81B00CED2A0 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49B1428F1A5EA81B00CED2A0 /* LaunchScreen.xib */; };
 		49B1429D1A5EA81B00CED2A0 /* HealthTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 49B1429C1A5EA81B00CED2A0 /* HealthTests.m */; };
+		49B9010F1A726BF90048C140 /* InputScores.plist in Resources */ = {isa = PBXBuildFile; fileRef = 49B9010E1A726BF90048C140 /* InputScores.plist */; };
+		49B901141A7274780048C140 /* DailyScores.plist in Resources */ = {isa = PBXBuildFile; fileRef = 49B901131A7274780048C140 /* DailyScores.plist */; };
+		49BF26681A72E32B00B3FF81 /* CorrelationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49BF26671A72E32B00B3FF81 /* CorrelationsViewController.m */; };
 		49C84BA71A6E7A690022BCFA /* DebugViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C84BA61A6E7A690022BCFA /* DebugViewController.m */; };
 		49C84BA91A6F11090022BCFA /* WaterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C84BA81A6F11090022BCFA /* WaterViewController.m */; };
 		49CB631C1A602A5E00459735 /* MSPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CB63191A602A5E00459735 /* MSPageViewController.m */; };
 		49CB631D1A602A5E00459735 /* MSPageViewControllerPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CB631B1A602A5E00459735 /* MSPageViewControllerPage.m */; };
 		49CB63201A60384F00459735 /* InputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CB631F1A60384F00459735 /* InputViewController.m */; };
 		49CB63231A603BB300459735 /* LogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CB63221A603BB300459735 /* LogViewController.m */; };
-		49CB63261A603BC000459735 /* AnalysisViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CB63251A603BC000459735 /* AnalysisViewController.m */; };
 		49CB63321A603EA100459735 /* HappinessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CB63311A603EA100459735 /* HappinessViewController.m */; };
 		49CB63351A603F0400459735 /* PomodoroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CB63341A603F0400459735 /* PomodoroViewController.m */; };
-		49CB63381A603F7000459735 /* NetworkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CB63371A603F7000459735 /* NetworkViewController.m */; };
-		49CB633B1A603FDD00459735 /* SortedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CB633A1A603FDD00459735 /* SortedViewController.m */; };
 		49CB63401A6052C800459735 /* TabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CB633F1A6052C800459735 /* TabBarViewController.m */; };
 		49CD32811A6D20DD00BFFEBE /* ImportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CD32801A6D20DD00BFFEBE /* ImportViewController.m */; };
 /* End PBXBuildFile section */
@@ -59,6 +59,8 @@
 		4904072A1A6871F700F623D8 /* BEMLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BEMLine.m; sourceTree = "<group>"; };
 		4904072B1A6871F700F623D8 /* BEMSimpleLineGraphView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BEMSimpleLineGraphView.h; sourceTree = "<group>"; };
 		4904072C1A6871F700F623D8 /* BEMSimpleLineGraphView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BEMSimpleLineGraphView.m; sourceTree = "<group>"; };
+		4908AE081A72FF7400C48189 /* Statistics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Statistics.h; sourceTree = "<group>"; };
+		4908AE091A72FF7400C48189 /* Statistics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Statistics.m; sourceTree = "<group>"; };
 		4913835D1A6FF1EE00FC9AFB /* InputScores.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputScores.h; sourceTree = "<group>"; };
 		4913835E1A6FF1EE00FC9AFB /* InputScores.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputScores.m; sourceTree = "<group>"; };
 		491383601A6FF1F900FC9AFB /* DailyScores.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DailyScores.h; sourceTree = "<group>"; };
@@ -73,8 +75,6 @@
 		4922CC2B1A62E17F0044AD98 /* VariableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = VariableViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		494E724D1A6D4AD300D3ED5F /* Health.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Health.entitlements; sourceTree = "<group>"; };
 		494E724E1A6D4AD400D3ED5F /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
-		49602A921A63EDF9008060C1 /* InAppVar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InAppVar.h; path = ../InAppVar.h; sourceTree = "<group>"; };
-		49602A931A63EDF9008060C1 /* InAppVar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InAppVar.m; path = ../InAppVar.m; sourceTree = "<group>"; };
 		49B1427A1A5EA81A00CED2A0 /* Health.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Health.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		49B1427E1A5EA81A00CED2A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		49B1427F1A5EA81A00CED2A0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -86,6 +86,10 @@
 		49B142961A5EA81B00CED2A0 /* HealthTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HealthTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		49B1429B1A5EA81B00CED2A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		49B1429C1A5EA81B00CED2A0 /* HealthTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HealthTests.m; sourceTree = "<group>"; };
+		49B9010E1A726BF90048C140 /* InputScores.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = InputScores.plist; sourceTree = "<group>"; };
+		49B901131A7274780048C140 /* DailyScores.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DailyScores.plist; sourceTree = "<group>"; };
+		49BF26661A72E32B00B3FF81 /* CorrelationsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CorrelationsViewController.h; sourceTree = "<group>"; };
+		49BF26671A72E32B00B3FF81 /* CorrelationsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CorrelationsViewController.m; sourceTree = "<group>"; };
 		49C84BA51A6E7A690022BCFA /* DebugViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DebugViewController.h; sourceTree = "<group>"; };
 		49C84BA61A6E7A690022BCFA /* DebugViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DebugViewController.m; sourceTree = "<group>"; };
 		49C84BA81A6F11090022BCFA /* WaterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaterViewController.m; sourceTree = "<group>"; };
@@ -99,16 +103,10 @@
 		49CB631F1A60384F00459735 /* InputViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputViewController.m; sourceTree = "<group>"; };
 		49CB63211A603BB300459735 /* LogViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogViewController.h; sourceTree = "<group>"; };
 		49CB63221A603BB300459735 /* LogViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = LogViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		49CB63241A603BC000459735 /* AnalysisViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnalysisViewController.h; sourceTree = "<group>"; };
-		49CB63251A603BC000459735 /* AnalysisViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnalysisViewController.m; sourceTree = "<group>"; };
 		49CB63301A603EA100459735 /* HappinessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HappinessViewController.h; sourceTree = "<group>"; };
 		49CB63311A603EA100459735 /* HappinessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HappinessViewController.m; sourceTree = "<group>"; };
 		49CB63331A603F0400459735 /* PomodoroViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PomodoroViewController.h; sourceTree = "<group>"; };
 		49CB63341A603F0400459735 /* PomodoroViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PomodoroViewController.m; sourceTree = "<group>"; };
-		49CB63361A603F7000459735 /* NetworkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkViewController.h; sourceTree = "<group>"; };
-		49CB63371A603F7000459735 /* NetworkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkViewController.m; sourceTree = "<group>"; };
-		49CB63391A603FDD00459735 /* SortedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SortedViewController.h; sourceTree = "<group>"; };
-		49CB633A1A603FDD00459735 /* SortedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SortedViewController.m; sourceTree = "<group>"; };
 		49CB633E1A6052C800459735 /* TabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarViewController.h; sourceTree = "<group>"; };
 		49CB633F1A6052C800459735 /* TabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarViewController.m; sourceTree = "<group>"; };
 		49CD327F1A6D20DD00BFFEBE /* ImportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImportViewController.h; sourceTree = "<group>"; };
@@ -172,15 +170,6 @@
 				49CD32801A6D20DD00BFFEBE /* ImportViewController.m */,
 			);
 			name = "Log tab";
-			sourceTree = "<group>";
-		};
-		49602A951A640851008060C1 /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				49602A921A63EDF9008060C1 /* InAppVar.h */,
-				49602A931A63EDF9008060C1 /* InAppVar.m */,
-			);
-			name = Classes;
 			sourceTree = "<group>";
 		};
 		49B142711A5EA81A00CED2A0 = {
@@ -299,13 +288,8 @@
 		49CB633D1A60403A00459735 /* Analysis tab */ = {
 			isa = PBXGroup;
 			children = (
-				49CB63241A603BC000459735 /* AnalysisViewController.h */,
-				49CB63251A603BC000459735 /* AnalysisViewController.m */,
-				49CB63361A603F7000459735 /* NetworkViewController.h */,
-				49CB63371A603F7000459735 /* NetworkViewController.m */,
-				49CB63391A603FDD00459735 /* SortedViewController.h */,
-				49CB633A1A603FDD00459735 /* SortedViewController.m */,
-				49602A951A640851008060C1 /* Classes */,
+				49BF26661A72E32B00B3FF81 /* CorrelationsViewController.h */,
+				49BF26671A72E32B00B3FF81 /* CorrelationsViewController.m */,
 			);
 			name = "Analysis tab";
 			sourceTree = "<group>";
@@ -313,10 +297,14 @@
 		49D106441A703F2C00E63725 /* Database classes */ = {
 			isa = PBXGroup;
 			children = (
+				49B9010E1A726BF90048C140 /* InputScores.plist */,
 				4913835D1A6FF1EE00FC9AFB /* InputScores.h */,
 				4913835E1A6FF1EE00FC9AFB /* InputScores.m */,
+				49B901131A7274780048C140 /* DailyScores.plist */,
 				491383601A6FF1F900FC9AFB /* DailyScores.h */,
 				491383611A6FF1F900FC9AFB /* DailyScores.m */,
+				4908AE081A72FF7400C48189 /* Statistics.h */,
+				4908AE091A72FF7400C48189 /* Statistics.m */,
 			);
 			name = "Database classes";
 			sourceTree = "<group>";
@@ -413,6 +401,8 @@
 				4922CBF01A6088EE0044AD98 /* network.png in Resources */,
 				49B142911A5EA81B00CED2A0 /* LaunchScreen.xib in Resources */,
 				4922CBF31A6088EE0044AD98 /* varlist.png in Resources */,
+				49B901141A7274780048C140 /* DailyScores.plist in Resources */,
+				49B9010F1A726BF90048C140 /* InputScores.plist in Resources */,
 				49B1428E1A5EA81B00CED2A0 /* Images.xcassets in Resources */,
 				4922CBF21A6088EE0044AD98 /* pomodoro.png in Resources */,
 				4922CBEE1A6088EE0044AD98 /* happiness.png in Resources */,
@@ -434,6 +424,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4904072E1A6871F700F623D8 /* BEMLine.m in Sources */,
+				4908AE0A1A72FF7400C48189 /* Statistics.m in Sources */,
 				49B142831A5EA81A00CED2A0 /* AppDelegate.m in Sources */,
 				49CB63321A603EA100459735 /* HappinessViewController.m in Sources */,
 				49CB63401A6052C800459735 /* TabBarViewController.m in Sources */,
@@ -441,20 +432,17 @@
 				49CB63351A603F0400459735 /* PomodoroViewController.m in Sources */,
 				4904072D1A6871F700F623D8 /* BEMCircle.m in Sources */,
 				491383621A6FF1F900FC9AFB /* DailyScores.m in Sources */,
-				49602A941A63EDF9008060C1 /* InAppVar.m in Sources */,
 				4904072F1A6871F700F623D8 /* BEMSimpleLineGraphView.m in Sources */,
-				49CB633B1A603FDD00459735 /* SortedViewController.m in Sources */,
 				49CB63201A60384F00459735 /* InputViewController.m in Sources */,
 				49CB631C1A602A5E00459735 /* MSPageViewController.m in Sources */,
-				49CB63381A603F7000459735 /* NetworkViewController.m in Sources */,
 				49C84BA71A6E7A690022BCFA /* DebugViewController.m in Sources */,
 				49C84BA91A6F11090022BCFA /* WaterViewController.m in Sources */,
-				49CB63261A603BC000459735 /* AnalysisViewController.m in Sources */,
 				49CB631D1A602A5E00459735 /* MSPageViewControllerPage.m in Sources */,
 				49CD32811A6D20DD00BFFEBE /* ImportViewController.m in Sources */,
 				4922CC2C1A62E17F0044AD98 /* VariableViewController.m in Sources */,
 				49B142801A5EA81A00CED2A0 /* main.m in Sources */,
 				4913835F1A6FF1EE00FC9AFB /* InputScores.m in Sources */,
+				49BF26681A72E32B00B3FF81 /* CorrelationsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

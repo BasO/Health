@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "InAppVar.h"
 #import "BEMSimpleLineGraphView.h"
 #import "DailyScores.h"
 
@@ -22,6 +21,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *lastRatingLabel;
 @property (weak, nonatomic) IBOutlet BEMSimpleLineGraphView *graph;
 
+@property (weak, nonatomic) IBOutlet UILabel *correlateLabel;
 
 
 @end

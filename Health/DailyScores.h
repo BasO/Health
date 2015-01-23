@@ -17,6 +17,8 @@
 
 - (NSMutableArray *) saveKeysFor:(NSString*)variable;
 
+- (NSNumber*) numberValueForSaveKey:(NSString*)saveKey ofVariable:(NSString*)variable;
+
 - (void) writeValue:(NSNumber*)inputValue
            withDate:(NSDate*)historicalDate
          ofVariable:(NSString*)variable;

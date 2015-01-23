@@ -10,7 +10,7 @@
 #import <HealthKit/HealthKit.h>
 #import "DailyScores.h"
 
-@interface LogViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource>
+@interface LogViewController : UITableViewController
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 

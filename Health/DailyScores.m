@@ -29,6 +29,12 @@
     return tempArray;
 }
 
+- (NSNumber*) numberValueForSaveKey:(NSString*)saveKey ofVariable:(NSString*)variable {
+    
+    return [[[self variableDict:variable] objectForKey:saveKey] objectForKey:@"value"];
+}
+
+
 # pragma mark - write functions
 
 // Write one daily sample to daily-dictionary.

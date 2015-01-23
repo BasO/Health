@@ -7,6 +7,7 @@
 //
 
 #import "VariableViewController.h"
+#import "Statistics.h"
 
 @interface VariableViewController ()
 
@@ -39,6 +40,10 @@ DailyScores* dailyScores;
         NSNumber* dayScoreNumber = [lastSample valueForKey:@"value"];
                                  
         self.lastRatingLabel.text = [NSString stringWithFormat:@"%@", dayScoreNumber];
+        
+        Statistics* statistics = [[Statistics alloc] init];
+        
+        self.correlateLabel.text = [NSString stringWithFormat:@"%@", [statistics pearsonCorrelationOfVariable1:self.variable andVariable2:@"Steps"]];
     }
 }
 

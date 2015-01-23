@@ -8,21 +8,19 @@
 
 #import "LogViewController.h"
 #import "VariableViewController.h"
-#import "InAppVar.h"
 
 @interface LogViewController ()
 
 @end
 
 @implementation LogViewController
-{
-    NSArray* vars;
-    HKHealthStore *healthStore;
-    DailyScores* dailyScores;;
-    
-    NSMutableArray* inputVariables;
-    NSMutableArray* healthVariables;
-}
+
+NSArray* vars;
+HKHealthStore *healthStore;
+DailyScores* dailyScores;
+
+NSMutableArray* inputVariables;
+NSMutableArray* healthVariables;
 
 
 - (void)viewDidLoad {
