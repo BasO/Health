@@ -1,18 +1,18 @@
 //
-//  HappinessViewController.m
+//  MoodViewController.m
 //  Health
 //
 //  Created by Bas Oppenheim on 09-01-15.
 //  Copyright (c) 2015 Bas Oppenheim. All rights reserved.
 //
 
-#import "HappinessViewController.h"
+#import "MoodViewController.h"
 
-@interface HappinessViewController ()
+@interface MoodViewController ()
 
 @end
 
-@implementation HappinessViewController
+@implementation MoodViewController
 {
     InputScores* inputScores;
     DailyScores* dailyScores;
@@ -33,6 +33,7 @@
     self.timeLabel.text = [timeFormat stringFromDate:[NSDate date]];
     
     self.timeLabel.hidden = YES;
+
     
     // Do any additional setup after loading the view.
 }
@@ -51,6 +52,8 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+
 
 - (IBAction)feelingsButtonPressed:(id)sender {
     [self showTimeForButton:sender];
@@ -72,14 +75,15 @@
     
     [inputScores writeValue:[NSNumber numberWithInt:buttonValue]
                    withDate:[NSDate date]
-                 ofVariable:@"Happiness"];
+                 ofVariable:@"Mood"];
     
     NSNumber* averageScore = [inputScores averageValueForDate:[NSDate date]
-                                                  forVariable:@"Happiness"];
+                                                  forVariable:@"Mood"];
     
     [dailyScores writeValue:averageScore
                    withDate:[NSDate date]
-                 ofVariable:@"Happiness"];
+                 ofVariable:@"Mood"];
+    
 }
 
 
@@ -113,5 +117,6 @@
                      }];
 
 }
+
 
 @end

@@ -24,9 +24,9 @@
     dailyScores = [[DailyScores alloc] init];
 }
 
-- (IBAction)happinessButtonPress:(id)sender {
+- (IBAction)MoodButtonPress:(id)sender {
     
-    // write average Happiness-score of 4.32 for yesterday's date
+    // write average Mood-score of 4.32 for yesterday's date
     
     NSDate* date = [NSDate date];
     NSDateComponents* comps = [[NSDateComponents alloc]init];
@@ -36,9 +36,9 @@
     
     [dailyScores writeValue:[NSNumber numberWithFloat:4.32]
                    withDate:yesterday
-                 ofVariable:@"Happiness"];
+                 ofVariable:@"Mood"];
     
-    // write average Happiness-score of 4.56 for day before yesterday's date
+    // write average Mood-score of 4.56 for day before yesterday's date
     
     date = [NSDate date];
     comps = [[NSDateComponents alloc]init];
@@ -48,7 +48,7 @@
 
     [dailyScores writeValue:[NSNumber numberWithInt:4.56]
                    withDate:dayBeforeYesterday
-                 ofVariable:@"Happiness"];
+                 ofVariable:@"Mood"];
     
 }
 

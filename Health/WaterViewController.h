@@ -11,8 +11,10 @@
 #import "InputScores.h"
 #import "DailyScores.h"
 
-@interface WaterViewController : UIViewController <MSPageViewControllerChild>
+@interface WaterViewController : UIViewController <MSPageViewControllerChild, UIPickerViewDataSource, UIPickerViewDelegate>
 
+@property (weak, nonatomic) IBOutlet UIPickerView *waterContentPicker;
+@property (weak, nonatomic) IBOutlet UIProgressView *waterIntakeProgress;
 
 @property (weak, nonatomic) IBOutlet UILabel *drinkLabel;
 
@@ -21,6 +23,10 @@
 @property (weak, nonatomic) IBOutlet UIButton *ml50Button;
 
 @property (weak, nonatomic) IBOutlet UIButton *undoButton;
+
+@property (weak, nonatomic) IBOutlet UILabel *goalLabel;
+@property (weak, nonatomic) IBOutlet UIStepper *goalStepper;
+@property (weak, nonatomic) IBOutlet UIProgressView *secondaryWaterIntakeProgress;
 
 
 @end

@@ -20,6 +20,15 @@
     
     [self copyPlist];
     
+    NSUserDefaults *settings = [NSUserDefaults standardUserDefaults];
+    if (![settings objectForKey:@"launched"])
+    {
+        [settings setBool:true forKey:@"launched"];
+        [settings setFloat:2.5 forKey:@"dailyWaterTarget"];
+        [settings setInteger:0 forKey:@"waterContentIndex"];
+    }
+    
+    [settings synchronize];
     
     // [self createUIColors];
     

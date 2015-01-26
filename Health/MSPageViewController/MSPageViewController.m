@@ -49,7 +49,6 @@
 
 - (void)setUpViewController:(UIViewController<MSPageViewControllerChild> *)viewController
                     atIndex:(NSInteger)index {
-    
 }
 
 #pragma mark -
@@ -67,6 +66,7 @@
     if (self.pageCount == 1) {
         self.view.userInteractionEnabled = NO;
     }
+    
 }
 
 #pragma mark - UIPageViewControllerDataSource

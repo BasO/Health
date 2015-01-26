@@ -57,7 +57,7 @@ NSMutableArray* healthVariables;
     inputVariables = [[NSMutableArray alloc] init];
     healthVariables = [[NSMutableArray alloc] init];
     for (NSString *variable in vars) {
-        if ([variable compare:@"Happiness"] == NSOrderedSame ||
+        if ([variable compare:@"Mood"] == NSOrderedSame ||
             [variable compare:@"Pomodoros"] == NSOrderedSame ||
             [variable compare:@"Water"] == NSOrderedSame) {
             [inputVariables addObject:variable];
@@ -174,7 +174,7 @@ NSMutableArray* healthVariables;
      EXPERIMENTING WITH COLORS
      
     self.tableView.backgroundColor = [UIColor whiteColor];
-    if ([cell.textLabel.text isEqual: @"Happiness"])
+    if ([cell.textLabel.text isEqual: @"Mood"])
         cell.backgroundColor = [UIColor colorWithRed:255/255.0f green:191/255.0f blue:0/255.0f alpha:0.15];
     if ([cell.textLabel.text isEqual: @"Steps"])
         cell.backgroundColor = [UIColor colorWithRed:255/255.0f green:115/255.0f blue:0/255.0f alpha:0.15];

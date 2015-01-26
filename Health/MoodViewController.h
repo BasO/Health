@@ -1,5 +1,5 @@
 //
-//  HappinessViewController.h
+//  MoodViewController.h
 //  Health
 //
 //  Created by Bas Oppenheim on 09-01-15.
@@ -11,7 +11,8 @@
 #import "InputScores.h"
 #import "DailyScores.h"
 
-@interface HappinessViewController : UIViewController <MSPageViewControllerChild>
+
+@interface MoodViewController : UIViewController <MSPageViewControllerChild>
 
 @property (weak, nonatomic) IBOutlet UIButton *bestButton;
 @property (weak, nonatomic) IBOutlet UIButton *goodButton;

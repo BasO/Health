@@ -8,13 +8,20 @@
 
 #import <UIKit/UIKit.h>
 #import "MSPageViewController.h"
+#import "InputScores.h"
+#import "DailyScores.h"
 
 @interface PomodoroViewController : UIViewController <MSPageViewControllerChild>
 @property (weak, nonatomic) IBOutlet UIButton *startButton;
 @property (weak, nonatomic) IBOutlet UIProgressView *timeProgress;
+@property (weak, nonatomic) IBOutlet UILabel *minutesLabel;
 
-@property (nonatomic, assign) NSTimer *timer;
-@property BOOL timerOn;
+@property (weak, nonatomic) IBOutlet UIButton *continueButton;
+@property (weak, nonatomic) IBOutlet UIButton *stopButton;
+
+@property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
+
+- (void) updatePomodoroTimer;
 
 
 @end

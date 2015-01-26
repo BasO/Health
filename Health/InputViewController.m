@@ -14,9 +14,16 @@
 
 @implementation InputViewController
 
+UIPageControl *pageControl;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    pageControl = UIPageControl.appearance;
+    pageControl.pageIndicatorTintColor = [UIColor lightGrayColor];
+    pageControl.currentPageIndicatorTintColor = [UIColor blackColor];
+    pageControl.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+    
     }
 
 - (void)didReceiveMemoryWarning {
@@ -38,15 +45,13 @@
 + (void)initialize {
     if (self == InputViewController.class) {
         
-        UIPageControl *pageControl = UIPageControl.appearance;
-        pageControl.pageIndicatorTintColor = [UIColor lightGrayColor];
-        pageControl.currentPageIndicatorTintColor = [UIColor blackColor];
-
+        
+        
     }
 }
 
 - (NSArray *)pageIdentifiers {
-    return @[@"happinessViewController", @"pomodoroViewController", @"waterViewController"];
+    return @[@"MoodViewController", @"pomodoroViewController", @"waterViewController"];
 }
 
 

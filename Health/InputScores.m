@@ -17,7 +17,6 @@
 
 // Returns the complete input for one variable.
 - (NSMutableDictionary*) variableDict:(NSString*)variable {
-    NSLog(@"self.inputDict is %@", self.inputDict);
     return [self.inputDict objectForKey:variable];
 }
 

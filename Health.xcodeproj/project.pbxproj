@@ -36,7 +36,7 @@
 		49CB631D1A602A5E00459735 /* MSPageViewControllerPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CB631B1A602A5E00459735 /* MSPageViewControllerPage.m */; };
 		49CB63201A60384F00459735 /* InputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CB631F1A60384F00459735 /* InputViewController.m */; };
 		49CB63231A603BB300459735 /* LogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CB63221A603BB300459735 /* LogViewController.m */; };
-		49CB63321A603EA100459735 /* HappinessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CB63311A603EA100459735 /* HappinessViewController.m */; };
+		49CB63321A603EA100459735 /* MoodViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CB63311A603EA100459735 /* MoodViewController.m */; };
 		49CB63351A603F0400459735 /* PomodoroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CB63341A603F0400459735 /* PomodoroViewController.m */; };
 		49CB63401A6052C800459735 /* TabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CB633F1A6052C800459735 /* TabBarViewController.m */; };
 		49CD32811A6D20DD00BFFEBE /* ImportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CD32801A6D20DD00BFFEBE /* ImportViewController.m */; };
@@ -103,8 +103,8 @@
 		49CB631F1A60384F00459735 /* InputViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputViewController.m; sourceTree = "<group>"; };
 		49CB63211A603BB300459735 /* LogViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogViewController.h; sourceTree = "<group>"; };
 		49CB63221A603BB300459735 /* LogViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = LogViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		49CB63301A603EA100459735 /* HappinessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HappinessViewController.h; sourceTree = "<group>"; };
-		49CB63311A603EA100459735 /* HappinessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HappinessViewController.m; sourceTree = "<group>"; };
+		49CB63301A603EA100459735 /* MoodViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoodViewController.h; sourceTree = "<group>"; };
+		49CB63311A603EA100459735 /* MoodViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoodViewController.m; sourceTree = "<group>"; };
 		49CB63331A603F0400459735 /* PomodoroViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PomodoroViewController.h; sourceTree = "<group>"; };
 		49CB63341A603F0400459735 /* PomodoroViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PomodoroViewController.m; sourceTree = "<group>"; };
 		49CB633E1A6052C800459735 /* TabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarViewController.h; sourceTree = "<group>"; };
@@ -275,8 +275,8 @@
 			children = (
 				49CB631E1A60384F00459735 /* InputViewController.h */,
 				49CB631F1A60384F00459735 /* InputViewController.m */,
-				49CB63301A603EA100459735 /* HappinessViewController.h */,
-				49CB63311A603EA100459735 /* HappinessViewController.m */,
+				49CB63301A603EA100459735 /* MoodViewController.h */,
+				49CB63311A603EA100459735 /* MoodViewController.m */,
 				49CB63331A603F0400459735 /* PomodoroViewController.h */,
 				49CB63341A603F0400459735 /* PomodoroViewController.m */,
 				49C84BAA1A6F11140022BCFA /* WaterViewController.h */,
@@ -426,7 +426,7 @@
 				4904072E1A6871F700F623D8 /* BEMLine.m in Sources */,
 				4908AE0A1A72FF7400C48189 /* Statistics.m in Sources */,
 				49B142831A5EA81A00CED2A0 /* AppDelegate.m in Sources */,
-				49CB63321A603EA100459735 /* HappinessViewController.m in Sources */,
+				49CB63321A603EA100459735 /* MoodViewController.m in Sources */,
 				49CB63401A6052C800459735 /* TabBarViewController.m in Sources */,
 				49CB63231A603BB300459735 /* LogViewController.m in Sources */,
 				49CB63351A603F0400459735 /* PomodoroViewController.m in Sources */,

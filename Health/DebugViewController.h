@@ -11,6 +11,6 @@
 
 @interface DebugViewController : UIViewController
 
-@property (weak, nonatomic) IBOutlet UIButton *happinessButton;
+@property (weak, nonatomic) IBOutlet UIButton *MoodButton;
 
 @end
