@@ -23,5 +23,7 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *correlateLabel;
 
+@property (weak, nonatomic) IBOutlet UISegmentedControl *graphTimePeriodSegmentedControl;
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
 
 @end

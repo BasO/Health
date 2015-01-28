@@ -151,7 +151,7 @@
     
     NSDate* endDate = [NSDate date];
     
-    NSDate* startDate = [endDate dateByAddingTimeInterval:-(60*60*24*30)];
+    NSDate* startDate = [endDate dateByAddingTimeInterval:-(60*60*24*60)];
     
     NSLog(@"----- startdate is %@, enddate is %@ -----", startDate, endDate);
     
@@ -203,7 +203,7 @@
     NSLog(@"importing steps");
     
     // import steps PER DAY. Best way (for now) to get the cumulative number of steps per day.
-    for (int i = 0; i < 30; i++) {
+    for (int i = 0; i < 60; i++) {
         
         NSDate* endDate = [startOfToday dateByAddingTimeInterval:-(60*60*24 * i)];
         

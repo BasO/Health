@@ -67,22 +67,10 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-- (IBAction)drinkButtonPress:(id)sender {
-    UIButton *resultButton = (UIButton *)sender;
-    NSString* input = resultButton.currentTitle;
-    
-    int buttonValue;
-    if ([input compare:@"Drink 33 mL"] == NSOrderedSame)
-        buttonValue = 33;
-    else if ([input compare:@"Drink 50 mL"] == NSOrderedSame)
-        buttonValue = 50;
-}
- */
 
 - (IBAction)ml33ButtonPress:(id)sender {
     
-    int waterContentPickerIndex = (long)[self.waterContentPicker selectedRowInComponent:0];
+    int waterContentPickerIndex = (int)[self.waterContentPicker selectedRowInComponent:0];
     
     
     float saveValue = [[pickerData objectAtIndex:waterContentPickerIndex] floatValue] * 10;
