@@ -380,7 +380,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YOb-E5-s31">
-                                <rect key="frame" x="65" y="93" width="161" height="30"/>
+                                <rect key="frame" x="80" y="40" width="161" height="30"/>
                                 <state key="normal" title="Enter Mood scores">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -388,24 +388,68 @@
                                     <action selector="MoodButtonPress:" destination="rgg-hd-2hB" eventType="touchUpInside" id="8Vc-cH-Rg7"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="18 januari: 1 - 2 - 3 - 4" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zYv-d2-f6k">
-                                <rect key="frame" x="47" y="160" width="172" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="day -1: 2,5" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zYv-d2-f6k">
+                                <rect key="frame" x="90" y="72" width="83" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="19 januari: 2 - 3 - 4 - 5" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P34-3B-bL7">
-                                <rect key="frame" x="47" y="189" width="172" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="day -2: 3,5" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P34-3B-bL7">
+                                <rect key="frame" x="90" y="101" width="83" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="day -1: 2600" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xak-bu-0Ug">
+                                <rect key="frame" x="90" y="407" width="97" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="day - 2: 2300" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dNU-px-WrO">
+                                <rect key="frame" x="90" y="436" width="102" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xlh-Ql-cSD">
+                                <rect key="frame" x="95" y="369" width="130" height="30"/>
+                                <state key="normal" title="Enter Water scores">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="waterButtonPress:" destination="rgg-hd-2hB" eventType="touchUpInside" id="LHW-Zu-MAj"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="day -1: 12" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oe6-Ni-WMc">
+                                <rect key="frame" x="112" y="228" width="78" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="day -2: 2" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8yP-r5-CUk">
+                                <rect key="frame" x="112" y="257" width="69" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Da-hR-ZP8">
+                                <rect key="frame" x="80" y="190" width="162" height="30"/>
+                                <state key="normal" title="Enter Pomodoro scores">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="pomodoroButtonPress:" destination="rgg-hd-2hB" eventType="touchUpInside" id="Y6H-G3-ZrF"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Debug" id="Nxc-9Q-7Qa"/>
                     <connections>
                         <outlet property="MoodButton" destination="YOb-E5-s31" id="wjE-vp-WUq"/>
+                        <outlet property="pomodoroButton" destination="0Da-hR-ZP8" id="wcQ-qO-KgA"/>
+                        <outlet property="waterButton" destination="Xlh-Ql-cSD" id="RCp-1z-Za0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nGc-ep-cCF" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -568,9 +612,13 @@
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="XvO-oh-6Ve">
-                                <rect key="frame" x="36" y="363" width="245" height="106"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="41"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="XvO-oh-6Ve">
+                                <rect key="frame" x="31" y="363" width="258" height="129"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="258" id="4qx-Oj-Dgy"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="129" id="CfV-6o-gji"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -596,6 +644,9 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nTf-JE-8c1">
                                 <rect key="frame" x="110" y="325" width="100" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="5cv-ol-JFu"/>
+                                </constraints>
                                 <state key="normal" title="START/PAUSE">
                                     <color key="titleColor" red="0.90196078430000004" green="0.14901960780000001" blue="0.16862745100000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -614,16 +665,17 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="40M-Pa-gfU" firstAttribute="centerY" secondItem="nTf-JE-8c1" secondAttribute="centerY" id="8kh-d7-JpF"/>
+                            <constraint firstAttribute="centerX" secondItem="XvO-oh-6Ve" secondAttribute="centerX" id="8mY-1r-Ad6"/>
                             <constraint firstAttribute="centerX" secondItem="nTf-JE-8c1" secondAttribute="centerX" id="AXM-Vu-JCp"/>
                             <constraint firstItem="ttK-5q-5dm" firstAttribute="leading" secondItem="2FX-8k-VNJ" secondAttribute="leadingMargin" constant="15" id="C1e-UJ-lB5"/>
                             <constraint firstAttribute="centerX" secondItem="ttK-5q-5dm" secondAttribute="centerX" id="U6V-8q-wTa"/>
                             <constraint firstItem="3m3-zd-Ila" firstAttribute="centerY" secondItem="nTf-JE-8c1" secondAttribute="centerY" id="Vss-jk-T9Z"/>
+                            <constraint firstItem="XvO-oh-6Ve" firstAttribute="top" secondItem="nTf-JE-8c1" secondAttribute="bottom" constant="8" id="Xc7-cc-qJH"/>
                             <constraint firstAttribute="centerY" secondItem="ttK-5q-5dm" secondAttribute="centerY" constant="-30" id="b1f-ZQ-wbd"/>
                             <constraint firstItem="nTf-JE-8c1" firstAttribute="top" secondItem="ttK-5q-5dm" secondAttribute="bottom" constant="10" id="eqy-WS-L1F"/>
                             <constraint firstAttribute="trailingMargin" secondItem="ttK-5q-5dm" secondAttribute="trailing" constant="15" id="hF3-MP-nti"/>
                             <constraint firstAttribute="width" secondItem="hGh-9o-UDk" secondAttribute="width" id="hci-MU-3bf"/>
                             <constraint firstItem="3m3-zd-Ila" firstAttribute="trailing" secondItem="ttK-5q-5dm" secondAttribute="trailing" id="jU3-ip-cZK"/>
-                            <constraint firstItem="XvO-oh-6Ve" firstAttribute="top" relation="greaterThanOrEqual" secondItem="nTf-JE-8c1" secondAttribute="bottom" constant="8" id="qd2-C9-gOl"/>
                             <constraint firstItem="ttK-5q-5dm" firstAttribute="leading" secondItem="40M-Pa-gfU" secondAttribute="leading" id="yOQ-Lt-g6j"/>
                         </constraints>
                     </view>
@@ -736,7 +788,7 @@
                             <constraint firstItem="tzB-iZ-5VC" firstAttribute="top" relation="greaterThanOrEqual" secondItem="A7v-bj-VZm" secondAttribute="bottom" id="ZTK-wN-UjK"/>
                             <constraint firstItem="jdu-bW-7lw" firstAttribute="leading" secondItem="x3z-c6-TzS" secondAttribute="leadingMargin" constant="15" id="fWn-r8-B9l"/>
                             <constraint firstItem="lea-Dz-l2e" firstAttribute="width" secondItem="jdu-bW-7lw" secondAttribute="width" id="gp3-TL-UWM"/>
-                            <constraint firstItem="J0l-7P-eJT" firstAttribute="centerY" secondItem="A7v-bj-VZm" secondAttribute="centerY" constant="-0.5" id="k2g-7t-chj"/>
+                            <constraint firstItem="J0l-7P-eJT" firstAttribute="centerY" secondItem="A7v-bj-VZm" secondAttribute="centerY" id="k2g-7t-chj"/>
                             <constraint firstItem="PRn-vC-Tn3" firstAttribute="bottom" secondItem="etG-L1-ztU" secondAttribute="bottom" id="pvO-OV-vb7"/>
                             <constraint firstItem="lea-Dz-l2e" firstAttribute="top" secondItem="jdu-bW-7lw" secondAttribute="bottom" constant="2" id="q0i-wm-OXb"/>
                         </constraints>

@@ -118,23 +118,18 @@
 
 // Get the string of the path to InputScores.plist
 - (NSString*) pathOfPList {
-    NSLog(@">>> pathOfPList call");
     if (!_pathOfPList) {
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
         NSString *documentsDirectory =  [paths objectAtIndex:0];
         _pathOfPList = [[NSString alloc] initWithString:[documentsDirectory stringByAppendingPathComponent:@"InputScores.plist"]];
-        
-        NSLog(@">>> pathOfPList build");
     }
     return _pathOfPList;
 }
 
 // Returns the complete input dictionary.
 - (NSMutableDictionary *) inputDict {
-    NSLog(@"inputDict call");
     if (!_inputDict) {
         _inputDict = [[[NSMutableDictionary alloc] initWithContentsOfFile:self.pathOfPList] mutableCopy];
-        NSLog(@"build inputDict");
     }
     return _inputDict;
 }
@@ -154,7 +149,6 @@
 // Save the input dictionary.
 - (void) saveInputDict {
     BOOL writeSucces = [self.inputDict writeToFile:self.pathOfPList atomically:YES];
-    NSLog(@"saved InputDict? %i", writeSucces);
 }
 
 @end

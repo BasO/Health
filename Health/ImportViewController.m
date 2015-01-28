@@ -243,6 +243,8 @@
                                                                             lastDate = [samples endDate];
                                                                         }
                                                                         
+                                                                        NSLog(@"IS - lastdate is %@", lastDate);
+                                                                        
                                                                         [dailyScores writeValue:[NSNumber numberWithInteger:dailySteps]
                                                                                        withDate:lastDate
                                                                                      ofVariable:@"Steps"];

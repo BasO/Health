@@ -12,5 +12,7 @@
 @interface DebugViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UIButton *MoodButton;
+@property (weak, nonatomic) IBOutlet UIButton *pomodoroButton;
+@property (weak, nonatomic) IBOutlet UIButton *waterButton;
 
 @end

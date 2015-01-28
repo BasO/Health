@@ -40,6 +40,7 @@ NSMutableArray* notEnoughDataList;
     sortedList = [[NSMutableArray alloc] init];
     notEnoughDataList = [[NSMutableArray alloc] init];
     NSMutableArray* processedVariableCouplesHashList = [[NSMutableArray alloc] init];
+    NSMutableDictionary* insufficientDataDict = [[NSMutableDictionary alloc] init];
     
     for (NSString* variable in allVariables) {
         NSNumber* correlation = [statistics pearsonCorrelationOfVariable1:variable andVariable2:variable];
@@ -58,16 +59,44 @@ NSMutableArray* notEnoughDataList;
             
             if (![variable2 isEqualToString:variable1] && ![processedVariableCouplesHashList containsObject:reversedStringHash]) {
                 
-                NSNumber* correlation = [statistics pearsonCorrelationOfVariable1:variable1 andVariable2:variable2];
-                
-                NSString* columnText = [[NSString alloc] initWithFormat:@"%@ %@ %@", correlation, variable1, variable2];
-                
-                [sortedList addObject:columnText];
+                float correlation = [[statistics pearsonCorrelationOfVariable1:variable1 andVariable2:variable2] floatValue];
+            
+                if ([[NSString stringWithFormat:@"%f", correlation] isEqual:@"nan"] || correlation >= 1 || correlation <= -1) {
+                    NSString* columnText = [[NSString alloc] initWithFormat:@"%@ x %@", variable1, variable2];
+                    [notEnoughDataList addObject:columnText];
+                }
+                else {
+                    correlation *= 100;
+                    NSString* columnText = [[NSString alloc] initWithFormat:@"%@ x %@: %.0f%%", variable1, variable2, correlation];
+                    [sortedList addObject:columnText];
+                }
 
                 [processedVariableCouplesHashList addObject:[NSString stringWithFormat:@"%@%@", variable1, variable2]];
             }
         }
     }
+    
+    for (NSString* variable in allVariables) {
+        
+        int variableHitCount = 0;
+        
+        for (NSString* columnText in notEnoughDataList) {
+            if ([columnText rangeOfString:variable].location != NSNotFound) {
+                variableHitCount += 1;
+            }
+        }
+        
+        if (variableHitCount >= [allVariables count] - 1) {
+            NSArray *notEnoughDataListCopy = [[NSArray alloc] initWithArray:notEnoughDataList];
+            for (NSString* columnText in notEnoughDataListCopy) {
+                if ([columnText rangeOfString:variable].location != NSNotFound) {
+                    [notEnoughDataList removeObject:columnText];
+                }
+            }
+            [notEnoughDataList addObject:variable];
+        }
+    }
+    
 
     [sortedList sortUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
     [notEnoughDataList sortUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
@@ -148,15 +177,10 @@ NSMutableArray* notEnoughDataList;
     }
     else if (!!sortedList) {
         if (indexPath.section == 0) {
-            NSArray* stringParts = [[NSArray alloc] initWithArray:[sortedList[indexPath.row] componentsSeparatedByString:@" "]];
-            
-            NSString *newString = [[NSString alloc] initWithFormat:@"%@ x %@:  %@", stringParts[1], stringParts[2], stringParts[0]];
-            
-            cell.textLabel.text = [newString description];;;
+            cell.textLabel.text = sortedList[indexPath.row];
         }
         if (indexPath.section == 1) {
-            NSString *string = notEnoughDataList[indexPath.row];
-            cell.textLabel.text = [string description];;;
+            cell.textLabel.text = notEnoughDataList[indexPath.row];
         }
     }
     

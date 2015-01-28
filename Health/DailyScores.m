@@ -50,7 +50,7 @@
     
     // get a new saveKey for the daily sample
     NSDateFormatter* timeFormat = [[NSDateFormatter alloc] init];
-    [timeFormat setDateFormat:@"YYYYMMdd"];
+    [timeFormat setDateFormat:@"yyyyMMdd"];
     NSString* saveKey = [[NSString alloc] initWithString:[timeFormat stringFromDate:historicalDate]];
     
     // update dictionary of variable, then update the total DailyScores dictionary
