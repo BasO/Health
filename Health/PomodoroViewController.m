@@ -56,8 +56,8 @@ int breakPeriodInSeconds;
         inputScores = [[InputScores alloc] init];
         dailyScores = [[DailyScores alloc] init];
         
-        workPeriodInSeconds = 25;
-        breakPeriodInSeconds = 5;
+        workPeriodInSeconds = 25 * 60;
+        breakPeriodInSeconds = 5 * 60;
         
         seconds = 0;
     }
@@ -74,130 +74,67 @@ int breakPeriodInSeconds;
         [settings setInteger:todaySince1970 forKey:@"PomodoroAwayDate"];
         [settings setBool:breakTime forKey:@"PomodoroBreakTime"];
         [settings synchronize];
-    
-        NSLog(@"breakTime saved is: %i", [settings boolForKey:@"PomodoroBreakTime"]);
-        NSLog(@"pomodoroAwayDate is: %i", (int)[settings integerForKey:@"PomodoroAwayDate"]);
+        
+        [pomodoroTimer invalidate];
+        pomodoroTimer = nil;
     }
 }
 
 - (void) setupSettings {
     
     [self setupValues];
-    if (!settings) {
-        settings = [NSUserDefaults standardUserDefaults];
-        NSLog(@"made settings");
-    }
-    NSLog(@"setup settings");
     
     int wentawayInt = (int)[settings integerForKey:@"PomodoroAwayDate"];
     
-    NSLog(@"wentawayInt = %i", wentawayInt);
-    
     NSDate* wentAwayDate = [NSDate dateWithTimeIntervalSince1970:wentawayInt];
     
-    NSLog(@"date is %@.", wentAwayDate);
-    
     if (!!wentAwayDate) {
-        NSLog(@"we found settings");
+        NSLog(@"app was suspended, continuing timer now");
         
         continuing = YES;
-        
-        
+
         BOOL historicalBreakTime = [settings boolForKey:@"PomodoroBreakTime"];
         int historicalSeconds = (int)[settings integerForKey:@"PomodoroSeconds"];
         
-        NSLog(@"breaktime gotten is %i", historicalBreakTime);
-        NSLog(@"historical seconds is %i", historicalSeconds);
-        NSLog(@"breakperiod is %i, workperiod is %i", breakPeriodInSeconds, workPeriodInSeconds);
-        
         int intervalSinceWentAway = (int)[[NSDate date] timeIntervalSinceDate:wentAwayDate];
-        int countDownInterval = intervalSinceWentAway;
-        int timeLeft;
-        
-        NSLog(@"right now = %@. wentAway at %@.", [NSDate date], wentAwayDate);
-        
-        NSLog(@"countdowninterval = %i", countDownInterval);
-        
-        NSLog(@"historicalBreakTime is now %i", historicalBreakTime);
-        
-        BOOL smallTimeAway = NO;
-        
-        if (historicalBreakTime == YES) {
-            timeLeft = breakPeriodInSeconds - historicalSeconds;
-            NSLog(@"timeleft is %i", timeLeft);
-            if (countDownInterval > timeLeft) {
-                countDownInterval -= timeLeft;
-                historicalBreakTime = NO;
-            }
-            else
-                smallTimeAway = YES;
-        }
-        else if (historicalBreakTime == NO) {
-            NSLog(@"historicalBreakTime == NO");
-            timeLeft = workPeriodInSeconds - historicalSeconds;
-            NSLog(@"timeleft is %i", timeLeft);
-            if (countDownInterval > timeLeft) {
-                countDownInterval -= timeLeft;
-                historicalBreakTime = YES;
-                
-                [inputScores writeValue:[NSNumber numberWithInt:1]
-                               withDate:[NSDate dateWithTimeInterval:(intervalSinceWentAway - countDownInterval)
-                                                           sinceDate:wentAwayDate]
-                             ofVariable:@"Pomodoros"];
-                
-            }
-            else
-                smallTimeAway = YES;
-        }
-        
-        NSLog(@"1. historicalBreakTime is now %i", historicalBreakTime);
-        
-        if (smallTimeAway == NO) {
-            while (countDownInterval > 0) {
-                if (historicalBreakTime == YES) {
-                    if (countDownInterval > breakPeriodInSeconds) {
-                        countDownInterval -= breakPeriodInSeconds;
-                        historicalBreakTime = NO;
-                    }
-                    else {
-                        smallTimeAway = YES;
-                        break;
-                    }
+        int countDownInterval = intervalSinceWentAway + historicalSeconds;
+         
+        while (countDownInterval > 0) {
+            if (historicalBreakTime == YES) {
+                if (countDownInterval > breakPeriodInSeconds) {
+                    countDownInterval -= breakPeriodInSeconds;
+                    historicalBreakTime = NO;
                 }
-                else if (historicalBreakTime == NO) {
-                    if (countDownInterval > workPeriodInSeconds) {
-                        countDownInterval -= workPeriodInSeconds;
-                        historicalBreakTime = YES;
-                        
-                        [inputScores writeValue:[NSNumber numberWithInt:1]
-                                       withDate:[NSDate dateWithTimeInterval:(intervalSinceWentAway - countDownInterval)
-                                                                   sinceDate:wentAwayDate]
-                                     ofVariable:@"Pomodoros"];
-                    }
-                    else {
-                        smallTimeAway = YES;
-                        break;
-                    }
+                else {
+                    break;
                 }
-                NSLog(@"countDownInterval left is... %f", countDownInterval);
+            }
+            else if (historicalBreakTime == NO) {
+                if (countDownInterval > workPeriodInSeconds) {
+                    countDownInterval -= workPeriodInSeconds;
+                    historicalBreakTime = YES;
+                    
+                    [inputScores writeValue:[NSNumber numberWithInt:1]
+                                   withDate:[NSDate dateWithTimeInterval:(intervalSinceWentAway - countDownInterval)
+                                                               sinceDate:wentAwayDate]
+                                 ofVariable:@"Pomodoros"];
+                }
+                else {
+                    break;
+                }
             }
         }
-        
-        NSLog(@"2. historicalBreakTime is now %i", historicalBreakTime);
         
         seconds = countDownInterval;
         breakTime = historicalBreakTime;
-        if (!pomodoroTimer)
-            [self startTimer];
         
         [settings removeObjectForKey:@"PomodoroAwayDate"];
         [settings removeObjectForKey:@"PomodoroBreakTime"];
         [settings removeObjectForKey:@"PomodoroSeconds"];
         [settings synchronize];
+        
     }
     [self setupView];
-    
-
 }
 
 -(void)dealloc
@@ -209,36 +146,45 @@ int breakPeriodInSeconds;
     
     // Do any additional setup after loading the view.
     
-    [self.startButton setTitle:@"START" forState:UIControlStateNormal];
-    
     self.continueButton.hidden = YES;
     self.stopButton.hidden = YES;
     self.startButton.hidden = NO;
     
     if (continuing == NO) {
+        NSLog(@"no continue");
+        [self.startButton setTitle:@"START" forState:UIControlStateNormal];
         self.timeProgress.progress = 0;
         [self startWorkState];
     }
-    
-    if (!pomodorosString) {
-        [self.scoreLabel setAlpha:0];
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{ // 1
-            [self setTotalPomodoros];
-            dispatch_async(dispatch_get_main_queue(), ^{ // 2
-                [self.scoreLabel setText:pomodorosString]; // 3
-                [UIView animateWithDuration:0.3
-                                      delay:0
-                                    options:UIViewAnimationOptionAllowUserInteraction |
-                 UIViewAnimationOptionAllowAnimatedContent
-                                 animations:^{
-                                     [self.scoreLabel setAlpha:1];
-                                 }
-                                 completion:^(BOOL finished) {}];
-            });
-        });
+    else {
+        continuing = NO;
+        if (breakTime == NO) {
+            [self startWorkState];
+        }
+        else {
+            [self startBreakState];
+        }
+        [self startTimer];
+        
     }
-
-    continuing = NO;
+    
+    [self.scoreLabel setAlpha:0];
+     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{ // 1
+         [self setTotalPomodoros];
+         dispatch_async(dispatch_get_main_queue(), ^{ // 2
+             [self.scoreLabel setText:pomodorosString]; // 3
+             [UIView animateWithDuration:0.3
+                                   delay:0
+                                 options:UIViewAnimationOptionAllowUserInteraction |
+              UIViewAnimationOptionAllowAnimatedContent
+                              animations:^{
+                                  [self.scoreLabel setAlpha:1];
+                              }
+                              completion:^(BOOL finished) {}];
+             
+            });
+         
+        });
 }
 
 
@@ -351,12 +297,16 @@ int breakPeriodInSeconds;
         }
         else {
             [self startWorkState];
+            NSLog(@"starting workstate");
         }
     }
     
     seconds += 1;
     int minutes = floor(seconds/60);
+    
     self.minutesLabel.text = [NSString stringWithFormat:@"%i", minutes];
+    
+    
     [self.timeProgress setProgress:((float)seconds / timePeriod) animated:NO];
     
     //NSLog(@"seconds %i / timePeriod %i = %)
