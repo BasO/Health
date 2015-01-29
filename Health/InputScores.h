@@ -5,6 +5,8 @@
 //  Created by Bas Oppenheim on 21-01-15.
 //  Copyright (c) 2015 Bas Oppenheim. All rights reserved.
 //
+//  The InputScores class is used to read (in several formats) data and entries of InputScores.plist .
+//  It can also write a new entry into InputScores.
 
 #import <Foundation/Foundation.h>
 

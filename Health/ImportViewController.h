@@ -5,6 +5,7 @@
 //  Created by Bas Oppenheim on 19-01-15.
 //  Copyright (c) 2015 Bas Oppenheim. All rights reserved.
 //
+//  ViewController that lets the user import Health Kit data.
 
 #import <UIKit/UIKit.h>
 #import <HealthKit/HealthKit.h>

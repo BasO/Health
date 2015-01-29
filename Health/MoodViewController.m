@@ -103,7 +103,9 @@
     [timeLabel showTime];
     [UIView animateWithDuration:1
                           delay:0
-                        options: UIViewAnimationOptionAllowUserInteraction | UIViewAnimationOptionAllowAnimatedContent
+                        options:
+                                 UIViewAnimationOptionAllowUserInteraction |
+                                 UIViewAnimationOptionAllowAnimatedContent
                      animations:^{
                          timeLabel.frame = CGRectMake(self.view.frame.origin.x + 30, timeLabel.frame.origin.y, 75, 35);
                      }

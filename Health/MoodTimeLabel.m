@@ -33,11 +33,12 @@
 
 // Fade in, then fade out.
 - (void) animateShowing {
-    NSLog(@"animating");
     self.alpha = 0;
     [UIView animateWithDuration:1
                           delay:0
-                        options: UIViewAnimationOptionAllowUserInteraction | UIViewAnimationOptionAllowAnimatedContent
+                        options:
+                                 UIViewAnimationOptionAllowUserInteraction |
+                                 UIViewAnimationOptionAllowAnimatedContent
                      animations:^{
                          
                          self.alpha = 0.5;
@@ -46,7 +47,10 @@
                      completion:^(BOOL finished) {
                          [UIView animateWithDuration:1
                                                delay:0
-                                             options: UIViewAnimationOptionAllowUserInteraction | UIViewAnimationOptionAllowAnimatedContent | UIViewAnimationOptionCurveEaseIn
+                                             options:
+                                                      UIViewAnimationOptionAllowUserInteraction |
+                                                      UIViewAnimationOptionAllowAnimatedContent |
+                                                      UIViewAnimationOptionCurveEaseIn
                                           animations:^{
                                               
                                               self.alpha = 0;

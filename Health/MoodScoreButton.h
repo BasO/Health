@@ -5,6 +5,7 @@
 //  Created by Bas Oppenheim on 29-01-15.
 //  Copyright (c) 2015 Bas Oppenheim. All rights reserved.
 //
+//  Subclass of UIButton containing multiple possible titles and an associated score value.
 
 #import <UIKit/UIKit.h>
 

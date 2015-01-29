@@ -105,10 +105,11 @@ PomodoroBrain* pomodoroBrain;
 - (void) showResettingOfTimer {
     [UIView animateWithDuration:1
                           delay:0
-                        options:UIViewAnimationOptionAllowUserInteraction |
-     UIViewAnimationOptionAllowAnimatedContent |
-     UIViewAnimationOptionBeginFromCurrentState |
-     UIViewAnimationOptionCurveEaseIn
+                        options:
+                                 UIViewAnimationOptionAllowUserInteraction |
+                                 UIViewAnimationOptionAllowAnimatedContent |
+                                 UIViewAnimationOptionBeginFromCurrentState |
+                                 UIViewAnimationOptionCurveEaseIn
                      animations:^{
                          [self.timeProgress setProgress:0 animated:YES];
                      }
@@ -148,7 +149,6 @@ PomodoroBrain* pomodoroBrain;
 
 - (void)updateProgressTo:(float)progress {
     [self.timeProgress setProgress:progress];
-    NSLog(@"%f", progress);
 }
 
 # pragma mark - fade animation
@@ -163,8 +163,9 @@ PomodoroBrain* pomodoroBrain;
     
     [UIView animateWithDuration:0.2
                           delay:0
-                        options:UIViewAnimationOptionAllowUserInteraction |
-     UIViewAnimationOptionAllowAnimatedContent
+                        options:
+                                 UIViewAnimationOptionAllowUserInteraction |
+                                 UIViewAnimationOptionAllowAnimatedContent
                      animations:^{
                          [button setAlpha:visible];
                      }

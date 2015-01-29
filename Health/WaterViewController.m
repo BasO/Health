@@ -69,7 +69,6 @@
 
 // Change & save target amount of water, update drinking progress bar
 - (IBAction)goalStepperPress:(id)sender {
-    NSLog(@"GSP - %f", self.goalStepper.value);
     targetWaterIntake = self.goalStepper.value;
     
     [self.goalLabel setText:[NSString stringWithFormat:@"%.1f", self.goalStepper.value]];

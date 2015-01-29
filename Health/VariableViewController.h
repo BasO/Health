@@ -5,6 +5,7 @@
 //  Created by Bas Oppenheim on 11-01-15.
 //  Copyright (c) 2015 Bas Oppenheim. All rights reserved.
 //
+//  ViewController showing a variable's daily score and a graph for week/month/half year/year.
 
 #import <UIKit/UIKit.h>
 #import "BEMSimpleLineGraphView.h"

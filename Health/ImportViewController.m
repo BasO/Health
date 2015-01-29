@@ -39,6 +39,9 @@
     // Dispose of any resources that can be recreated.
 }
 
+# pragma mark - request Health Kit access
+
+// Request access to Health Kit data.
 - (void)requestHealthAccess {
     NSSet *readObjectTypes = [NSSet setWithObjects:
                               [HKObjectType categoryTypeForIdentifier:HKCategoryTypeIdentifierSleepAnalysis],
@@ -62,9 +65,7 @@
                                        }];
 }
 
-- (IBAction)averageButtonPress:(id)sender {
-    [self setAverage];
-}
+#pragma mark - import buttons
 
 - (IBAction)sleepButtonPress:(id)sender {
     [self importSleep];
@@ -74,96 +75,18 @@
     [self importSteps];
 }
 
+#pragma mark - import data from Health Kit
 
-- (void) setAverage {
-    
-    totalAwakeSince15 = 0;
-    numberOfSleepRecordings = 0;
-    
-    NSDate* endDate = [NSDate date];
-     
-    NSDate* startDate = [endDate dateByAddingTimeInterval:-(60*60*24*7)];
-    
-    NSLog(@"----- startdate is %@, enddate is %@ -----", startDate, endDate);
-     
-    // use the sample type for sleep
-    HKSampleType *sampleType = [HKSampleType categoryTypeForIdentifier:HKCategoryTypeIdentifierSleepAnalysis];
-     
-    // Create a predicate to set start/end date bounds of the query
-    NSPredicate *predicate = [HKQuery predicateForSamplesWithStartDate:startDate endDate:endDate options:HKQueryOptionStrictStartDate];
-     
-    // Create a sort descriptor for sorting by start date
-    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:HKSampleSortIdentifierStartDate ascending:YES];
-     
-    
-    HKSampleQuery *sampleQuery = [[HKSampleQuery alloc] initWithSampleType:sampleType
-    predicate:predicate
-    limit:HKObjectQueryNoLimit
-    sortDescriptors:@[sortDescriptor]
-    resultsHandler:^(HKSampleQuery *query, NSArray *results, NSError *error) {
-        if(!error && results)
-        {
-            
-            for(HKCategorySample *samples in results)
-            {
-                NSTimeZone *gmt = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
-                NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier: NSCalendarIdentifierGregorian];
-                [gregorian setTimeZone:gmt];
-                NSDateComponents *components = [gregorian components: NSUIntegerMax fromDate: [samples startDate]];
-                
-                if ([components hour] < 14)
-                    [components setDay: ([components day] - 1)];
-                [components setHour: 15];
-                [components setMinute:0];
-                [components setSecond: 0];
-                NSDate *comparisonDate = [gregorian dateFromComponents: components];
-                
-                totalAwakeSince15 += [[samples startDate] timeIntervalSinceDate:comparisonDate];
-                numberOfSleepRecordings += 1;
-            }
-            
-            NSLog(@"you slept %f for %i times", totalAwakeSince15, numberOfSleepRecordings);
-            
-            NSTimeInterval averageAwakeSince15 = (totalAwakeSince15 / numberOfSleepRecordings);
-            
-            NSTimeZone *gmt = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
-            NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier: NSCalendarIdentifierGregorian];
-            [gregorian setTimeZone:gmt];
-            NSDateComponents *components = [gregorian components: NSUIntegerMax fromDate: [NSDate date]];
-            
-            [components setHour: 15];
-            [components setMinute:0];
-            [components setSecond: 0];
-            NSDate *comparisonDate = [gregorian dateFromComponents: components];
-            
-            self.datePicker.date = [NSDate dateWithTimeInterval:averageAwakeSince15 sinceDate:comparisonDate];
-            
-        }
-    }];
-    
-    [healthStore executeQuery:sampleQuery];
-    
-    NSLog(@"DONE");
-}
-
-
+// Import Sleep-data from Health Kit.
 - (void) importSleep {
     
     NSDate* endDate = [NSDate date];
-    
     NSDate* startDate = [endDate dateByAddingTimeInterval:-(60*60*24*60)];
     
-    NSLog(@"----- startdate is %@, enddate is %@ -----", startDate, endDate);
-    
-    // use the sample type for sleep
+    // setup sleep-data based query in Health Kit data
     HKSampleType *sampleType = [HKSampleType categoryTypeForIdentifier:HKCategoryTypeIdentifierSleepAnalysis];
-    
-    // Create a predicate to set start/end date bounds of the query
     NSPredicate *predicate = [HKQuery predicateForSamplesWithStartDate:startDate endDate:endDate options:HKQueryOptionStrictStartDate];
-    
-    // Create a sort descriptor for sorting by start date
     NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:HKSampleSortIdentifierStartDate ascending:YES];
-    
     
     HKSampleQuery *sampleQuery = [[HKSampleQuery alloc] initWithSampleType:sampleType
                                                                  predicate:predicate
@@ -174,7 +97,7 @@
                                                                 {
                                                                     for(HKCategorySample *samples in results)
                                                                     {
-                                                                        
+                                                                        // save seconds asleep with wake-up moment as time-value
                                                                         NSTimeInterval timeAsleep = [[samples endDate] timeIntervalSinceDate:[samples startDate]];
                                                                         
                                                                         [dailyScores writeValue:[NSNumber numberWithFloat:timeAsleep]
@@ -183,14 +106,14 @@
                                                                     }
                                                                 }
                                                             }];
-    
+    // execute query
     [healthStore executeQuery:sampleQuery];
-    
-    NSLog(@"DONE");
 }
 
+// Import steps-data from Health Kit.
 - (void) importSteps {
     
+    // get nsdate of current day, 0:00:00
     NSDate* date = [NSDate date];
     NSDateComponents* comps = [[NSDateComponents alloc]init];
     comps.hour = 0;
@@ -199,25 +122,16 @@
     NSCalendar* calendar = [NSCalendar currentCalendar];
     NSDate* startOfToday = [calendar dateByAddingComponents:comps toDate:date options:0];
     
-    
-    NSLog(@"importing steps");
-    
-    // import steps PER DAY. Best way (for now) to get the cumulative number of steps per day.
+    // have a distinct query for each day
     for (int i = 0; i < 60; i++) {
         
         NSDate* endDate = [startOfToday dateByAddingTimeInterval:-(60*60*24 * i)];
-        
         NSDate* startDate = [endDate dateByAddingTimeInterval:-(60*60*24)];
         
-        // Use the sample type for step count
+        // setup steps-data based query in Health Kit data
         HKSampleType *sampleType = [HKSampleType quantityTypeForIdentifier:HKQuantityTypeIdentifierStepCount];
-        
-        // Create a predicate to set start/end date bounds of the query
         NSPredicate *predicate = [HKQuery predicateForSamplesWithStartDate:startDate endDate:endDate options:HKQueryOptionStrictStartDate];
-        
-        // Create a sort descriptor for sorting by start date
         NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:HKSampleSortIdentifierStartDate ascending:YES];
-        
         
         HKSampleQuery *sampleQuery = [[HKSampleQuery alloc] initWithSampleType:sampleType
                                                                      predicate:predicate
@@ -227,9 +141,10 @@
                                                                     
                                                                     if(!error && results)
                                                                     {
+                                                                        // count together the sum of all results from one day;
+                                                                        // and get the time of the last result
                                                                         NSInteger dailySteps = 0;
                                                                         NSDate* lastDate;
-                                                                        
                                                                         for(HKQuantitySample *samples in results)
                                                                         {
                                                                             NSString* dailyStepsQuantity = [[NSString alloc] initWithFormat:@"%@", [samples quantity]];
@@ -242,9 +157,7 @@
                                                                             
                                                                             lastDate = [samples endDate];
                                                                         }
-                                                                        
-                                                                        NSLog(@"IS - lastdate is %@", lastDate);
-                                                                        
+                                                                        // save the sum of result-values with the time of the last result
                                                                         [dailyScores writeValue:[NSNumber numberWithInteger:dailySteps]
                                                                                        withDate:lastDate
                                                                                      ofVariable:@"Steps"];
@@ -255,24 +168,5 @@
         [healthStore executeQuery:sampleQuery];
     }
 }
-
-
-
-/*
- 
- - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
- // Return NO if you do not want the specified item to be editable.
- return YES;
- }
- 
- - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
- if (editingStyle == UITableViewCellEditingStyleDelete) {
- [_vars removeObjectAtIndex:indexPath.row];
- [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
- } else if (editingStyle == UITableViewCellEditingStyleInsert) {
- // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
- }
- }
- */
 
 @end

@@ -31,14 +31,18 @@
     if (touchedUpInside) {
         [UIView animateWithDuration:0.3
                               delay:0
-                            options: UIViewAnimationOptionAllowUserInteraction | UIViewAnimationOptionAllowAnimatedContent
+                            options:
+                                     UIViewAnimationOptionAllowUserInteraction |
+                                     UIViewAnimationOptionAllowAnimatedContent
                          animations:^{
                              self.alpha = 1;
                          }
                          completion:^(BOOL finished) {
                              [UIView animateWithDuration:0.5
                                                    delay:0.7
-                                                 options: UIViewAnimationOptionAllowUserInteraction | UIViewAnimationOptionAllowAnimatedContent
+                                                 options:
+                                                          UIViewAnimationOptionAllowUserInteraction |
+                                                          UIViewAnimationOptionAllowAnimatedContent
                                               animations:^{
                                                   self.alpha = 0.5;
                                               }

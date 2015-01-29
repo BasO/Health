@@ -14,7 +14,7 @@
 
 @implementation CorrelationsViewController
 
-NSMutableArray* sortedList;
+NSMutableArray* correlationsList;
 Statistics* statistics;
 NSMutableArray* notEnoughDataList;
 
@@ -29,62 +29,70 @@ NSMutableArray* notEnoughDataList;
 }
 
 -(void)viewWillAppear:(BOOL)animated {
-        [self setupTableArrays];
-        [self.tableView reloadData];
+    [super viewDidAppear:animated];
     
+    [self setupTableArrays];
+    [self.tableView reloadData];
 }
 
+// setup the correlationsList and the notEnoughDataList
 - (void) setupTableArrays {
-    NSMutableArray* allVariables = [[NSMutableArray alloc] initWithArray:[statistics allVariables]];
-
-    sortedList = [[NSMutableArray alloc] init];
-    notEnoughDataList = [[NSMutableArray alloc] init];
-    NSMutableArray* processedVariableCouplesHashList = [[NSMutableArray alloc] init];
     
+    NSMutableArray* allVariables = [[NSMutableArray alloc] initWithArray:[statistics allVariables]];
+    
+    correlationsList = [[NSMutableArray alloc] init];
+    notEnoughDataList = [[NSMutableArray alloc] init];
+    
+    // eliminate from allVariables the variables that don't have enough data for correlation calculation
     for (NSString* variable in allVariables) {
         NSNumber* correlation = [statistics pearsonCorrelationOfVariable1:variable andVariable2:variable];
         if ([[NSString stringWithFormat:@"%@", correlation] isEqualToString:@"nan"]) {
             [notEnoughDataList addObject:variable];
         }
     }
-    
     [allVariables removeObjectsInArray:notEnoughDataList];
     
+    NSMutableArray* processedVariableCouplesHashList = [[NSMutableArray alloc] init];
+    
     for (NSString* variable1 in allVariables) {
-        
         for (NSString* variable2 in allVariables) {
             
+            // make sure that correlations are not calculated twice
             NSString* reversedStringHash = [NSString stringWithFormat:@"%@%@", variable2, variable1];
-            
             if (![variable2 isEqualToString:variable1] && ![processedVariableCouplesHashList containsObject:reversedStringHash]) {
                 
                 float correlation = [[statistics pearsonCorrelationOfVariable1:variable1 andVariable2:variable2] floatValue];
-            
+                
+                // send correlation calculations that imply error or not enough data to the notEnoughDataList
                 if ([[NSString stringWithFormat:@"%f", correlation] isEqual:@"nan"] || correlation >= 1 || correlation <= -1) {
                     NSString* columnText = [[NSString alloc] initWithFormat:@"%@ x %@", variable1, variable2];
                     [notEnoughDataList addObject:columnText];
                 }
+                
+                // display correct correlations as a percentage, send these to the correlationsList
                 else {
                     correlation *= 100;
                     NSString* columnText = [[NSString alloc] initWithFormat:@"%@ x %@: %.0f%%", variable1, variable2, correlation];
-                    [sortedList addObject:columnText];
+                    [correlationsList addObject:columnText];
                 }
-
                 [processedVariableCouplesHashList addObject:[NSString stringWithFormat:@"%@%@", variable1, variable2]];
+                
             }
         }
     }
     
+    // if a variable correlates with no variable, make it a single item on the notEnoughDataList
     for (NSString* variable in allVariables) {
         
+        // calculate how often a variable correlates with no variable
         int variableHitCount = 0;
-        
         for (NSString* columnText in notEnoughDataList) {
             if ([columnText rangeOfString:variable].location != NSNotFound) {
                 variableHitCount += 1;
             }
         }
         
+        // exchange all its appearances on the notEnoughDataList for one NSString of the variable name
         if (variableHitCount >= [allVariables count] - 1) {
             NSArray *notEnoughDataListCopy = [[NSArray alloc] initWithArray:notEnoughDataList];
             for (NSString* columnText in notEnoughDataListCopy) {
@@ -96,48 +104,42 @@ NSMutableArray* notEnoughDataList;
         }
     }
     
-
-    [sortedList sortUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+    [correlationsList sortUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
     [notEnoughDataList sortUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
-
-    NSLog(@"sortedList is %@", sortedList);
-    NSLog(@"notEnoughDataList is %@", notEnoughDataList);
 }
 
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 #pragma mark - Table View
 
+// Set number of sections, accounting for whether the correlationsList and notEnoughDataList contain variables
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     int numberOfSections = 2;
-    if (!sortedList)
+    if (!correlationsList)
         numberOfSections -= 1;
     if (!notEnoughDataList)
         numberOfSections -= 1;
     return numberOfSections;
 }
 
+// Set section header titles.
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     
-    NSString* correlationsHeader = [[NSString alloc] initWithFormat:@"Correlations, from -1 to 1:"];
-    NSString* notEnoughDataHeader = [[NSString alloc] initWithFormat:@"NOT ENOUGH DAYS OF DATA FOR:"];
+    NSString* correlationsHeader = [[NSString alloc] initWithFormat:@"Correlations:"];
+    NSString* notEnoughDataHeader = [[NSString alloc] initWithFormat:@"Not enough days of data for:"];
     
-    if (!sortedList && !(!notEnoughDataList)) {
-        return correlationsHeader;
+    if (!correlationsList && !(!notEnoughDataList)) {
+        return notEnoughDataHeader;
     }
-    else if (!!sortedList) {
+    else if (!!correlationsList) {
         if(section == 0)
-            return notEnoughDataHeader;
-        if(section == 1)
             return correlationsHeader;
+        if(section == 1)
+            return notEnoughDataHeader;
     }
     return 0;
 }
 
+// Set section footer messages.
 - (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section {
     
     NSString* pearsonExplanationFooter = [[NSString alloc] initWithFormat:
@@ -146,10 +148,10 @@ NSMutableArray* notEnoughDataList;
     NSString* notEnoughDataFooter = [[NSString alloc] initWithFormat:
                                      @"At least two days of data are necessary, though the more data you collect, the more accurate your correlations will be."];
     
-    if (!sortedList && !(!notEnoughDataList)) {
+    if (!correlationsList && !(!notEnoughDataList)) {
         return notEnoughDataFooter;
     }
-    else if (!!sortedList) {
+    else if (!!correlationsList) {
         if (section == 0) {
             return pearsonExplanationFooter;
         }
@@ -160,15 +162,14 @@ NSMutableArray* notEnoughDataList;
     return 0;
 }
 
+// Set number of rows per section.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    NSLog(@"numberofrows is %lu", (unsigned long)sortedList.count);
-    
-    if (!sortedList && !(!notEnoughDataList)) {
+    if (!correlationsList && !(!notEnoughDataList)) {
         return notEnoughDataList.count;
     }
-    else if (!!sortedList) {
+    else if (!!correlationsList) {
         if (section == 0) {
-            return sortedList.count;
+            return correlationsList.count;
         }
         if (section == 1) {
             return notEnoughDataList.count;
@@ -177,19 +178,18 @@ NSMutableArray* notEnoughDataList;
     return 0;
 }
 
+// Setup cells of graph, using nsstrings from correlationsList and notEnoughDataList
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    NSLog(@"cellforrow");
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
 
-    if (!sortedList && !(!notEnoughDataList)) {
+    if (!correlationsList && !(!notEnoughDataList)) {
         NSString *string = notEnoughDataList[indexPath.row];
         cell.textLabel.text = [string description];;
     }
-    else if (!!sortedList) {
+    else if (!!correlationsList) {
         if (indexPath.section == 0) {
-            cell.textLabel.text = sortedList[indexPath.row];
+            cell.textLabel.text = correlationsList[indexPath.row];
         }
         if (indexPath.section == 1) {
             cell.textLabel.text = notEnoughDataList[indexPath.row];
@@ -197,6 +197,13 @@ NSMutableArray* notEnoughDataList;
     }
     
     return cell;
+}
+
+#pragma mark - other functions
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 

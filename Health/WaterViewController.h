@@ -5,6 +5,8 @@
 //  Created by Bas Oppenheim on 20-01-15.
 //  Copyright (c) 2015 Bas Oppenheim. All rights reserved.
 //
+//  ViewController in which the user can record their daily water intake and set a goal amount.
+//  Progress is visually represented.
 
 #import <UIKit/UIKit.h>
 #import "MSPageViewController.h"

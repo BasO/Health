@@ -13,18 +13,13 @@
 		4908AE0A1A72FF7400C48189 /* Statistics.m in Sources */ = {isa = PBXBuildFile; fileRef = 4908AE091A72FF7400C48189 /* Statistics.m */; };
 		4913835F1A6FF1EE00FC9AFB /* InputScores.m in Sources */ = {isa = PBXBuildFile; fileRef = 4913835E1A6FF1EE00FC9AFB /* InputScores.m */; };
 		491383621A6FF1F900FC9AFB /* DailyScores.m in Sources */ = {isa = PBXBuildFile; fileRef = 491383611A6FF1F900FC9AFB /* DailyScores.m */; };
-		4922CBEE1A6088EE0044AD98 /* happiness.png in Resources */ = {isa = PBXBuildFile; fileRef = 4922CBE81A6088EE0044AD98 /* happiness.png */; };
-		4922CBEF1A6088EE0044AD98 /* var.png in Resources */ = {isa = PBXBuildFile; fileRef = 4922CBE91A6088EE0044AD98 /* var.png */; };
-		4922CBF01A6088EE0044AD98 /* network.png in Resources */ = {isa = PBXBuildFile; fileRef = 4922CBEA1A6088EE0044AD98 /* network.png */; };
-		4922CBF11A6088EE0044AD98 /* sorted.png in Resources */ = {isa = PBXBuildFile; fileRef = 4922CBEB1A6088EE0044AD98 /* sorted.png */; };
-		4922CBF21A6088EE0044AD98 /* pomodoro.png in Resources */ = {isa = PBXBuildFile; fileRef = 4922CBEC1A6088EE0044AD98 /* pomodoro.png */; };
-		4922CBF31A6088EE0044AD98 /* varlist.png in Resources */ = {isa = PBXBuildFile; fileRef = 4922CBED1A6088EE0044AD98 /* varlist.png */; };
 		4922CC2C1A62E17F0044AD98 /* VariableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4922CC2B1A62E17F0044AD98 /* VariableViewController.m */; };
 		494E724F1A6D4AD400D3ED5F /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 494E724E1A6D4AD400D3ED5F /* HealthKit.framework */; };
 		4956B9301A792BA80002136A /* PomodoroBrain.m in Sources */ = {isa = PBXBuildFile; fileRef = 4956B92F1A792BA80002136A /* PomodoroBrain.m */; };
 		4956B9371A7A33260002136A /* WaterProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = 4956B9361A7A33260002136A /* WaterProgress.m */; };
 		4956B93E1A7A59BF0002136A /* MoodScoreButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4956B93D1A7A59BF0002136A /* MoodScoreButton.m */; };
 		4956B9441A7A5D3D0002136A /* MoodTimeLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4956B9431A7A5D3D0002136A /* MoodTimeLabel.m */; };
+		49AEBDBB1A7AF6BD00BF91F2 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49AEBDBA1A7AF6BD00BF91F2 /* icon@2x.png */; };
 		49B142801A5EA81A00CED2A0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 49B1427F1A5EA81A00CED2A0 /* main.m */; };
 		49B142831A5EA81A00CED2A0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 49B142821A5EA81A00CED2A0 /* AppDelegate.m */; };
 		49B1428C1A5EA81A00CED2A0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49B1428A1A5EA81A00CED2A0 /* Main.storyboard */; };
@@ -34,7 +29,6 @@
 		49B9010F1A726BF90048C140 /* InputScores.plist in Resources */ = {isa = PBXBuildFile; fileRef = 49B9010E1A726BF90048C140 /* InputScores.plist */; };
 		49B901141A7274780048C140 /* DailyScores.plist in Resources */ = {isa = PBXBuildFile; fileRef = 49B901131A7274780048C140 /* DailyScores.plist */; };
 		49BF26681A72E32B00B3FF81 /* CorrelationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49BF26671A72E32B00B3FF81 /* CorrelationsViewController.m */; };
-		49C84BA71A6E7A690022BCFA /* DebugViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C84BA61A6E7A690022BCFA /* DebugViewController.m */; };
 		49C84BA91A6F11090022BCFA /* WaterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C84BA81A6F11090022BCFA /* WaterViewController.m */; };
 		49CB631C1A602A5E00459735 /* MSPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CB63191A602A5E00459735 /* MSPageViewController.m */; };
 		49CB631D1A602A5E00459735 /* MSPageViewControllerPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CB631B1A602A5E00459735 /* MSPageViewControllerPage.m */; };
@@ -69,12 +63,6 @@
 		4913835E1A6FF1EE00FC9AFB /* InputScores.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputScores.m; sourceTree = "<group>"; };
 		491383601A6FF1F900FC9AFB /* DailyScores.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DailyScores.h; sourceTree = "<group>"; };
 		491383611A6FF1F900FC9AFB /* DailyScores.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DailyScores.m; sourceTree = "<group>"; };
-		4922CBE81A6088EE0044AD98 /* happiness.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = happiness.png; sourceTree = "<group>"; };
-		4922CBE91A6088EE0044AD98 /* var.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = var.png; sourceTree = "<group>"; };
-		4922CBEA1A6088EE0044AD98 /* network.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = network.png; sourceTree = "<group>"; };
-		4922CBEB1A6088EE0044AD98 /* sorted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sorted.png; sourceTree = "<group>"; };
-		4922CBEC1A6088EE0044AD98 /* pomodoro.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pomodoro.png; sourceTree = "<group>"; };
-		4922CBED1A6088EE0044AD98 /* varlist.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = varlist.png; sourceTree = "<group>"; };
 		4922CC2A1A62E17F0044AD98 /* VariableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = VariableViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		4922CC2B1A62E17F0044AD98 /* VariableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = VariableViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		494E724D1A6D4AD300D3ED5F /* Health.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Health.entitlements; sourceTree = "<group>"; };
@@ -87,6 +75,7 @@
 		4956B93D1A7A59BF0002136A /* MoodScoreButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoodScoreButton.m; sourceTree = "<group>"; };
 		4956B9421A7A5D3D0002136A /* MoodTimeLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoodTimeLabel.h; sourceTree = "<group>"; };
 		4956B9431A7A5D3D0002136A /* MoodTimeLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoodTimeLabel.m; sourceTree = "<group>"; };
+		49AEBDBA1A7AF6BD00BF91F2 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
 		49B1427A1A5EA81A00CED2A0 /* Health.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Health.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		49B1427E1A5EA81A00CED2A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		49B1427F1A5EA81A00CED2A0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -102,8 +91,6 @@
 		49B901131A7274780048C140 /* DailyScores.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DailyScores.plist; sourceTree = "<group>"; };
 		49BF26661A72E32B00B3FF81 /* CorrelationsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CorrelationsViewController.h; sourceTree = "<group>"; };
 		49BF26671A72E32B00B3FF81 /* CorrelationsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CorrelationsViewController.m; sourceTree = "<group>"; };
-		49C84BA51A6E7A690022BCFA /* DebugViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DebugViewController.h; sourceTree = "<group>"; };
-		49C84BA61A6E7A690022BCFA /* DebugViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DebugViewController.m; sourceTree = "<group>"; };
 		49C84BA81A6F11090022BCFA /* WaterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaterViewController.m; sourceTree = "<group>"; };
 		49C84BAA1A6F11140022BCFA /* WaterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WaterViewController.h; sourceTree = "<group>"; };
 		49CB63171A602A5E00459735 /* MSPageViewController+Protected.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MSPageViewController+Protected.h"; sourceTree = "<group>"; };
@@ -156,19 +143,6 @@
 			);
 			name = BEMSimpleLineGraph;
 			path = ../BEMSimpleLineGraph;
-			sourceTree = "<group>";
-		};
-		4922CBF41A6089050044AD98 /* example pictures */ = {
-			isa = PBXGroup;
-			children = (
-				4922CBE81A6088EE0044AD98 /* happiness.png */,
-				4922CBE91A6088EE0044AD98 /* var.png */,
-				4922CBEA1A6088EE0044AD98 /* network.png */,
-				4922CBEB1A6088EE0044AD98 /* sorted.png */,
-				4922CBEC1A6088EE0044AD98 /* pomodoro.png */,
-				4922CBED1A6088EE0044AD98 /* varlist.png */,
-			);
-			name = "example pictures";
 			sourceTree = "<group>";
 		};
 		4922CC2D1A62E1860044AD98 /* Log tab */ = {
@@ -257,8 +231,8 @@
 			isa = PBXGroup;
 			children = (
 				494E724D1A6D4AD300D3ED5F /* Health.entitlements */,
+				49AEBDBA1A7AF6BD00BF91F2 /* icon@2x.png */,
 				490407261A6871F700F623D8 /* BEMSimpleLineGraph */,
-				4922CBF41A6089050044AD98 /* example pictures */,
 				49CB63161A602A5E00459735 /* MSPageViewController */,
 				49B1427E1A5EA81A00CED2A0 /* Info.plist */,
 				49B1427F1A5EA81A00CED2A0 /* main.m */,
@@ -291,18 +265,8 @@
 				49CB633C1A60400300459735 /* Input tab */,
 				4922CC2D1A62E1860044AD98 /* Log tab */,
 				49CB633D1A60403A00459735 /* Analysis tab */,
-				49C84BAC1A6FDBD00022BCFA /* Debug tab */,
 			);
 			name = ViewControllers;
-			sourceTree = "<group>";
-		};
-		49C84BAC1A6FDBD00022BCFA /* Debug tab */ = {
-			isa = PBXGroup;
-			children = (
-				49C84BA51A6E7A690022BCFA /* DebugViewController.h */,
-				49C84BA61A6E7A690022BCFA /* DebugViewController.m */,
-			);
-			name = "Debug tab";
 			sourceTree = "<group>";
 		};
 		49CB63161A602A5E00459735 /* MSPageViewController */ = {
@@ -439,17 +403,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4922CBF11A6088EE0044AD98 /* sorted.png in Resources */,
 				49B1428C1A5EA81A00CED2A0 /* Main.storyboard in Resources */,
-				4922CBEF1A6088EE0044AD98 /* var.png in Resources */,
-				4922CBF01A6088EE0044AD98 /* network.png in Resources */,
 				49B142911A5EA81B00CED2A0 /* LaunchScreen.xib in Resources */,
-				4922CBF31A6088EE0044AD98 /* varlist.png in Resources */,
 				49B901141A7274780048C140 /* DailyScores.plist in Resources */,
 				49B9010F1A726BF90048C140 /* InputScores.plist in Resources */,
 				49B1428E1A5EA81B00CED2A0 /* Images.xcassets in Resources */,
-				4922CBF21A6088EE0044AD98 /* pomodoro.png in Resources */,
-				4922CBEE1A6088EE0044AD98 /* happiness.png in Resources */,
+				49AEBDBB1A7AF6BD00BF91F2 /* icon@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -482,7 +441,6 @@
 				49CB63201A60384F00459735 /* InputViewController.m in Sources */,
 				49CB631C1A602A5E00459735 /* MSPageViewController.m in Sources */,
 				4956B9301A792BA80002136A /* PomodoroBrain.m in Sources */,
-				49C84BA71A6E7A690022BCFA /* DebugViewController.m in Sources */,
 				49C84BA91A6F11090022BCFA /* WaterViewController.m in Sources */,
 				49CB631D1A602A5E00459735 /* MSPageViewControllerPage.m in Sources */,
 				49CD32811A6D20DD00BFFEBE /* ImportViewController.m in Sources */,

@@ -5,6 +5,7 @@
 //  Created by Bas Oppenheim on 28-01-15.
 //  Copyright (c) 2015 Bas Oppenheim. All rights reserved.
 //
+//  Contains the mechanics behind the Pomodoro-timer, e.g. a timer. 
 
 #import "PomodoroBrain.h"
 
@@ -126,15 +127,12 @@ NSTimer* pomodoroTimer;
     [settings setBool:self.breaktime forKey:@"PomodoroBreakTime"];
     [settings setBool:self.timerIsOn forKey:@"PomodoroTimerIsOn"];
     [settings synchronize];
-    
-    NSLog(@"settings are saved");
 }
 
 # pragma mark - timer session continuation
 
 // Return 1 if a saved session can be retrieved
 - (BOOL) checkForSuspendedTimer {
-    NSLog(@"checking in brain");
     if ([settings integerForKey:@"PomodoroAwayDate"]) {
         [self continueTimer];
         return 1;
@@ -218,8 +216,6 @@ NSTimer* pomodoroTimer;
 
 // Save each gained pomodoro in InputScores, get & save total pomodoros in DailyScores
 - (void) writeScore {
-    
-    NSLog(@"written score down!");
     [inputScores writeValue:[NSNumber numberWithInt:1]
                    withDate:[NSDate date]
                  ofVariable:@"Pomodoros"];

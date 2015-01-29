@@ -70,14 +70,10 @@
     //check if the file exists already in users documents folder
     //if file does not exist copy it from the application bundle Plist file
     if ( ![fileManager fileExistsAtPath:path] ) {
-        NSLog(@"copying database to users documents");
         NSString *pathToSettingsInBundle = [[NSBundle mainBundle] pathForResource:@"InputScores" ofType:@"plist"];
         [fileManager copyItemAtPath:pathToSettingsInBundle toPath:path error:&error];
     }
     //if file is already there do nothing
-    else {
-        NSLog(@"users database already configured");
-    }
     
     // For DailyScores.plist :
     
@@ -87,14 +83,10 @@
     //check if the file exists already in users documents folder
     //if file does not exist copy it from the application bundle Plist file
     if ( ![fileManager fileExistsAtPath:path] ) {
-        NSLog(@"copying database to users documents");
         NSString *pathToSettingsInBundle = [[NSBundle mainBundle] pathForResource:@"DailyScores" ofType:@"plist"];
         [fileManager copyItemAtPath:pathToSettingsInBundle toPath:path error:&error];
     }
     //if file is already there do nothing
-    else {
-        NSLog(@"users database already configured");
-    }
 }
 
 - (void) createUIColors {

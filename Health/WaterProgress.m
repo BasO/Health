@@ -14,9 +14,10 @@
 - (void) setProgress:(float)progress {
     [UIView animateWithDuration:1
                           delay:0
-                        options:UIViewAnimationOptionAllowUserInteraction |
-     UIViewAnimationOptionAllowAnimatedContent |
-     UIViewAnimationOptionBeginFromCurrentState
+                        options:
+                                 UIViewAnimationOptionAllowUserInteraction |
+                                 UIViewAnimationOptionAllowAnimatedContent |
+                                 UIViewAnimationOptionBeginFromCurrentState
                      animations:^{
                          // update actual progress bar
                          [self setProgress:progress animated:YES];
@@ -42,8 +43,9 @@
                          if (self.progress >= 1) {
                              [UIView animateKeyframesWithDuration:3
                                                             delay:0
-                                                          options:UIViewAnimationOptionAllowUserInteraction |
-                              UIViewAnimationOptionAllowAnimatedContent
+                                                          options:
+                                                                      UIViewAnimationOptionAllowUserInteraction |
+                                                                      UIViewAnimationOptionAllowAnimatedContent
                                                        animations:^{
                                                            [self setProgressTintColor:[UIColor colorWithRed:245/255.0 green:225/255.0 blue:10/255.0 alpha:1]];
                                                        }

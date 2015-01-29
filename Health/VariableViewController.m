@@ -58,7 +58,6 @@ DailyScores* dailyScores;
         [self setupAverageLabelBasedOnNumber:dayScoreNumber];
         
         Statistics* statistics = [[Statistics alloc] init];
-        
         self.correlateLabel.text = [NSString stringWithFormat:@"%@", [statistics pearsonCorrelationOfVariable1:self.variable andVariable2:@"Steps"]];
     }
     
@@ -66,6 +65,7 @@ DailyScores* dailyScores;
     [self setupGraphSegmentedControl];
 }
 
+// Determine averageLabel's text.
 - (void) setupAverageLabelBasedOnNumber:(NSNumber*)number {
     float dayScoreFloat = [number floatValue];
     if ([self.variable isEqualToString:@"Sleep"]) {
@@ -126,8 +126,6 @@ DailyScores* dailyScores;
     }
 }
 
-
-
 # pragma mark - segmented control
 
 // Set & save graph time period based on user input.
@@ -178,7 +176,7 @@ DailyScores* dailyScores;
     return @"";
 }
 
-# pragma - graph
+# pragma - setup graph
 
 // Set the number of Y-axis labels.
 - (NSInteger)numberOfYAxisLabelsOnLineGraph:(BEMSimpleLineGraphView *)graph {
@@ -195,11 +193,9 @@ DailyScores* dailyScores;
     int numberOfRecordedScoresInt = (int)numberOfRecordedScores;
     
     if (numberOfRecordedScores > graphLength) {
-        NSLog(@"index will be %i", graphLength);
         pointsInLineGraph = graphLength;
     }
     else {
-        NSLog(@"index will be %i", numberOfRecordedScoresInt);
         pointsInLineGraph = numberOfRecordedScoresInt;
     }
     return pointsInLineGraph;
@@ -223,11 +219,10 @@ DailyScores* dailyScores;
     return [[[self sampleForIndex:index] objectForKey:@"value"] floatValue];
 }
 
+// Set labels on X-axis
 - (NSString *)lineGraph:(BEMSimpleLineGraphView *)graph labelOnXAxisForIndex:(NSInteger)index {
     NSDate* dateOfSample = [[self sampleForIndex:index] objectForKey:@"time"];
     NSDateFormatter* timeFormat = [[NSDateFormatter alloc] init];
-    
-    NSMutableString* label = [[NSMutableString alloc] init];
     
     if (pointsInLineGraph < 10) {
         [timeFormat setDateFormat:@"EEE"];
@@ -238,19 +233,15 @@ DailyScores* dailyScores;
     else {
         [timeFormat setDateFormat:@"   d MMM   "];
     }
-    [label setString:[timeFormat stringFromDate:dateOfSample]];
-
-    
-    // NSString *label = [NSString stringWithFormat:@"%@", dateOfSample];
+    NSString* label = [NSString stringWithString:[timeFormat stringFromDate:dateOfSample]];
     return label;
-    
-    //[label stringByReplacingOccurrencesOfString:@" " withString:@"\n"];
 }
 
+// Return a dict containing a saveKey's value & date, based on index which saveKey.
 - (NSDictionary*) sampleForIndex:(NSInteger)index {
-    
     NSArray* saveKeys = [dailyScores saveKeysFor:self.variable];
     
+    // keep in account a limited graphLength
     double startValue = [saveKeys count];
     int startValueInt = (int)startValue;
     int lengthOfRange = startValueInt;
@@ -270,6 +261,7 @@ DailyScores* dailyScores;
     return [[dailyScores variableDict:self.variable] objectForKey:keyOfIndex];
 }
 
+# pragma mark - other
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

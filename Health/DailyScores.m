@@ -77,7 +77,6 @@
 // Save the daily dictionary.
 - (void) saveDailyDict {
     BOOL writeSucces = [self.dailyDict writeToFile:self.pathOfPList atomically:YES];
-    NSLog(@"saved DailyDict? %i", writeSucces);
 }
 
 # pragma mark - getters

@@ -102,34 +102,6 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <sections>
-                            <tableViewSection headerTitle="SET YOUR USUAL TIME TO BED" id="pHs-Ww-G0e">
-                                <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="162" id="lVg-8a-Gmp">
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lVg-8a-Gmp" id="tvz-kM-br0">
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jBz-qw-dMP">
-                                                    <rect key="frame" x="0.0" y="0.0" width="160" height="162"/>
-                                                    <date key="date" timeIntervalSinceReferenceDate="443314800.217507">
-                                                        <!--2015-01-18 23:00:00 +0000-->
-                                                    </date>
-                                                </datePicker>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="auu-5k-fXk">
-                                                    <rect key="frame" x="196" y="66" width="90" height="30"/>
-                                                    <state key="normal" title="Use average ">
-                                                        <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                    <connections>
-                                                        <action selector="averageButtonPress:" destination="PhJ-QT-lP1" eventType="touchUpInside" id="vdO-Yf-fb8"/>
-                                                    </connections>
-                                                </button>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
                             <tableViewSection headerTitle="2. IMPORT" id="fJe-da-aBg">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Y4t-ea-Ph9">
@@ -138,7 +110,8 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kee-Ir-Lvo">
-                                                    <rect key="frame" x="22" y="7" width="40" height="30"/>
+                                                    <rect key="frame" x="23" y="8" width="72" height="30"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                                     <state key="normal" title="Steps">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
@@ -155,7 +128,8 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rq3-Me-Z8N">
-                                                    <rect key="frame" x="24" y="5" width="39" height="30"/>
+                                                    <rect key="frame" x="23" y="4" width="74" height="31"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="27"/>
                                                     <state key="normal" title="Sleep">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
@@ -194,15 +168,13 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Import" id="SXn-bs-V7K"/>
                     <connections>
-                        <outlet property="averageButton" destination="auu-5k-fXk" id="c6u-UU-W9f"/>
-                        <outlet property="datePicker" destination="jBz-qw-dMP" id="ddQ-QH-i90"/>
                         <outlet property="sleepButton" destination="Rq3-Me-Z8N" id="5Cc-Dd-ho1"/>
                         <outlet property="stepsButton" destination="kee-Ir-Lvo" id="MEo-rN-W2a"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sCa-VX-ius" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1018" y="1484"/>
+            <point key="canvasLocation" x="-1018" y="1483"/>
         </scene>
         <!--Log-->
         <scene sceneID="6xh-4f-oD0">
@@ -293,101 +265,11 @@
                         <segue destination="KqG-mq-yAc" kind="relationship" relationship="viewControllers" id="FGV-jT-BCj"/>
                         <segue destination="ajC-rd-yZm" kind="relationship" relationship="viewControllers" id="44a-sO-0pr"/>
                         <segue destination="fTk-Il-TsX" kind="relationship" relationship="viewControllers" id="zoP-87-26s"/>
-                        <segue destination="rgg-hd-2hB" kind="relationship" relationship="viewControllers" id="Cvs-aN-AY5"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1017.6" y="-586.93333333333328"/>
-        </scene>
-        <!--Debug-->
-        <scene sceneID="hhK-sp-1pt">
-            <objects>
-                <viewController id="rgg-hd-2hB" customClass="DebugViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="AN5-wr-FhN"/>
-                        <viewControllerLayoutGuide type="bottom" id="huY-EC-MOJ"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="rSZ-rh-DeM">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YOb-E5-s31">
-                                <rect key="frame" x="80" y="40" width="161" height="30"/>
-                                <state key="normal" title="Enter Mood scores">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="MoodButtonPress:" destination="rgg-hd-2hB" eventType="touchUpInside" id="8Vc-cH-Rg7"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="day -1: 2,5" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zYv-d2-f6k">
-                                <rect key="frame" x="90" y="72" width="83" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="day -2: 3,5" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P34-3B-bL7">
-                                <rect key="frame" x="90" y="101" width="83" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="day -1: 2600" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xak-bu-0Ug">
-                                <rect key="frame" x="90" y="407" width="97" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="day - 2: 2300" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dNU-px-WrO">
-                                <rect key="frame" x="90" y="436" width="102" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xlh-Ql-cSD">
-                                <rect key="frame" x="95" y="369" width="130" height="30"/>
-                                <state key="normal" title="Enter Water scores">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="waterButtonPress:" destination="rgg-hd-2hB" eventType="touchUpInside" id="LHW-Zu-MAj"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="day -1: 12" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oe6-Ni-WMc">
-                                <rect key="frame" x="112" y="228" width="78" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="day -2: 2" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8yP-r5-CUk">
-                                <rect key="frame" x="112" y="257" width="69" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Da-hR-ZP8">
-                                <rect key="frame" x="80" y="190" width="162" height="30"/>
-                                <state key="normal" title="Enter Pomodoro scores">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="pomodoroButtonPress:" destination="rgg-hd-2hB" eventType="touchUpInside" id="Y6H-G3-ZrF"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Debug" id="Nxc-9Q-7Qa"/>
-                    <connections>
-                        <outlet property="MoodButton" destination="YOb-E5-s31" id="wjE-vp-WUq"/>
-                        <outlet property="pomodoroButton" destination="0Da-hR-ZP8" id="wcQ-qO-KgA"/>
-                        <outlet property="waterButton" destination="Xlh-Ql-cSD" id="RCp-1z-Za0"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="nGc-ep-cCF" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-566" y="-587"/>
         </scene>
         <!--In-->
         <scene sceneID="gXx-S4-13c">
