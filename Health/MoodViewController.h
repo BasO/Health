@@ -10,16 +10,18 @@
 #import "MSPageViewController.h"
 #import "InputScores.h"
 #import "DailyScores.h"
+#import "MoodTimeLabel.h"
+#import "MoodScoreButton.h"
 
 
 @interface MoodViewController : UIViewController <MSPageViewControllerChild>
 
-@property (weak, nonatomic) IBOutlet UIButton *bestButton;
-@property (weak, nonatomic) IBOutlet UIButton *goodButton;
-@property (weak, nonatomic) IBOutlet UIButton *neutralButton;
-@property (weak, nonatomic) IBOutlet UIButton *badButton;
-@property (weak, nonatomic) IBOutlet UIButton *worstButton;
+@property (weak, nonatomic) IBOutlet MoodScoreButton *bestButton;
+@property (weak, nonatomic) IBOutlet MoodScoreButton *goodButton;
+@property (weak, nonatomic) IBOutlet MoodScoreButton *neutralButton;
+@property (weak, nonatomic) IBOutlet MoodScoreButton *badButton;
+@property (weak, nonatomic) IBOutlet MoodScoreButton *worstButton;
 
-@property (weak, nonatomic) IBOutlet UILabel *timeLabel;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *scoreViewSegmentedControl;
 
 @end

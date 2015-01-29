@@ -22,6 +22,9 @@
 		4922CC2C1A62E17F0044AD98 /* VariableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4922CC2B1A62E17F0044AD98 /* VariableViewController.m */; };
 		494E724F1A6D4AD400D3ED5F /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 494E724E1A6D4AD400D3ED5F /* HealthKit.framework */; };
 		4956B9301A792BA80002136A /* PomodoroBrain.m in Sources */ = {isa = PBXBuildFile; fileRef = 4956B92F1A792BA80002136A /* PomodoroBrain.m */; };
+		4956B9371A7A33260002136A /* WaterProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = 4956B9361A7A33260002136A /* WaterProgress.m */; };
+		4956B93E1A7A59BF0002136A /* MoodScoreButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4956B93D1A7A59BF0002136A /* MoodScoreButton.m */; };
+		4956B9441A7A5D3D0002136A /* MoodTimeLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4956B9431A7A5D3D0002136A /* MoodTimeLabel.m */; };
 		49B142801A5EA81A00CED2A0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 49B1427F1A5EA81A00CED2A0 /* main.m */; };
 		49B142831A5EA81A00CED2A0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 49B142821A5EA81A00CED2A0 /* AppDelegate.m */; };
 		49B1428C1A5EA81A00CED2A0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49B1428A1A5EA81A00CED2A0 /* Main.storyboard */; };
@@ -78,6 +81,12 @@
 		494E724E1A6D4AD400D3ED5F /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		4956B92E1A792BA80002136A /* PomodoroBrain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PomodoroBrain.h; sourceTree = "<group>"; };
 		4956B92F1A792BA80002136A /* PomodoroBrain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PomodoroBrain.m; sourceTree = "<group>"; };
+		4956B9351A7A33260002136A /* WaterProgress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaterProgress.h; sourceTree = "<group>"; };
+		4956B9361A7A33260002136A /* WaterProgress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaterProgress.m; sourceTree = "<group>"; };
+		4956B93C1A7A59BF0002136A /* MoodScoreButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoodScoreButton.h; sourceTree = "<group>"; };
+		4956B93D1A7A59BF0002136A /* MoodScoreButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoodScoreButton.m; sourceTree = "<group>"; };
+		4956B9421A7A5D3D0002136A /* MoodTimeLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoodTimeLabel.h; sourceTree = "<group>"; };
+		4956B9431A7A5D3D0002136A /* MoodTimeLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoodTimeLabel.m; sourceTree = "<group>"; };
 		49B1427A1A5EA81A00CED2A0 /* Health.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Health.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		49B1427E1A5EA81A00CED2A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		49B1427F1A5EA81A00CED2A0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -186,6 +195,30 @@
 			name = PomodoroViewController;
 			sourceTree = "<group>";
 		};
+		4956B9381A7A41670002136A /* WaterViewController */ = {
+			isa = PBXGroup;
+			children = (
+				49C84BAA1A6F11140022BCFA /* WaterViewController.h */,
+				49C84BA81A6F11090022BCFA /* WaterViewController.m */,
+				4956B9351A7A33260002136A /* WaterProgress.h */,
+				4956B9361A7A33260002136A /* WaterProgress.m */,
+			);
+			name = WaterViewController;
+			sourceTree = "<group>";
+		};
+		4956B9451A7A61D30002136A /* MoodViewController */ = {
+			isa = PBXGroup;
+			children = (
+				49CB63301A603EA100459735 /* MoodViewController.h */,
+				49CB63311A603EA100459735 /* MoodViewController.m */,
+				4956B93C1A7A59BF0002136A /* MoodScoreButton.h */,
+				4956B93D1A7A59BF0002136A /* MoodScoreButton.m */,
+				4956B9421A7A5D3D0002136A /* MoodTimeLabel.h */,
+				4956B9431A7A5D3D0002136A /* MoodTimeLabel.m */,
+			);
+			name = MoodViewController;
+			sourceTree = "<group>";
+		};
 		49B142711A5EA81A00CED2A0 = {
 			isa = PBXGroup;
 			children = (
@@ -289,11 +322,9 @@
 			children = (
 				49CB631E1A60384F00459735 /* InputViewController.h */,
 				49CB631F1A60384F00459735 /* InputViewController.m */,
-				49CB63301A603EA100459735 /* MoodViewController.h */,
-				49CB63311A603EA100459735 /* MoodViewController.m */,
+				4956B9451A7A61D30002136A /* MoodViewController */,
 				4956B9341A7979530002136A /* PomodoroViewController */,
-				49C84BAA1A6F11140022BCFA /* WaterViewController.h */,
-				49C84BA81A6F11090022BCFA /* WaterViewController.m */,
+				4956B9381A7A41670002136A /* WaterViewController */,
 			);
 			name = "Input tab";
 			sourceTree = "<group>";
@@ -440,10 +471,12 @@
 				4908AE0A1A72FF7400C48189 /* Statistics.m in Sources */,
 				49B142831A5EA81A00CED2A0 /* AppDelegate.m in Sources */,
 				49CB63321A603EA100459735 /* MoodViewController.m in Sources */,
+				4956B9371A7A33260002136A /* WaterProgress.m in Sources */,
 				49CB63401A6052C800459735 /* TabBarViewController.m in Sources */,
 				49CB63231A603BB300459735 /* LogViewController.m in Sources */,
 				49CB63351A603F0400459735 /* PomodoroViewController.m in Sources */,
 				4904072D1A6871F700F623D8 /* BEMCircle.m in Sources */,
+				4956B9441A7A5D3D0002136A /* MoodTimeLabel.m in Sources */,
 				491383621A6FF1F900FC9AFB /* DailyScores.m in Sources */,
 				4904072F1A6871F700F623D8 /* BEMSimpleLineGraphView.m in Sources */,
 				49CB63201A60384F00459735 /* InputViewController.m in Sources */,
@@ -455,6 +488,7 @@
 				49CD32811A6D20DD00BFFEBE /* ImportViewController.m in Sources */,
 				4922CC2C1A62E17F0044AD98 /* VariableViewController.m in Sources */,
 				49B142801A5EA81A00CED2A0 /* main.m in Sources */,
+				4956B93E1A7A59BF0002136A /* MoodScoreButton.m in Sources */,
 				4913835F1A6FF1EE00FC9AFB /* InputScores.m in Sources */,
 				49BF26681A72E32B00B3FF81 /* CorrelationsViewController.m in Sources */,
 			);

@@ -98,52 +98,18 @@
 - (void) updateProgress {
     
     if (!targetComplete) {
-    
-        NSLog(@"dailywaterintake is %f, target is %f", dailyWaterIntake, targetWaterIntake);
-        
-        [UIView animateWithDuration:1
-                              delay:0
-                            options:UIViewAnimationOptionAllowUserInteraction |
-         UIViewAnimationOptionAllowAnimatedContent |
-         UIViewAnimationOptionBeginFromCurrentState
-                         animations:^{
-                             [self.waterIntakeProgress setProgress:(dailyWaterIntake / (targetWaterIntake * 1000)) animated:YES];
-                             if (self.waterIntakeProgress.progress == 1) {
-                                 targetComplete = YES;
-                                 self.secondaryWaterIntakeProgress.hidden = NO;
-                                 self.secondaryWaterIntakeProgress.alpha = 1;
-                             }
-                         }
-                         completion:^(BOOL finished) {
-                             if (self.waterIntakeProgress.progress == 1) {
-                                 [UIView animateKeyframesWithDuration:3
-                                                                delay:0
-                                                              options:UIViewAnimationOptionAllowUserInteraction |
-                                  UIViewAnimationOptionAllowAnimatedContent
-                                                           animations:^{
-                                                               [self.waterIntakeProgress setProgressTintColor:[UIColor colorWithRed:245/255.0 green:225/255.0 blue:10/255.0 alpha:1]];
-                                                           }completion:^(BOOL finished) {} ];
-                             }
-                         } ];
+        float progress = (dailyWaterIntake / (targetWaterIntake * 1000));
+        [self.waterIntakeProgress setProgress:progress];
+        if (progress >= 1)
+            targetComplete = YES;
     }
     if (targetComplete) {
-        self.secondaryWaterIntakeProgress.hidden = NO;
-        self.secondaryWaterIntakeProgress.alpha = 1;
         float progress = ((dailyWaterIntake - (targetWaterIntake * 1000)) / ((targetWaterIntake * 1000) * 2));
-        
-        [UIView animateWithDuration:1
-                              delay:0
-                            options:UIViewAnimationOptionAllowUserInteraction |
-         UIViewAnimationOptionAllowAnimatedContent |
-         UIViewAnimationOptionBeginFromCurrentState |
-         UIViewAnimationOptionCurveEaseIn
-                         animations:^{
-                             [self.secondaryWaterIntakeProgress setProgress:progress animated:YES];
-                             if (self.secondaryWaterIntakeProgress.progress == 1) {
-                                 [self.secondaryWaterIntakeProgress setProgressTintColor:[UIColor colorWithRed:245/255.0 green:225/255.0 blue:10/255.0 alpha:1]];
-                             }
-                         }
-                         completion:^(BOOL finished) {}];
+        [self.secondaryWaterIntakeProgress setProgress:progress];
+        if (progress < 0) {
+            targetComplete = NO;
+            [self updateProgress];
+        }
     }
 }
 

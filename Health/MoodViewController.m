@@ -17,6 +17,7 @@
     InputScores* inputScores;
     DailyScores* dailyScores;
     NSDateFormatter* timeFormat;
+    NSArray* scoreButtons;
 }
 
 @synthesize pageIndex;
@@ -27,15 +28,47 @@
     inputScores = [[InputScores alloc] init];
     dailyScores = [[DailyScores alloc] init];
     
-    // somehow have to do this for the position of timeLabel to work
-    timeFormat = [[NSDateFormatter alloc] init];
-    [timeFormat setDateFormat:@"HH:mm"];
-    self.timeLabel.text = [timeFormat stringFromDate:[NSDate date]];
+    scoreButtons = [[NSArray alloc] initWithObjects:self.bestButton, self.goodButton, self.neutralButton, self.badButton, self.worstButton, nil];
     
-    self.timeLabel.hidden = YES;
+    [self.scoreViewSegmentedControl setSelectedSegmentIndex:[[NSUserDefaults standardUserDefaults] integerForKey:@"MoodScoreView"]];
+    
+    [self setupButtons];
+    [self updateButtons];
+}
 
+- (void) setupButtons {
     
-    // Do any additional setup after loading the view.
+    [self.bestButton setupWithValue:5
+                   andEmoticonTitle:@"😄"
+                     andNumberTitle:@"5"
+                      andLabelTitle:@"Great"];
+    [self.goodButton setupWithValue:4
+                   andEmoticonTitle:@"😊"
+                     andNumberTitle:@"4"
+                      andLabelTitle:@"Good"];
+    [self.neutralButton setupWithValue:3
+                   andEmoticonTitle:@"😐"
+                     andNumberTitle:@"3"
+                      andLabelTitle:@"OK"];
+    [self.badButton setupWithValue:2
+                   andEmoticonTitle:@"😞"
+                     andNumberTitle:@"3"
+                      andLabelTitle:@"OK"];
+    [self.worstButton setupWithValue:1
+                   andEmoticonTitle:@"😪"
+                     andNumberTitle:@"1"
+                      andLabelTitle:@"Worst"];
+}
+
+- (void) updateButtons {
+    for (MoodScoreButton* button in scoreButtons) {
+        if (self.scoreViewSegmentedControl.selectedSegmentIndex == 0)
+            [button setTitle:button.buttonEmoticon forState:UIControlStateNormal];
+        else if (self.scoreViewSegmentedControl.selectedSegmentIndex == 1)
+            [button setTitle:button.buttonNumber forState:UIControlStateNormal];
+        else if (self.scoreViewSegmentedControl.selectedSegmentIndex == 2)
+            [button setTitle:button.buttonLabel forState:UIControlStateNormal];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -43,37 +76,14 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
-
 
 - (IBAction)feelingsButtonPressed:(id)sender {
     [self showTimeForButton:sender];
-    
-    UIButton *resultButton = (UIButton *)sender;
-    NSString* input = resultButton.currentTitle;
-    
-    int buttonValue;
-    if ([input compare:@"😄"] == NSOrderedSame)
-        buttonValue = 5;
-    else if ([input compare:@"😊"] == NSOrderedSame)
-        buttonValue = 4;
-    else if ([input compare:@"😐"] == NSOrderedSame)
-        buttonValue = 3;
-    else if ([input compare:@"😞"] == NSOrderedSame)
-        buttonValue = 2;
-    else if ([input compare:@"😪"] == NSOrderedSame)
-        buttonValue = 1;
-    
-    [inputScores writeValue:[NSNumber numberWithInt:buttonValue]
+    [self writeValue:[sender buttonValue]];
+}
+
+- (void) writeValue:(int)value {
+    [inputScores writeValue:[NSNumber numberWithInt:value]
                    withDate:[NSDate date]
                  ofVariable:@"Mood"];
     
@@ -83,39 +93,48 @@
     [dailyScores writeValue:averageScore
                    withDate:[NSDate date]
                  ofVariable:@"Mood"];
-    
 }
 
 
 - (void)showTimeForButton:(UIButton*)button
 {
     // show current time in timeLabel
-    timeFormat = [[NSDateFormatter alloc] init];
-    [timeFormat setDateFormat:@"HH:mm"];
-    self.timeLabel.text = [timeFormat stringFromDate:[NSDate date]];
+    MoodTimeLabel *timeLabel = [[MoodTimeLabel alloc] initWithFrame:CGRectMake(button.frame.origin.x - 30, button.center.y, 75, 35)];
     
-    // set correct position of timeLabel
-    [self.timeLabel setCenter:CGPointMake(button.frame.origin.x - 30, button.center.y)];
-//    NSLog(@"button y is %f", button.center.y);
     
-    self.timeLabel.hidden = NO;
-    self.timeLabel.alpha = 1;
     
-    // animate timeLabel
+    [timeLabel setCenter:CGPointMake(button.frame.origin.x, button.center.y)];
+    [self.view addSubview:timeLabel];
+    [self.view sendSubviewToBack:timeLabel];
+    
+    [timeLabel showTime];
+    
     [UIView animateWithDuration:1
                           delay:0
                         options: UIViewAnimationOptionAllowUserInteraction | UIViewAnimationOptionAllowAnimatedContent
                      animations:^{
-                         self.timeLabel.alpha = 0;
-//                         NSLog(@"2 y is %f", self.timeLabel.frame.origin.y);
-                         self.timeLabel.center = CGPointMake(self.view.frame.origin.x + 50, button.center.y);
+                         timeLabel.frame = CGRectMake(self.view.frame.origin.x + 30, timeLabel.frame.origin.y, 75, 35);
                          
                      }
                      completion:^(BOOL finished) {
-                         if (self.timeLabel.alpha <= 0.1)
-                             self.timeLabel.hidden = YES;
+                         [UIView animateWithDuration:1
+                                               delay:0
+                                             options: UIViewAnimationOptionAllowUserInteraction | UIViewAnimationOptionAllowAnimatedContent | UIViewAnimationOptionCurveEaseIn
+                                          animations:^{
+                                              timeLabel.frame = CGRectMake(self.view.frame.origin.x - 100, timeLabel.frame.origin.y, 75, 35);
+                                              timeLabel.alpha = 0;
+                                          }
+                                          completion:^(BOOL finished) {
+                                              [timeLabel removeFromSuperview];
+                                          }];
                      }];
+}
 
+- (IBAction)scoreViewSegmentedControlChange:(id)sender {
+    [self updateButtons];
+    
+    [[NSUserDefaults standardUserDefaults] setInteger:self.scoreViewSegmentedControl.selectedSegmentIndex forKey:@"MoodScoreView"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 

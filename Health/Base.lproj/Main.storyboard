@@ -269,56 +269,6 @@
             </objects>
             <point key="canvasLocation" x="-98" y="127"/>
         </scene>
-        <!--Analysis-->
-        <scene sceneID="DHS-ec-1tq">
-            <objects>
-                <pageViewController storyboardIdentifier="analysisViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="0Oh-kH-LPH" customClass="AnalysisViewController" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Analysis" image="first" id="7G5-Rl-uNx"/>
-                </pageViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="XcN-Yc-HyM" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="710" y="172"/>
-        </scene>
-        <!--Network View Controller-->
-        <scene sceneID="ggL-Rg-RmJ">
-            <objects>
-                <viewController storyboardIdentifier="networkViewController" id="W9t-DU-YfW" customClass="NetworkViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Z4H-Wz-NUf"/>
-                        <viewControllerLayoutGuide type="bottom" id="Vg2-aw-ioP"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="ieR-FF-eLc">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Network of Influences:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8rM-a8-sAY">
-                                <rect key="frame" x="74" y="50" width="172" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="network.png" translatesAutoresizingMaskIntoConstraints="NO" id="11V-I6-wB5">
-                                <rect key="frame" x="36" y="134" width="248" height="300"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="300" id="EVG-bS-R2k"/>
-                                </constraints>
-                            </imageView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="centerX" secondItem="8rM-a8-sAY" secondAttribute="centerX" id="Nyy-Vs-Rre"/>
-                            <constraint firstItem="11V-I6-wB5" firstAttribute="leading" secondItem="ieR-FF-eLc" secondAttribute="leadingMargin" constant="20" id="Wa6-qG-5ww"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="11V-I6-wB5" secondAttribute="trailing" constant="20" id="Zym-Pb-dea"/>
-                            <constraint firstAttribute="centerY" secondItem="11V-I6-wB5" secondAttribute="centerY" id="fey-9J-N0V"/>
-                            <constraint firstAttribute="centerX" secondItem="11V-I6-wB5" secondAttribute="centerX" id="gOP-g4-889"/>
-                            <constraint firstItem="8rM-a8-sAY" firstAttribute="top" secondItem="Z4H-Wz-NUf" secondAttribute="bottom" constant="30" id="uxh-xh-zdX"/>
-                        </constraints>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="lXg-pt-hcC" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="599" y="773"/>
-        </scene>
         <!--Tab Bar View Controller-->
         <scene sceneID="yl2-sM-qoP">
             <objects>
@@ -453,15 +403,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="timeLabel" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q6U-1p-ci8">
-                                <rect key="frame" x="34" y="154" width="75" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="m1r-Td-a0o"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <navigationBar contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PjO-j6-STq">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
                                 <constraints>
@@ -471,61 +412,81 @@
                                     <navigationItem title="How do you feel?" id="aoA-Hu-G1s"/>
                                 </items>
                             </navigationBar>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wQZ-5k-Heo">
-                                <rect key="frame" x="130" y="84" width="60" height="65"/>
+                            <button opaque="NO" alpha="0.5" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wQZ-5k-Heo" customClass="MoodScoreButton">
+                                <rect key="frame" x="130" y="84" width="60" height="84"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="65" id="MXJ-Iv-1by"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="60"/>
-                                <state key="normal" title="😄"/>
+                                <state key="normal" title="5">
+                                    <color key="titleColor" red="1" green="0.61444837561048282" blue="0.45675370261169157" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </state>
                                 <connections>
                                     <action selector="feelingsButtonPressed:" destination="kRg-hd-pW9" eventType="touchUpInside" id="3nM-46-XyC"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ahp-j5-Kwr">
-                                <rect key="frame" x="130" y="154" width="60" height="65"/>
+                            <button opaque="NO" alpha="0.5" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ahp-j5-Kwr" customClass="MoodScoreButton">
+                                <rect key="frame" x="130" y="154" width="60" height="84"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="60"/>
-                                <state key="normal" title="😊">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="4">
+                                    <color key="titleColor" red="1" green="0.9137853314831671" blue="0.41613364138967701" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="feelingsButtonPressed:" destination="kRg-hd-pW9" eventType="touchUpInside" id="Rb7-kz-Vai"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ruz-HM-dtH">
-                                <rect key="frame" x="130" y="224" width="60" height="65"/>
+                            <button opaque="NO" alpha="0.5" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ruz-HM-dtH" customClass="MoodScoreButton">
+                                <rect key="frame" x="144" y="224" width="33" height="84"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="60"/>
-                                <state key="normal" title="😐">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="3">
+                                    <color key="titleColor" red="0.64171875868396411" green="1" blue="0.49385980314421651" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="feelingsButtonPressed:" destination="kRg-hd-pW9" eventType="touchUpInside" id="nHW-2j-Z1k"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r3T-qL-Vlq">
-                                <rect key="frame" x="130" y="294" width="60" height="65"/>
+                            <button opaque="NO" alpha="0.5" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r3T-qL-Vlq" customClass="MoodScoreButton">
+                                <rect key="frame" x="144" y="294" width="33" height="84"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="60"/>
-                                <state key="normal" title="😞">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="2">
+                                    <color key="titleColor" red="0.51818344068740685" green="1" blue="0.82597746885278445" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="feelingsButtonPressed:" destination="kRg-hd-pW9" eventType="touchUpInside" id="vD1-Eq-cZx"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Tq-7Z-CJp">
-                                <rect key="frame" x="130" y="364" width="60" height="65"/>
+                            <button opaque="NO" alpha="0.5" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Tq-7Z-CJp" customClass="MoodScoreButton">
+                                <rect key="frame" x="144" y="364" width="33" height="84"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="60"/>
-                                <state key="normal" title="😪">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="1">
+                                    <color key="titleColor" red="0.60890761873162047" green="0.66386307734522165" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="feelingsButtonPressed:" destination="kRg-hd-pW9" eventType="touchUpInside" id="3yw-JA-6eE"/>
                                 </connections>
                             </button>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="40k-o3-67p">
+                                <rect key="frame" x="31" y="450" width="258" height="29"/>
+                                <segments>
+                                    <segment title="Emoticons"/>
+                                    <segment title="Scores"/>
+                                    <segment title="Labels"/>
+                                </segments>
+                                <color key="tintColor" red="0.73444772273936176" green="0.73444772273936176" blue="0.73444772273936176" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="scoreViewSegmentedControlChange:" destination="kRg-hd-pW9" eventType="valueChanged" id="KLl-xM-cwp"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="tintColor" red="1" green="0.76927916911413163" blue="0.45911029629916522" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstAttribute="centerX" secondItem="40k-o3-67p" secondAttribute="centerX" id="1pE-31-AwA"/>
                             <constraint firstAttribute="centerX" secondItem="0Tq-7Z-CJp" secondAttribute="centerX" id="BUj-gk-tt6"/>
                             <constraint firstItem="ruz-HM-dtH" firstAttribute="top" secondItem="ahp-j5-Kwr" secondAttribute="bottom" constant="5" id="KbJ-ij-9zd"/>
                             <constraint firstItem="r3T-qL-Vlq" firstAttribute="height" secondItem="ruz-HM-dtH" secondAttribute="height" id="Mma-4a-fRG"/>
@@ -545,9 +506,10 @@
                     </view>
                     <connections>
                         <outlet property="badButton" destination="r3T-qL-Vlq" id="hjz-A0-bpv"/>
+                        <outlet property="bestButton" destination="wQZ-5k-Heo" id="amB-up-RgF"/>
                         <outlet property="goodButton" destination="ahp-j5-Kwr" id="mNK-9e-sV9"/>
                         <outlet property="neutralButton" destination="ruz-HM-dtH" id="0hO-YA-j7E"/>
-                        <outlet property="timeLabel" destination="Q6U-1p-ci8" id="EQ7-kJ-nDf"/>
+                        <outlet property="scoreViewSegmentedControl" destination="40k-o3-67p" id="TlV-TV-1A5"/>
                         <outlet property="worstButton" destination="0Tq-7Z-CJp" id="wEY-EZ-fWc"/>
                     </connections>
                 </viewController>
@@ -702,12 +664,12 @@
                                 <color key="textColor" red="0.87069284540000003" green="0.87069284540000003" blue="0.87069284540000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.59999999999999998" translatesAutoresizingMaskIntoConstraints="NO" id="jdu-bW-7lw">
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.59999999999999998" translatesAutoresizingMaskIntoConstraints="NO" id="jdu-bW-7lw" customClass="WaterProgress">
                                 <rect key="frame" x="31" y="313" width="258" height="2"/>
                                 <color key="progressTintColor" red="0.72156864399999998" green="0.90980398650000005" blue="0.9450981021" alpha="1" colorSpace="deviceRGB"/>
                                 <color key="trackTintColor" red="0.9803922176361084" green="0.9960784912109375" blue="0.9960784912109375" alpha="1" colorSpace="deviceRGB"/>
                             </progressView>
-                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="2.5" maximumValue="5" stepValue="0.10000000000000001" translatesAutoresizingMaskIntoConstraints="NO" id="d90-sy-ey2">
+                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="2.5" minimumValue="1" maximumValue="5" stepValue="0.10000000000000009" translatesAutoresizingMaskIntoConstraints="NO" id="d90-sy-ey2">
                                 <rect key="frame" x="113" y="225" width="94" height="29"/>
                                 <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
@@ -736,7 +698,7 @@
                                     <outlet property="delegate" destination="RTw-QI-bIR" id="xnK-Qn-VpK"/>
                                 </connections>
                             </pickerView>
-                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.29999999999999999" translatesAutoresizingMaskIntoConstraints="NO" id="lea-Dz-l2e">
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.29999999999999999" translatesAutoresizingMaskIntoConstraints="NO" id="lea-Dz-l2e" customClass="WaterProgress">
                                 <rect key="frame" x="31" y="317" width="258" height="2"/>
                                 <color key="progressTintColor" red="0.72156864399999998" green="0.90980398650000005" blue="0.9450981021" alpha="1" colorSpace="deviceRGB"/>
                                 <color key="trackTintColor" red="0.98039221759999995" green="0.99607849120000003" blue="0.99607849120000003" alpha="1" colorSpace="deviceRGB"/>
@@ -863,7 +825,6 @@
     </scenes>
     <resources>
         <image name="first" width="30" height="30"/>
-        <image name="network.png" width="252" height="296"/>
         <image name="second" width="30" height="30"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
