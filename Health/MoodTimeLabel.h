@@ -11,6 +11,5 @@
 @interface MoodTimeLabel : UILabel
 
 - (void) showTime;
-- (void) animate;
 
 @end

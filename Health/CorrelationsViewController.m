@@ -40,7 +40,6 @@ NSMutableArray* notEnoughDataList;
     sortedList = [[NSMutableArray alloc] init];
     notEnoughDataList = [[NSMutableArray alloc] init];
     NSMutableArray* processedVariableCouplesHashList = [[NSMutableArray alloc] init];
-    NSMutableDictionary* insufficientDataDict = [[NSMutableDictionary alloc] init];
     
     for (NSString* variable in allVariables) {
         NSNumber* correlation = [statistics pearsonCorrelationOfVariable1:variable andVariable2:variable];
@@ -114,35 +113,48 @@ NSMutableArray* notEnoughDataList;
 #pragma mark - Table View
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    NSLog(@"numberofsects");
-    return (2 - (!sortedList) - (!notEnoughDataList));
+    int numberOfSections = 2;
+    if (!sortedList)
+        numberOfSections -= 1;
+    if (!notEnoughDataList)
+        numberOfSections -= 1;
+    return numberOfSections;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     
+    NSString* correlationsHeader = [[NSString alloc] initWithFormat:@"Correlations, from -1 to 1:"];
+    NSString* notEnoughDataHeader = [[NSString alloc] initWithFormat:@"NOT ENOUGH DAYS OF DATA FOR:"];
+    
     if (!sortedList && !(!notEnoughDataList)) {
-        return @"NOT ENOUGH DAYS OF DATA FOR:";
+        return correlationsHeader;
     }
     else if (!!sortedList) {
         if(section == 0)
-            return @"Correlations, from -1 to 1:";
+            return notEnoughDataHeader;
         if(section == 1)
-            return @"NOT ENOUGH DAYS OF DATA FOR:";
+            return correlationsHeader;
     }
     return 0;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section {
     
+    NSString* pearsonExplanationFooter = [[NSString alloc] initWithFormat:
+                                          @"Based on the Pearson product-moment correlation coefficient. Correlation expressed as a value between -1 and 1, whereby 1 is a positive correlation, 0 is no correlation and -1 is a negative correlation."];
+    
+    NSString* notEnoughDataFooter = [[NSString alloc] initWithFormat:
+                                     @"At least two days of data are necessary, though the more data you collect, the more accurate your correlations will be."];
+    
     if (!sortedList && !(!notEnoughDataList)) {
-        return @"At least two days of data are necessary, though the more data you collect, the more accurate your correlations will be.";
+        return notEnoughDataFooter;
     }
     else if (!!sortedList) {
         if (section == 0) {
-            return @"Based on the Pearson product-moment correlation coefficient. Correlation expressed as a value between -1 and 1, whereby 1 is a positive correlation, 0 is no correlation and -1 is a negative correlation.";
+            return pearsonExplanationFooter;
         }
         if (section == 1) {
-            return @"At least two days of data are necessary, though the more data you collect, the more accurate your correlations will be.";
+            return notEnoughDataFooter;
         }
     }
     return 0;

@@ -14,8 +14,9 @@
 - (void)updateProgressTo:(float)progress;
 - (void) updateMinutesTo:(int)minutes;
 - (void)updatePomodorosTo:(int)pomodoros;
-- (void) setupWorkView;
-- (void) setupBreakView;
+- (void) setupWorkPeriodView;
+- (void) setupBreakPeriodView;
+- (void) updateView;
 
 @end
 
@@ -24,12 +25,13 @@
 
 @property (nonatomic, weak) id <PomodoroUpdateProtocol> delegate;
 @property (nonatomic) int seconds;
+@property (nonatomic) int totalPomodoros;
 @property (nonatomic) BOOL breaktime;
 @property (nonatomic) BOOL timerIsOn;
 @property (nonatomic) NSTimer* pomodoroTimer;
+@property (nonatomic) int timePeriod;
 
 - (id)init;
-- (void) updateView;
 
 - (void) suspendTimer;
 - (BOOL) checkForSuspendedTimer;
@@ -38,8 +40,8 @@
 - (void) stopTimer;
 - (void) resetTimer;
 
-- (void) startWorkState;
-- (void) startBreakState;
+- (void) startWorkPeriod;
+- (void) startBreakPeriod;
 
 
 @end

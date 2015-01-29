@@ -10,9 +10,6 @@
 
 @implementation InputScores
 
-@synthesize pathOfPList = _pathOfPList;
-@synthesize inputDict = _inputDict;
-
 # pragma mark - read functions
 
 // Returns the complete input for one variable.
@@ -20,7 +17,7 @@
     return [self.inputDict objectForKey:variable];
 }
 
-// Returns a sorted array of saveKeys in a variable
+// Returns a sorted array of saveKeys in a variable.
 - (NSMutableArray *) saveKeysFor:(NSString*)variable {
     
     NSMutableArray* tempArray = [[NSMutableArray alloc] initWithArray:[[self variableDict:variable] allKeys]] ;
@@ -114,6 +111,20 @@
     [self saveInputDict];
 }
 
+
+
+# pragma mark - inputDict supporting functions
+
+// Update the inputDict with the plist-file. Give a message if a newer was found.
+- (BOOL) syncInputDict {
+    NSMutableDictionary *plistDict = [[[NSMutableDictionary alloc] initWithContentsOfFile:self.pathOfPList] mutableCopy];
+    if (![self.inputDict isEqualToDictionary:plistDict]) {
+        self.inputDict = plistDict;
+        return 1;
+    }
+    return 0;
+}
+
 # pragma mark - getters
 
 // Get the string of the path to InputScores.plist
@@ -132,18 +143,6 @@
         _inputDict = [[[NSMutableDictionary alloc] initWithContentsOfFile:self.pathOfPList] mutableCopy];
     }
     return _inputDict;
-}
-
-# pragma mark - inputDict supporting functions
-
-// Update the inputDict with the plist-file. Give a message if a newer was found.
-- (BOOL) syncInputDict {
-    NSMutableDictionary *plistDict = [[[NSMutableDictionary alloc] initWithContentsOfFile:self.pathOfPList] mutableCopy];
-    if (![self.inputDict isEqualToDictionary:plistDict]) {
-        self.inputDict = plistDict;
-        return 1;
-    }
-    return 0;
 }
 
 // Save the input dictionary.

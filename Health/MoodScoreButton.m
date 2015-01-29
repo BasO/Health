@@ -18,27 +18,7 @@
 }
 */
 
-@synthesize buttonEmoticon = _buttonEmoticon;
-
-- (void) setupWithValue:(int)value andEmoticonTitle:(NSString*)emoticon andNumberTitle:(NSString*)numberString andLabelTitle:(NSString*)label {
-    self.buttonValue = value;
-    self.buttonEmoticon = emoticon;
-    self.buttonNumber = numberString;
-    self.buttonLabel = label;
-}
-
-- (void) changeToEmoticon {
-    [self setTitle:self.buttonEmoticon forState:UIControlStateNormal];
-}
-
-- (void) changeToNumber {
-    [self setTitle:self.buttonNumber forState:UIControlStateNormal];
-}
-
-- (void) changeToLabel {
-    [self setTitle:self.buttonLabel forState:UIControlStateNormal];
-}
-
+// If button was pressed, quickly set alpha to 1 before changing to 0.5 again.
 - (void) touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     
     BOOL touchedUpInside = NO;
@@ -62,7 +42,7 @@
                                               animations:^{
                                                   self.alpha = 0.5;
                                               }
-                                              completion:^(BOOL finished) {}];
+                                              completion:nil];
                          }];
     }
 }

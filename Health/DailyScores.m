@@ -29,8 +29,8 @@
     return tempArray;
 }
 
+// Returns the value for a specific saveKey.
 - (NSNumber*) numberValueForSaveKey:(NSString*)saveKey ofVariable:(NSString*)variable {
-    
     return [[[self variableDict:variable] objectForKey:saveKey] objectForKey:@"value"];
 }
 
@@ -61,6 +61,25 @@
     [self saveDailyDict];
 }
 
+# pragma mark - dailyDict supporting functions
+
+// If DailyScores.plists contains new values, update dailyDict and return 1.
+- (BOOL) syncDailyDict {
+    NSMutableDictionary *plistDict = [[[NSMutableDictionary alloc] initWithContentsOfFile:self.pathOfPList] mutableCopy];
+
+    if (![self.dailyDict isEqualToDictionary:plistDict]) {
+        self.dailyDict = plistDict;
+        return 1;
+    }
+    return 0;
+}
+
+// Save the daily dictionary.
+- (void) saveDailyDict {
+    BOOL writeSucces = [self.dailyDict writeToFile:self.pathOfPList atomically:YES];
+    NSLog(@"saved DailyDict? %i", writeSucces);
+}
+
 # pragma mark - getters
 
 // Get the string of the path to DailyScores.plist
@@ -80,24 +99,6 @@
     return _dailyDict;
 }
 
-# pragma mark - dailyDict supporting functions
-
-// 
-- (BOOL) syncDailyDict {
-    NSMutableDictionary *plistDict = [[[NSMutableDictionary alloc] initWithContentsOfFile:self.pathOfPList] mutableCopy];
-
-    if (![self.dailyDict isEqualToDictionary:plistDict]) {
-        self.dailyDict = plistDict;
-        return 1;
-    }
-    return 0;
-}
-
-// Save the daily dictionary.
-- (void) saveDailyDict {
-    BOOL writeSucces = [self.dailyDict writeToFile:self.pathOfPList atomically:YES];
-    NSLog(@"saved DailyDict? %i", writeSucces);
-}
 
 @end
 

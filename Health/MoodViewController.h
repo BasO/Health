@@ -13,7 +13,6 @@
 #import "MoodTimeLabel.h"
 #import "MoodScoreButton.h"
 
-
 @interface MoodViewController : UIViewController <MSPageViewControllerChild>
 
 @property (weak, nonatomic) IBOutlet MoodScoreButton *bestButton;

@@ -20,7 +20,7 @@ int pointsInLineGraph;
 
 DailyScores* dailyScores;
 
-#pragma mark - Managing the detail item
+#pragma mark - setup View
 
 - (void)setVariable:(NSString*)newVariable {
     if (_variable != newVariable) {
@@ -31,9 +31,22 @@ DailyScores* dailyScores;
     }
 }
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    dailyScores = [[DailyScores alloc] init];
+    [self configureView];
+}
+
+-(void)viewWillAppear:(BOOL)animated {
+    if ([dailyScores syncDailyDict]) {
+        [self configureView];
+    }
+}
+
+# pragma mark - setup view
+
 - (void)configureView {
-    // Update the user interface for the detail item.
-    [self.graph reloadGraph];
     
     if (self.variable) {
         self.varTitle.title = [NSString stringWithString:self.variable];
@@ -41,31 +54,47 @@ DailyScores* dailyScores;
         NSString* lastSaveKey = [[dailyScores saveKeysFor:self.variable] lastObject];
         NSDictionary* lastSample = [[dailyScores variableDict:self.variable] objectForKey:lastSaveKey];
         NSNumber* dayScoreNumber = [lastSample valueForKey:@"value"];
-                                 
-        self.lastRatingLabel.text = [NSString stringWithFormat:@"%@", dayScoreNumber];
+        
+        [self setupAverageLabelBasedOnNumber:dayScoreNumber];
         
         Statistics* statistics = [[Statistics alloc] init];
         
         self.correlateLabel.text = [NSString stringWithFormat:@"%@", [statistics pearsonCorrelationOfVariable1:self.variable andVariable2:@"Steps"]];
     }
+    
+    [self setupGraph];
+    [self setupGraphSegmentedControl];
 }
 
-# pragma mark - viewController
+- (void) setupAverageLabelBasedOnNumber:(NSNumber*)number {
+    float dayScoreFloat = [number floatValue];
+    if ([self.variable isEqualToString:@"Sleep"]) {
+        float hours = dayScoreFloat / (60 * 60);
+        float shownValue = round(hours * 10) / 10;
+        self.averageLabel.text = [NSString stringWithFormat:@"%.1f hours", shownValue];
+    }
+    else if ([self.variable isEqualToString:@"Water"]) {
+        float shownValue = round(dayScoreFloat * 10) / 10000;
+        self.averageLabel.text = [NSString stringWithFormat:@"%.1f liter", shownValue];
+    }
+    else
+        self.averageLabel.text = [NSString stringWithFormat:@"%.2f", dayScoreFloat];
+}
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
-    
-    dailyScores = [[DailyScores alloc] init];
-    
-    graphLength = 7;
-    
+- (void) setupGraph {
     self.graph.enableYAxisLabel = YES;
     self.graph.enableReferenceXAxisLines = YES;
     self.graph.enableReferenceYAxisLines = YES;
     self.graph.enableBezierCurve = YES;
     self.graph.animationGraphEntranceTime = 1;
     
+    
+    [self.graph reloadGraph];
+}
+
+- (void) setupGraphSegmentedControl {
+    
+    // see if enough data is available to have "Half year" and "Year" segments
     NSArray* saveKeys = [dailyScores saveKeysFor:self.variable];
     double startValue = [saveKeys count];
     int startValueInt = (int)startValue;
@@ -77,8 +106,10 @@ DailyScores* dailyScores;
         [self.graphTimePeriodSegmentedControl insertSegmentWithTitle:@"Year" atIndex:3 animated:NO];
     }
     
-    graphLength = (int)[[NSUserDefaults standardUserDefaults] integerForKey:@"VariableGraphLength"];
+    // set selected segment based on 1) last selected segment
+    // and 2) whether there was enough data for this segment
     
+    graphLength = (int)[[NSUserDefaults standardUserDefaults] integerForKey:@"VariableGraphLength"];
     int numberOfSegments = (int)[self.graphTimePeriodSegmentedControl numberOfSegments];
     
     if (graphLength > 182 && numberOfSegments > 3) {
@@ -93,30 +124,36 @@ DailyScores* dailyScores;
     else if (graphLength && numberOfSegments > 0) {
         self.graphTimePeriodSegmentedControl.selectedSegmentIndex = 0;
     }
-    
-    
-    
-    [self configureView];
-    
-    
 }
-/*
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    NSArray* saveKeys = [dailyScores saveKeysFor:self.variable];
-    double startValue = [saveKeys count];
-    int startValueInt = (int)startValue;
-    
-    if (startValueInt < 2) {
-        return 1;
-    }
-    else
-        return 2;
-}
-*/
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+
+
+# pragma mark - segmented control
+
+// Set & save graph time period based on user input.
+- (IBAction)graphTimePeriodSegmentedControlValueChange:(id)sender {
+    [self.graph setAnimationGraphEntranceTime:0];
     
+    NSInteger choice = self.graphTimePeriodSegmentedControl.selectedSegmentIndex;
+    if (choice == 0)
+        graphLength = 7;
+    else if (choice == 1)
+        graphLength = 30;
+    else if (choice == 2)
+        graphLength = 182;
+    else if (choice == 3)
+        graphLength = 365;
+    
+    [[NSUserDefaults standardUserDefaults] setInteger:graphLength forKey:@"VariableGraphLength"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    [self.graph reloadGraph];
+}
+
+# pragma mark - setup Table View
+
+// Set number of sections. The Graph section won't be displayed if there's not enough data.
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     NSArray* saveKeys = [dailyScores saveKeysFor:self.variable];
     double startValue = [saveKeys count];
     int startValueInt = (int)startValue;
@@ -128,6 +165,7 @@ DailyScores* dailyScores;
     return 1;
 }
 
+// Set table section footers. A message will be shown if there's not enough data for the graph.
 - (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section {
     NSArray* saveKeys = [dailyScores saveKeysFor:self.variable];
     double startValue = [saveKeys count];
@@ -140,45 +178,21 @@ DailyScores* dailyScores;
     return @"";
 }
 
-
--(void)viewWillAppear:(BOOL)animated {
-    if ([dailyScores syncDailyDict]) {
-        [self configureView];
-    }
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-
-- (IBAction)graphTimePeriodSegmentedControlValueChange:(id)sender {
-    [self.graph setAnimationGraphEntranceTime:0];
-    
-    NSInteger choice = self.graphTimePeriodSegmentedControl.selectedSegmentIndex;
-    if (choice == 0)
-        graphLength = 7;
-    else if (choice == 1)
-        graphLength = 30;
-    else if (choice == 2)
-        graphLength = 182;
-    
-    [[NSUserDefaults standardUserDefaults] setInteger:graphLength forKey:@"VariableGraphLength"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-    
-    [self.graph reloadGraph];
-}
-
-
 # pragma - graph
 
+// Set the number of Y-axis labels.
+- (NSInteger)numberOfYAxisLabelsOnLineGraph:(BEMSimpleLineGraphView *)graph {
+    if (pointsInLineGraph < 4)
+        return 3;
+    else
+        return 5;
+}
+
+// Set the number of values in the graph.
 - (NSInteger)numberOfPointsInLineGraph:(BEMSimpleLineGraphView *)graph {
     
     NSInteger numberOfRecordedScores = [[dailyScores variableDict:self.variable] count];
     int numberOfRecordedScoresInt = (int)numberOfRecordedScores;
-    
-    
     
     if (numberOfRecordedScores > graphLength) {
         NSLog(@"index will be %i", graphLength);
@@ -191,14 +205,7 @@ DailyScores* dailyScores;
     return pointsInLineGraph;
 }
 
-- (NSInteger)numberOfYAxisLabelsOnLineGraph:(BEMSimpleLineGraphView *)graph {
-    if (pointsInLineGraph < 4)
-        return 3;
-    else
-        return 5;
-            
-}
-
+// Set the value for each point.
 - (CGFloat)lineGraph:(BEMSimpleLineGraphView *)graph valueForPointAtIndex:(NSInteger)index {
     
     float valueForPoint = [[[self sampleForIndex:index] objectForKey:@"value"] floatValue];
@@ -261,6 +268,12 @@ DailyScores* dailyScores;
     
     NSString* keyOfIndex = [saveKeysForView objectAtIndex:index];
     return [[dailyScores variableDict:self.variable] objectForKey:keyOfIndex];
+}
+
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 

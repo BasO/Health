@@ -23,17 +23,17 @@ UIPageControl *pageControl;
     pageControl.pageIndicatorTintColor = [UIColor lightGrayColor];
     pageControl.currentPageIndicatorTintColor = [UIColor blackColor];
     pageControl.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
-    
     }
+
+
+// Returns the View Controllers that will be inter-scrollable.
+- (NSArray *)pageIdentifiers {
+    return @[@"MoodViewController", @"pomodoroViewController", @"waterViewController"];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-- (NSArray *)pageIdentifiers {
-    return @[@"MoodViewController", @"pomodoroViewController", @"waterViewController"];
-}
-
 
 @end

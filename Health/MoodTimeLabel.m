@@ -18,6 +18,7 @@
 }
 */
 
+// Present the time by fade-in and fade-out
 - (void)showTime {
     [self setTextColor:[UIColor colorWithWhite:0 alpha:0.33]];
     [self setBackgroundColor:[UIColor clearColor]];
@@ -27,10 +28,11 @@
     [timeFormat setDateFormat:@"HH:mm"];
     self.text = [timeFormat stringFromDate:[NSDate date]];
     
-    [self animate];
+    [self animateShowing];
 }
 
-- (void) animate {
+// Fade in, then fade out.
+- (void) animateShowing {
     NSLog(@"animating");
     self.alpha = 0;
     [UIView animateWithDuration:1
@@ -49,7 +51,7 @@
                                               
                                               self.alpha = 0;
                                           }
-                                          completion:^(BOOL finished) {}];
+                                          completion:nil];
                      }];
     
 }

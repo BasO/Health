@@ -20,7 +20,7 @@ HKHealthStore *healthStore;
 DailyScores* dailyScores;
 
 NSMutableArray* inputVariables;
-NSMutableArray* healthVariables;
+NSMutableArray* importVariables;
 
 
 - (void)viewDidLoad {
@@ -41,11 +41,7 @@ NSMutableArray* healthVariables;
     }
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
+// Setup the array that will be used to fill the tableView
 - (void)setupTableArrays {
     
     // get alphabetic list of available variables
@@ -55,7 +51,7 @@ NSMutableArray* healthVariables;
     
     // sort variables into categories (for sections)
     inputVariables = [[NSMutableArray alloc] init];
-    healthVariables = [[NSMutableArray alloc] init];
+    importVariables = [[NSMutableArray alloc] init];
     for (NSString *variable in vars) {
         if ([variable compare:@"Mood"] == NSOrderedSame ||
             [variable compare:@"Pomodoros"] == NSOrderedSame ||
@@ -63,21 +59,12 @@ NSMutableArray* healthVariables;
             [inputVariables addObject:variable];
         }
         else
-            [healthVariables addObject:variable];
+            [importVariables addObject:variable];
     }
 }
 
 #pragma mark - Segues
-/*
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([[segue identifier] isEqualToString:@"showDetail"]) {
-        NSIndexPath *indexPath = [self.psychoTable indexPathForSelectedRow];
-        NSDate *object = vars[indexPath.row];
-        [[segue destinationViewController] setDetailItem:object];
-    }
-}
- */
-
+// Send touched variable name to VariableViewController
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if([segue.identifier isEqualToString:@"showDetail"])
     {
@@ -86,15 +73,15 @@ NSMutableArray* healthVariables;
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         
         NSMutableString* variable = [[NSMutableString alloc] init];
-        if ([healthVariables count] > 0 && !([inputVariables count] > 0)) {
-            variable = healthVariables[indexPath.row];
+        if ([importVariables count] > 0 && !([inputVariables count] > 0)) {
+            variable = importVariables[indexPath.row];
         }
         else {
             if (indexPath.section == 0) {
                 variable = inputVariables[indexPath.row];
             }
             else if (indexPath.section == 1) {
-                variable = healthVariables[indexPath.row];
+                variable = importVariables[indexPath.row];
             }
         }
         
@@ -102,109 +89,97 @@ NSMutableArray* healthVariables;
     }
 }
 
-#pragma mark - Table View
+#pragma mark - Table View setup
 
+// Do a segue on selection.
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Conditionally perform segues, here is an example:
-    
     [self performSegueWithIdentifier:@"showDetail" sender:self];
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     
 }
 
+// Set the number of sections, based on whether there are input- and/or import variables.
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return (2 - !([inputVariables count] > 0) - !([healthVariables count] > 0));
+    int numberOfSections = 2;
+    if (!([inputVariables count] > 0))
+        numberOfSections -= 1;
+    if (!([importVariables count] > 0))
+        numberOfSections -= 1;
+    
+    return numberOfSections;
 }
 
+// Set the section headers.
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     
-    if ([healthVariables count] > 0 && !([inputVariables count] > 0)) {
-        return @"HEALTH";
+    NSString* inputVariablesHeader = @"MEASURED IN THIS APP";
+    NSString* importVariablesHeader = @"IMPORTED FROM OTHER APPS";
+    
+    if ([self checkIfOnlyImportVariables]) {
+        return importVariablesHeader;
     }
     else if ([inputVariables count] > 0) {
         if(section == 0)
-            return @"THIS APP";
+            return inputVariablesHeader;
         if(section == 1)
-            return @"OTHER APPS";
+            return importVariablesHeader;
     }
     return 0;
 }
 
+// Set the number of rows per section.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if ([healthVariables count] > 0 && !([inputVariables count] > 0)) {
-        return [healthVariables count];
+    if ([self checkIfOnlyImportVariables]) {
+        return [importVariables count];
     }
     else {
         if (section == 0) {
-            NSLog(@"inputVariables count is %lu", (unsigned long)[inputVariables count]);
             return [inputVariables count];
         }
         if (section == 1) {
-            NSLog(@"healthVariables count is %lu", [healthVariables count]);
-            return [healthVariables count];
+            return [importVariables count];
         }
     }
     return 0;
 }
 
+// Setup each cell of the table.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    // prepare cell
     static NSString *simpleTableIdentifier = @"SimpleTableCell";
-    
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
-    
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
     }
     
-    if ([healthVariables count] > 0 && !([inputVariables count] > 0)) {
-        cell.textLabel.text = [healthVariables objectAtIndex:indexPath.row];
+    // set either input- or import variables as text for each cell
+    if ([self checkIfOnlyImportVariables]) {
+        cell.textLabel.text = [importVariables objectAtIndex:indexPath.row];
     }
     else {
         if (indexPath.section == 0)
             cell.textLabel.text = [inputVariables objectAtIndex:indexPath.row];
         
         if (indexPath.section == 1)
-            cell.textLabel.text = [healthVariables objectAtIndex:indexPath.row];
+            cell.textLabel.text = [importVariables objectAtIndex:indexPath.row];
     }
-    
-    /* 
-     EXPERIMENTING WITH COLORS
-     
-    self.tableView.backgroundColor = [UIColor whiteColor];
-    if ([cell.textLabel.text isEqual: @"Mood"])
-        cell.backgroundColor = [UIColor colorWithRed:255/255.0f green:191/255.0f blue:0/255.0f alpha:0.15];
-    if ([cell.textLabel.text isEqual: @"Steps"])
-        cell.backgroundColor = [UIColor colorWithRed:255/255.0f green:115/255.0f blue:0/255.0f alpha:0.15];
-    if ([cell.textLabel.text isEqual: @"Sleep"])
-        cell.backgroundColor = [UIColor colorWithRed:83/255.0f green:0/255.0f blue:255/255.0f alpha:0.15];
-    if ([cell.textLabel.text isEqual: @"Water"])
-        cell.backgroundColor = [UIColor colorWithRed:0/255.0f green:183/255.0f blue:255/255.0f alpha:0.15];
-
-     */
     
     return cell;
 }
 
+# pragma mark - helper functions
 
-
-/*
-
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+- (BOOL) checkIfOnlyImportVariables {
+    return ([importVariables count] > 0 && !([inputVariables count] > 0));
 }
 
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [_vars removeObjectAtIndex:indexPath.row];
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
-    }
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
-*/
 
 @end

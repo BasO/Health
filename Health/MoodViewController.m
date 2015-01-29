@@ -16,7 +16,6 @@
 {
     InputScores* inputScores;
     DailyScores* dailyScores;
-    NSDateFormatter* timeFormat;
     NSArray* scoreButtons;
 }
 
@@ -25,103 +24,99 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    // initialise local variables
     inputScores = [[InputScores alloc] init];
     dailyScores = [[DailyScores alloc] init];
-    
     scoreButtons = [[NSArray alloc] initWithObjects:self.bestButton, self.goodButton, self.neutralButton, self.badButton, self.worstButton, nil];
     
+    // setup UIObjects
+    [self setupButtons];
     [self.scoreViewSegmentedControl setSelectedSegmentIndex:[[NSUserDefaults standardUserDefaults] integerForKey:@"MoodScoreView"]];
     
-    [self setupButtons];
+    // setup view
     [self updateButtons];
 }
 
+// Setup the scoreValue and possible titles for each MoodScoreButton.
 - (void) setupButtons {
+    self.bestButton.scoreValue = 5;
+    self.bestButton.emoticonTitle = @"😄";
+    self.bestButton.numberTitle = @"5";
+    self.bestButton.labelTitle = @"Great";
     
-    [self.bestButton setupWithValue:5
-                   andEmoticonTitle:@"😄"
-                     andNumberTitle:@"5"
-                      andLabelTitle:@"Great"];
-    [self.goodButton setupWithValue:4
-                   andEmoticonTitle:@"😊"
-                     andNumberTitle:@"4"
-                      andLabelTitle:@"Good"];
-    [self.neutralButton setupWithValue:3
-                   andEmoticonTitle:@"😐"
-                     andNumberTitle:@"3"
-                      andLabelTitle:@"OK"];
-    [self.badButton setupWithValue:2
-                   andEmoticonTitle:@"😞"
-                     andNumberTitle:@"3"
-                      andLabelTitle:@"OK"];
-    [self.worstButton setupWithValue:1
-                   andEmoticonTitle:@"😪"
-                     andNumberTitle:@"1"
-                      andLabelTitle:@"Worst"];
+    self.goodButton.scoreValue = 4;
+    self.goodButton.emoticonTitle = @"😊";
+    self.goodButton.numberTitle = @"4";
+    self.goodButton.labelTitle = @"Good";
+    
+    self.neutralButton.scoreValue = 3;
+    self.neutralButton.emoticonTitle = @"😐";
+    self.neutralButton.numberTitle = @"3";
+    self.neutralButton.labelTitle = @"OK";
+    
+    self.badButton.scoreValue = 2;
+    self.badButton.emoticonTitle = @"😞";
+    self.badButton.numberTitle = @"2";
+    self.badButton.labelTitle = @"Bad";
+    
+    self.worstButton.scoreValue = 1;
+    self.worstButton.emoticonTitle = @"😪";
+    self.worstButton.numberTitle = @"1";
+    self.worstButton.labelTitle = @"Worst";
 }
 
+// Set the buttontitles according to SegmentedControl's preference, save this preference.
+- (IBAction)scoreViewSegmentedControlChange:(id)sender {
+    [self updateButtons];
+    
+    [[NSUserDefaults standardUserDefaults] setInteger:self.scoreViewSegmentedControl.selectedSegmentIndex forKey:@"MoodScoreView"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+// Update MoodScoreButtons' titles according to scoreViewSegmentedControl's selected segment.
 - (void) updateButtons {
     for (MoodScoreButton* button in scoreButtons) {
         if (self.scoreViewSegmentedControl.selectedSegmentIndex == 0)
-            [button setTitle:button.buttonEmoticon forState:UIControlStateNormal];
+            [button setTitle:button.emoticonTitle forState:UIControlStateNormal];
         else if (self.scoreViewSegmentedControl.selectedSegmentIndex == 1)
-            [button setTitle:button.buttonNumber forState:UIControlStateNormal];
+            [button setTitle:button.numberTitle forState:UIControlStateNormal];
         else if (self.scoreViewSegmentedControl.selectedSegmentIndex == 2)
-            [button setTitle:button.buttonLabel forState:UIControlStateNormal];
+            [button setTitle:button.labelTitle forState:UIControlStateNormal];
     }
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-
+// Save the pressed button's value and show its associated time.
 - (IBAction)feelingsButtonPressed:(id)sender {
+    [self writeValue:[sender scoreValue]];
     [self showTimeForButton:sender];
-    [self writeValue:[sender buttonValue]];
 }
 
-- (void) writeValue:(int)value {
-    [inputScores writeValue:[NSNumber numberWithInt:value]
-                   withDate:[NSDate date]
-                 ofVariable:@"Mood"];
-    
-    NSNumber* averageScore = [inputScores averageValueForDate:[NSDate date]
-                                                  forVariable:@"Mood"];
-    
-    [dailyScores writeValue:averageScore
-                   withDate:[NSDate date]
-                 ofVariable:@"Mood"];
-}
-
-
+// Show the animation of a time (hh:mm) label flying out of a button, out of the screen.
 - (void)showTimeForButton:(UIButton*)button
 {
-    // show current time in timeLabel
     MoodTimeLabel *timeLabel = [[MoodTimeLabel alloc] initWithFrame:CGRectMake(button.frame.origin.x - 30, button.center.y, 75, 35)];
-    
-    
-    
     [timeLabel setCenter:CGPointMake(button.frame.origin.x, button.center.y)];
     [self.view addSubview:timeLabel];
     [self.view sendSubviewToBack:timeLabel];
     
+    // fade in while sliding out of the button, fade out while sliding out of the screen
     [timeLabel showTime];
-    
     [UIView animateWithDuration:1
                           delay:0
                         options: UIViewAnimationOptionAllowUserInteraction | UIViewAnimationOptionAllowAnimatedContent
                      animations:^{
                          timeLabel.frame = CGRectMake(self.view.frame.origin.x + 30, timeLabel.frame.origin.y, 75, 35);
-                         
                      }
                      completion:^(BOOL finished) {
                          [UIView animateWithDuration:1
                                                delay:0
-                                             options: UIViewAnimationOptionAllowUserInteraction | UIViewAnimationOptionAllowAnimatedContent | UIViewAnimationOptionCurveEaseIn
+                                             options:
+                                                      UIViewAnimationOptionAllowUserInteraction |
+                                                      UIViewAnimationOptionAllowAnimatedContent |
+                                                      UIViewAnimationOptionCurveEaseIn
                                           animations:^{
-                                              timeLabel.frame = CGRectMake(self.view.frame.origin.x - 100, timeLabel.frame.origin.y, 75, 35);
+                                              timeLabel.frame = CGRectMake(self.view.frame.origin.x - 100,
+                                                                           timeLabel.frame.origin.y, 75, 35);
                                               timeLabel.alpha = 0;
                                           }
                                           completion:^(BOOL finished) {
@@ -130,12 +125,22 @@
                      }];
 }
 
-- (IBAction)scoreViewSegmentedControlChange:(id)sender {
-    [self updateButtons];
+// Save a value in InputScores, save the daily average in DailyScores.
+- (void) writeValue:(int)value {
+    [inputScores writeValue:[NSNumber numberWithInt:value]
+                   withDate:[NSDate date]
+                 ofVariable:@"Mood"];
     
-    [[NSUserDefaults standardUserDefaults] setInteger:self.scoreViewSegmentedControl.selectedSegmentIndex forKey:@"MoodScoreView"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
+    NSNumber* averageScore = [inputScores averageValueForDate:[NSDate date]
+                                                  forVariable:@"Mood"];
+    [dailyScores writeValue:averageScore
+                   withDate:[NSDate date]
+                 ofVariable:@"Mood"];
 }
 
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
 
 @end

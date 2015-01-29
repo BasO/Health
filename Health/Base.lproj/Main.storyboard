@@ -16,21 +16,29 @@
                         <sections>
                             <tableViewSection headerTitle="" id="0c3-KO-Ce4">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="zhK-hb-o18">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="65" id="zhK-hb-o18">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zhK-hb-o18" id="rd5-vZ-Swx">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Use for analysis" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qFU-76-czc">
-                                                    <rect key="frame" x="27" y="14" width="122" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="395932" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NMo-Ls-lk3">
+                                                    <rect key="frame" x="155" y="15" width="141" height="36"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="36" id="aAW-m3-bP6"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Today's score:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qFU-76-czc">
+                                                    <rect key="frame" x="15" y="28" width="111" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="6gq-nB-hNa"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gvD-VD-jiw">
-                                                    <rect key="frame" x="263" y="6" width="51" height="31"/>
-                                                    <color key="onTintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                </switch>
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -74,6 +82,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Variable" id="FIc-aa-KwQ"/>
                     <connections>
+                        <outlet property="averageLabel" destination="NMo-Ls-lk3" id="TO6-nG-JFq"/>
                         <outlet property="graph" destination="iOl-z9-Qqw" id="vyV-0M-37W"/>
                         <outlet property="graphTimePeriodSegmentedControl" destination="WVZ-q8-qjo" id="aAI-9w-EmV"/>
                         <outlet property="tableView" destination="hG6-9u-4Q4" id="X6t-8a-HAX"/>
@@ -82,7 +91,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aqy-62-jre" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-566" y="809"/>
+            <point key="canvasLocation" x="-566" y="804"/>
         </scene>
         <!--Import-->
         <scene sceneID="hAq-KN-rWX">
@@ -588,7 +597,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="timerButton:" destination="vBy-Ss-LG8" eventType="touchUpInside" id="HYM-TY-efU"/>
+                                    <action selector="startButtonPress:" destination="vBy-Ss-LG8" eventType="touchUpInside" id="252-3p-PaG"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gch-e6-hFG">
@@ -684,7 +693,7 @@
                                     <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="ml33ButtonPress:" destination="RTw-QI-bIR" eventType="touchUpInside" id="Iqx-ED-JL9"/>
+                                    <action selector="drinkButtonPress:" destination="RTw-QI-bIR" eventType="touchUpInside" id="6iA-Wx-HT8"/>
                                 </connections>
                             </button>
                             <pickerView contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="A7v-bj-VZm">
@@ -730,9 +739,9 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="drinkButton" destination="J0l-7P-eJT" id="s3A-WL-jwv"/>
                         <outlet property="goalLabel" destination="etG-L1-ztU" id="8sE-C7-Fku"/>
                         <outlet property="goalStepper" destination="d90-sy-ey2" id="ciM-jv-En1"/>
-                        <outlet property="ml33Button" destination="J0l-7P-eJT" id="0r0-yO-sj5"/>
                         <outlet property="secondaryWaterIntakeProgress" destination="lea-Dz-l2e" id="gAs-qP-fGL"/>
                         <outlet property="waterContentPicker" destination="A7v-bj-VZm" id="enx-rs-tzv"/>
                         <outlet property="waterIntakeProgress" destination="jdu-bW-7lw" id="XjE-WH-qoh"/>

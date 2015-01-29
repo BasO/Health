@@ -25,5 +25,6 @@
 
 @property (weak, nonatomic) IBOutlet UISegmentedControl *graphTimePeriodSegmentedControl;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UILabel *averageLabel;
 
 @end

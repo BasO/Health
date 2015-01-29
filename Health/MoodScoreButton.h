@@ -10,14 +10,9 @@
 
 @interface MoodScoreButton : UIButton
 
-@property (nonatomic) NSString* buttonEmoticon;
-@property (nonatomic) NSString* buttonNumber;
-@property (nonatomic) NSString* buttonLabel;
-@property (nonatomic) int buttonValue;
-
-- (void) setupWithValue:(int)buttonValue andEmoticonTitle:(NSString*)emoticon andNumberTitle:(NSString*)numberString andLabelTitle:(NSString*)label;
-- (void) changeToEmoticon;
-- (void) changeToNumber;
-- (void) changeToLabel;
+@property (nonatomic) NSString* emoticonTitle;
+@property (nonatomic) NSString* numberTitle;
+@property (nonatomic) NSString* labelTitle;
+@property (nonatomic) int scoreValue;
 
 @end
